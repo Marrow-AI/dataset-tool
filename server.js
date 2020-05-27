@@ -5,7 +5,7 @@ const axios = require('axios');
 const socketIo = require('socket.io');
 const index = require('./index');
 const port = process.env.PORT || 4000;
-const URL2 ='https://randomuser.me/api/?page=3&results=5&seed=abc';
+const URL ='https://randomuser.me/api/?page=3&results=5&seed=abc';
 
 const app = express();
 app.use(index);
@@ -35,7 +35,7 @@ function newConnection(socket) {
 }
 
 const getApiAndEmit = (msg, socket) => {
-  axios.get(URL2)
+  axios.get(URL)
   .then(result => { 
     let idx = 0;
     const interval = setInterval(() => {
