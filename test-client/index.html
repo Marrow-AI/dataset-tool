@@ -1,0 +1,27 @@
+<html>
+    <head>
+       <meta charset='utf-8' />
+       <title>Dataset tool test client</title>
+    </head>
+    <body>
+        <button id="create-session">Create session</button>
+        <script>
+            document.getElementById("create-session").addEventListener('click', () => {
+                console.log("Create session");
+                fetch('/session', {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({keyword: 'cats'})
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.result == "OK") {
+                    } else {
+                        alert(data.result);
+                    }
+                })
+            })
+        </script>
+    </body>
+</html>
