@@ -5,10 +5,27 @@
     </head>
     <body>
         <button id="create-session">Create session</button>
+        <button id="search">Search</button>
         <script>
             document.getElementById("create-session").addEventListener('click', () => {
                 console.log("Create session");
                 fetch('/session', {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({keyword: 'cats'})
+                })
+                .then(res => res.json())
+                .then((data) => {
+                    console.log(data);
+                    if (data.result == "OK") {
+                    } else {
+                        alert(data.result);
+                    }
+                })
+            })
+            document.getElementById("search").addEventListener('click', () => {
+                console.log("Search");
+                fetch('/search', {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({keyword: 'cats'})

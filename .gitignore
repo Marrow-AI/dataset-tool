@@ -1,3 +1,4 @@
 node_modules/
 *.swp
 server/sessions/*
+geckodriver.log
