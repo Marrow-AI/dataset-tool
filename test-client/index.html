@@ -2,17 +2,35 @@
     <head>
        <meta charset='utf-8' />
        <title>Dataset tool test client</title>
+       <style>
+            #images {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(8, 20vw);
+                grid-gap: 15px; 
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+       </style>
     </head>
     <body>
-        <button id="create-session">Create session</button>
-        <button id="search">Search</button>
+        <button disabled id="create-session">Create session</button>
+        <button disabled id="search">Search</button>
+        <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+        <div id="images"></div>
         <script>
+            let socket = null;
+            let socketSessionId = null;
+
             document.getElementById("create-session").addEventListener('click', () => {
                 console.log("Create session");
                 fetch('/session', {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({keyword: 'cats'})
+                    body: JSON.stringify({keyword: 'cats', socket: socketSessionId})
                 })
                 .then(res => res.json())
                 .then((data) => {
@@ -39,6 +57,21 @@
                     }
                 })
             })
+            console.log("Connecting");
+            socket = io();
+            socket.on('connect', () => {
+                console.log("Socket connected!", socket.id);
+                socketSessionId = socket.id;
+                for (let button of document.getElementsByTagName('button')) {
+                    button.disabled = false;
+                }
+                socket.on('image', (data) => {
+                    console.log("New image!", data);                      
+                    const img = document.createElement('img');
+                    img.src = data.url
+                    document.getElementById('images').appendChild(img);
+                });
+            });
         </script>
     </body>
 </html>

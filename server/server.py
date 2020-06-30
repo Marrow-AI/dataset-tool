@@ -17,6 +17,7 @@ import base64
 
 from flask import Flask, jsonify, request, render_template, send_file
 from flask_compress import Compress
+from flask_socketio import SocketIO,send,emit,join_room
 
 import argparse
 import json
@@ -32,6 +33,9 @@ from user_agent import generate_user_agent
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+import eventlet
+eventlet.monkey_patch()
+
 parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 
 #parser.add_argument('--dummy', action='store_true' , help='Use a Dummy GAN')
@@ -39,10 +43,10 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 app = Flask(__name__, template_folder='../test-client')
+socketio = SocketIO(app)
 Compress(app)
 
-
-def get_image_links(main_keyword, download_dir, num_requested = 100):
+def get_image_links(main_keyword, download_dir,socket_id, num_requested = 100):
     """get image links with selenium
     
     Args:
@@ -95,7 +99,8 @@ def get_image_links(main_keyword, download_dir, num_requested = 100):
 
             if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
                 img_urls.add(url)
-                print("Found image url: " + url)
+                print("Found image url: {} sending to {} ".format(url,socket_id))
+                emit('image',{'url':url},room=socket_id, namespace='/')
 
     print('Process-{0} totally get {1} images'.format(main_keyword, len(img_urls)))
     driver.quit()
@@ -153,20 +158,24 @@ def index():
 def create_session():
     try:
         params = request.get_json()
-        print(params)
+        if ('keyword' not in params or len(params['keyword']) == 0):
+            raise Exception('Keyword cannot be empty')
+        if ('socket' not in params or len(params['socket']) == 0):
+            raise Exception('Keyword cannot be empty')
+
         timestamp = int(time.time())
         session_id = '{}-{}'.format(params['keyword'],timestamp)
 
-        if ('keyword' not in params or len(params['keyword']) == 0):
-            raise Exception('Keyword cannot be empty')
+
         try:
             os.mkdir('sessions/{}'.format(session_id))
             
         except FileExistsError:
             pass
         
-        out = jsonify(result="OK")
+        out = jsonify(result="OK",session_id=session_id)
         out.set_cookie('dataset_session', session_id)
+        out.set_cookie('session_socket', params['socket'])
 
         return out
 
@@ -180,14 +189,14 @@ def search():
         params = request.get_json()
         print(params)
         session_id = request.cookies.get('dataset_session')
+        socket_id = request.cookies.get('session_socket')
 
-        if ('keyword' not in params or len(params['keyword']) == 0):
-            raise Exception('Keyword cannot be empty')
-        
         download_dir = 'sessions/{}'.format(session_id)
-        p = Pool() # number of process is the number of cores of your CPU
-        #p.apply_async(get_image_links, args=(params['keyword'], download_dir))
-        get_image_links(params['keyword'], download_dir)
+        #TODO: Pool doesn't work in eventlet?
+        #p = Pool() # number of process is the number of cores of your CPU
+        print("Get image links to socket {}".format(socket_id))
+        #p.apply_async(get_image_links, args=(params['keyword'], download_dir,socket_id))
+        get_image_links(params['keyword'], download_dir,socket_id)
         
         return jsonify(result="OK")
 
@@ -196,36 +205,16 @@ def search():
         print(e)
         return jsonify(result=str(e))
 
-def create_session():
-    try:
-        params = request.get_json()
-        print(params)
-        timestamp = int(time.time())
-        session_id = '{}-{}'.format(params['keyword'],timestamp)
-
-        if ('keyword' not in params or len(params['keyword']) == 0):
-            raise Exception('Keyword cannot be empty')
-        try:
-            os.mkdir('sessions/{}'.format(session_id))
-            
-        except FileExistsError:
-            pass
-        
-        out = jsonify(result="OK")
-        out.set_cookie('dataset_session', session_id)
-
-        return out
-
-    except Exception as e:
-        traceback.print_stack()
-        return jsonify(result=str(e))
-
+@socketio.on('connect')
+def on_connect():
+    print("Client connected {}".format(request.sid))
+    join_room(request.sid)
 
 if __name__ == '__main__':
 
 	#print("Generating samples")
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
-        app.run (host = "0.0.0.0", port = 8080)
+        socketio.run(app,host = "0.0.0.0", port = 8080,debug=True)
 
 
