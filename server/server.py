@@ -17,6 +17,7 @@ import base64
 
 from flask import Flask, jsonify, request, render_template, send_file
 from flask_compress import Compress
+from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO,send,emit,join_room
 
 import argparse
@@ -45,6 +46,21 @@ args = parser.parse_args()
 app = Flask(__name__, template_folder='../test-client')
 socketio = SocketIO(app)
 Compress(app)
+
+#from here this is CORS to react problems
+CORS(app, support_credentials=True)
+@app.route('/api/test', methods=['POST', 'GET','OPTIONS'])
+@cross_origin(supports_credentials=True)
+def index():
+    if(request.method=='POST'):
+     some_json=request.get_json()
+     return jsonify({"key":some_json})
+    else:
+        return jsonify({"GET":"GET"})
+
+if __name__=="__main__":
+    app.run(host='0.0.0.0', port=8080)
+#until here Cors problem- do not touch! 
 
 def get_image_links(main_keyword, download_dir,socket_id, num_requested = 100):
     """get image links with selenium

@@ -43,7 +43,7 @@ const getApiAndEmit = (msg, socket) => {
         clearInterval(interval);
       } else {
         console.log('sending data: ', idx);
-        socket.emit("getApiAndEmit", result.data.results[idx]);
+        socket.emit("image", result.data.results[idx]);
         idx += 1;
       }
     }, 1000);
