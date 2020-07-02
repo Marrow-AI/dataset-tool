@@ -44,23 +44,12 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 app = Flask(__name__, template_folder='../test-client')
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
-#from here this is CORS to react problems
 CORS(app, support_credentials=True)
 @app.route('/api/test', methods=['POST', 'GET','OPTIONS'])
 @cross_origin(supports_credentials=True)
-def index():
-    if(request.method=='POST'):
-     some_json=request.get_json()
-     return jsonify({"key":some_json})
-    else:
-        return jsonify({"GET":"GET"})
-
-if __name__=="__main__":
-    app.run(host='0.0.0.0', port=8080)
-#until here Cors problem- do not touch! 
 
 def get_image_links(main_keyword, download_dir,socket_id, num_requested = 100):
     """get image links with selenium
@@ -189,7 +178,7 @@ def create_session():
         except FileExistsError:
             pass
         
-        out = jsonify(result="OK",session_id=session_id)
+        out = jsonify(result="OK",socketSessionId=session_id)
         out.set_cookie('dataset_session', session_id)
         out.set_cookie('session_socket', params['socket'])
 
@@ -225,12 +214,21 @@ def search():
 def on_connect():
     print("Client connected {}".format(request.sid))
     join_room(request.sid)
+    # if(request.method=='POST'):
+    #  some_json=request.get_json()
+    #  return jsonify({"key":some_json})
+    # else:
+    #     return jsonify({"GET":"GET"})
 
 if __name__ == '__main__':
 
 	#print("Generating samples")
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
-        socketio.run(app,host = "0.0.0.0", port = 8080,debug=True)
 
+
+#      app.run(host='0.0.0.0', port=8080)
+        socketio.run(app,host = "0.0.0.0", port = 8080,debug=True)
+       
+    
 
