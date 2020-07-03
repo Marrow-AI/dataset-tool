@@ -2,7 +2,7 @@
 # -*- coding: utf-8
 
 import sys
-
+from eventlet import wsgi
 import os, time, re
 import cv2
 import numpy as np
@@ -166,7 +166,7 @@ def create_session():
         if ('keyword' not in params or len(params['keyword']) == 0):
             raise Exception('Keyword cannot be empty')
         if ('socket' not in params or len(params['socket']) == 0):
-            raise Exception('Keyword cannot be empty')
+            raise Exception('Socket cannot be empty')
 
         timestamp = int(time.time())
         session_id = '{}-{}'.format(params['keyword'],timestamp)
@@ -200,6 +200,7 @@ def search():
         #TODO: Pool doesn't work in eventlet?
         #p = Pool() # number of process is the number of cores of your CPU
         print("Get image links to socket {}".format(socket_id))
+        print("got here")
         #p.apply_async(get_image_links, args=(params['keyword'], download_dir,socket_id))
         get_image_links(params['keyword'], download_dir,socket_id)
         
@@ -212,6 +213,9 @@ def search():
 
 @socketio.on('connect')
 def on_connect():
+    print("request")
+    print(dir(request.sid))
+
     print("Client connected {}".format(request.sid))
     join_room(request.sid)
     # if(request.method=='POST'):
@@ -225,10 +229,10 @@ if __name__ == '__main__':
 	#print("Generating samples")
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
-
+  wsgi.server(eventlet.listen(('', 8080)), app)
 
 #      app.run(host='0.0.0.0', port=8080)
-        socketio.run(app,host = "0.0.0.0", port = 8080,debug=True)
+       # app.run(host = "0.0.0.0", port = 8080,debug=True)
        
     
 
