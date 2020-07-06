@@ -44,6 +44,7 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 app = Flask(__name__, template_folder='../test-client')
+app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
@@ -188,6 +189,12 @@ def create_session():
         traceback.print_stack()
         return jsonify(result=str(e))
 
+
+@socketio.on('image')
+def on_image():
+    print("request")
+    print(dir(request.sid))
+
 @app.route('/search',  methods = ['POST'])
 def search():
     try:
@@ -231,8 +238,7 @@ if __name__ == '__main__':
 	#	s.gen(t)
   wsgi.server(eventlet.listen(('', 8080)), app)
 
-#      app.run(host='0.0.0.0', port=8080)
-       # app.run(host = "0.0.0.0", port = 8080,debug=True)
+  # app.run(host = "0.0.0.0", port = 8080,debug=True)
        
     
 
