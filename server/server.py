@@ -189,12 +189,6 @@ def create_session():
         traceback.print_stack()
         return jsonify(result=str(e))
 
-
-@socketio.on('image')
-def on_image():
-    print("request")
-    print(dir(request.sid))
-
 @app.route('/search',  methods = ['POST'])
 def search():
     try:
