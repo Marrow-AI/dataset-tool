@@ -16,6 +16,7 @@ eventlet=0.25.2=pypi_0
 ffmpeg=4.0=hcdf2ecd_0
 flask=1.1.2=pypi_0
 flask-compress=1.5.0=pypi_0
+flask-cors=3.0.8=pypi_0
 flask-socketio=4.3.0=pypi_0
 fontconfig=2.13.0=h9420a91_0
 freeglut=3.0.0=hf484d3e_5

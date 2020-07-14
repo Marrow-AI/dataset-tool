@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:8080";
-let socket = socketIOClient(ENDPOINT);    
+import { useSelector } from 'react-redux'
+import store, {setSession} from '../state'
 
 export default function Search() {
   const { register, fakeSubmit } = useForm({ mode: "onBlur" });
   // const [value, setValue] = useState("");
   const [searchImages, setImages] = useState([]);
   const [btn, setBtn] = useState(true);
-  const [socketSessionId, setSocketSessionId] = useState('')
+  const [datasetSession, setDatasetSession] = useState(true);
 
+  const socket = useSelector(state => state.socket)
+  const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
  
   function handleSession(e) {
     e.preventDefault()
-    console.log("Create session");
+    console.log("Create session with socket id", socketSessionId);
     fetch('http://localhost:8080/session', {
         method: 'POST', 
         headers: {'Content-Type': 'application/json'},
@@ -23,6 +24,7 @@ export default function Search() {
     .then(res => res.json())
     .then((data) => {
         console.log(data);
+		setDatasetSession(data['dataset_session']);
         if (data.result === "OK") {
         } else {
           alert(data.result);
@@ -32,12 +34,12 @@ export default function Search() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    getImage(socketSessionId)
+    getImage(socket)
     console.log("Search");
     fetch('http://localhost:8080/search', {
         method: 'POST', 
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({keyword: 'cats'})
+        body: JSON.stringify({keyword: 'cats', session:datasetSession, socket: socketSessionId})
     })
     .then(res => res.json())
     .then((data) => {
@@ -50,8 +52,7 @@ export default function Search() {
   }
 
   const getImage = () => {
-    console.log("id:", socketSessionId)
-    if(socketSessionId !== "") {
+    if(socket) {
     socket.on('image', (data) => {
       console.log("New image!", data);                      
       setImages([
@@ -61,16 +62,6 @@ export default function Search() {
       });
   } 
 }
-
-  useEffect(() => {
-    console.log("Connecting");
-    setSocketSessionId(socket.id);
-      socket.on('connect', () => {
-        setSocketSessionId(socket.id);
-        console.log("Socket connected!", socketSessionId);
-        setBtn(false)
-    })
-  }, [socketSessionId])
 
 
   return(

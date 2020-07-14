@@ -179,9 +179,7 @@ def create_session():
         except FileExistsError:
             pass
         
-        out = jsonify(result="OK",socketSessionId=session_id)
-        out.set_cookie('dataset_session', session_id)
-        out.set_cookie('session_socket', params['socket'])
+        out = jsonify(result="OK",dataset_session=session_id)
 
         return out
 
@@ -194,8 +192,8 @@ def search():
     try:
         params = request.get_json()
         print(params)
-        session_id = request.cookies.get('dataset_session')
-        socket_id = request.cookies.get('session_socket')
+        session_id = params['session']
+        socket_id =  params['socket']
 
         download_dir = 'sessions/{}'.format(session_id)
         #TODO: Pool doesn't work in eventlet?
