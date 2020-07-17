@@ -13,6 +13,7 @@ export default function Search() {
   const socket = useSelector(state => state.socket)
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
   const images = useSelector(state => state.images);
+
   function handleSession(e) {
     e.preventDefault()
     console.log("Create session with socket id", socketSessionId);
@@ -33,8 +34,7 @@ export default function Search() {
   }
 
   const onSubmit = (e) => {
-    e.preventDefault()
-    getImage(socket)
+	  e.preventDefault()
     console.log("Search");
     fetch('http://localhost:8080/search', {
         method: 'POST', 
@@ -51,20 +51,12 @@ export default function Search() {
     })
   }
 
-  const getImage = () => {
-    if (socket) {
-      socket.on('image', (data) => {
-        console.log("New image!", data);
-
-        // send the incoming message to the store
-        store.dispatch({
-          type: 'SOCKET_EVENT',
-          eventName: 'image',
-          data
-        })
-      });
-    }
-  }
+	if (socket) {
+		socket.off('image');
+		socket.on('image', (data) => {
+			setImages([...searchImages, data]);
+		});
+	}
 
   return(
     <>
@@ -77,7 +69,7 @@ export default function Search() {
     </div>
 
     <div>
-      {images.map(data => (
+      {searchImages.map(data => (
         <div key={data.url}>
           <div>
           <img  src={data.url} alt=""/>
