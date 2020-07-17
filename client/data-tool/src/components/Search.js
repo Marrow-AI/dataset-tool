@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux'
 import { useHistory } from "react-router-dom";
+import Header from './Header.js'
 
 
 export default function Search() {
@@ -52,12 +53,15 @@ export default function Search() {
   }
 
   return (
+    <>
+    <Header />
     <div className='input'>
       <form onSubmit={fakeSubmit}>
-        <input name="searchBar" autoComplete="off" placeholder="type a number..." ref={register({ required: true })} />
+        <input name="searchBar" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
         <button name="session" value={btn} className="create-session" onClick={handleSession} ref={register}>Create session</button>
         <button name="search" value={btn} className="search" onClick={onSubmit} ref={register}> Search </button>
       </form>
     </div>
+    </>
   )
 }

@@ -13,6 +13,16 @@ const reducer = (state = {
 		console.log("Setting session", action.session);
 		return {...state, session: action.session}
   }
+  case 'SOCKET_EVENT': {
+    if (action.eventName === 'image') {
+      console.log('adding a new image" ', action.data.url)
+      return {
+        ...state,
+        images: [...state.images, action.data]
+      }
+    }
+
+  }
     default:
       return state;
   };
