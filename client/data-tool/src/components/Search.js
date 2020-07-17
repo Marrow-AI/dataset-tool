@@ -4,15 +4,15 @@ import { useSelector } from 'react-redux'
 import store, {setSession} from '../state'
 
 export default function Search() {
+
   const { register, fakeSubmit } = useForm({ mode: "onBlur" });
-  // const [value, setValue] = useState("");
   const [searchImages, setImages] = useState([]);
   const [btn, setBtn] = useState(true);
   const [datasetSession, setDatasetSession] = useState(true);
 
   const socket = useSelector(state => state.socket)
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
- 
+  const images = useSelector(state => state.images);
   function handleSession(e) {
     e.preventDefault()
     console.log("Create session with socket id", socketSessionId);
@@ -52,17 +52,19 @@ export default function Search() {
   }
 
   const getImage = () => {
-    if(socket) {
-    socket.on('image', (data) => {
-      console.log("New image!", data);                      
-      setImages([
-        ...searchImages,
-        data
-        ]);
-      });
-  } 
-}
+    if (socket) {
+      socket.on('image', (data) => {
+        console.log("New image!", data);
 
+        // send the incoming message to the store
+        store.dispatch({
+          type: 'SOCKET_EVENT',
+          eventName: 'image',
+          data
+        })
+      });
+    }
+  }
 
   return(
     <>
@@ -75,9 +77,9 @@ export default function Search() {
     </div>
 
     <div>
-      {searchImages.map(data => (
-        <div className='results' key={data.session_id}>
-          <div className='images'>
+      {images.map(data => (
+        <div key={data.url}>
+          <div>
           <img  src={data.url} alt=""/>
           </div>
         </div>
