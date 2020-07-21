@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux'
 
 export default function EditImage() {
+  const keyword = useSelector(state => state.keyword)
   const socket = useSelector(state => state.socket)
   const { register, fakeSubmit } = useForm({ mode: "onBlur" });
   const [searchImages, setImages] = useState([]);
@@ -25,7 +26,7 @@ export default function EditImage() {
   return (
     <div className='secondScreen'>
       <div className='leftSection'>
-        <h1>2. ...the search word</h1>
+        <h1>2. {keyword}</h1>
         <p>some explanation</p> <br />
         <p>number of images: {count}</p><br />
         <form onSubmit={fakeSubmit}>

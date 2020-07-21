@@ -3,6 +3,7 @@ import {createStore} from 'redux';
 const reducer = (state = {
     socket: null,
     images: [],
+    keyword: ''
 }, action) => {
   switch (action.type) {
     case 'SET_SOCKET': {
@@ -21,8 +22,14 @@ const reducer = (state = {
         images: [...state.images, action.data]
       }
     }
-
   }
+  case 'SAVE_KEYWORD': {
+    return {
+      ...state,
+      keyword: action.keyword
+    }
+  }
+  
     default:
       return state;
   };

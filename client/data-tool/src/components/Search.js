@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux'
-import { useHistory } from "react-router-dom";
+import store from '../state'
+import { useHistory, withRouter } from "react-router-dom";
 import Header from './Header.js'
 
-
-export default function Search() {
-  const { register, fakeSubmit } = useForm({ mode: "onBlur" });
+const Search = (props) => {
+  const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const [btn, setBtn] = useState(true);
   const [datasetSession, setDatasetSession] = useState(true);
 
@@ -33,9 +33,9 @@ export default function Search() {
       })
   }
 
-  const onSubmit = (e) => {
+  const onSubmit = (formData) => {
     console.log("Search");
-    e.preventDefault()
+  
     fetch('http://localhost:8080/search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -49,6 +49,10 @@ export default function Search() {
           alert(data.result);
         }
       })
+      store.dispatch({
+        type: 'SAVE_KEYWORD', 
+        keyword: formData.keyword
+      })
     history.push("/edit");
   }
 
@@ -56,12 +60,14 @@ export default function Search() {
     <>
     <Header />
     <div className='input'>
-      <form onSubmit={fakeSubmit}>
-        <input name="searchBar" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input name="keyword" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
         <button name="session" value={btn} className="create-session" onClick={handleSession} ref={register}>Create session</button>
-        <button name="search" value={btn} className="search" onClick={onSubmit} ref={register}> Search </button>
+        <button name="search" type="submit" value={btn} className="search" ref={register}> Search </button>
       </form>
     </div>
     </>
   )
 }
+
+export default withRouter (Search);
