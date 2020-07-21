@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux'
-import store from '../state'
+import { useSelector } from 'react-redux';
+import store from '../state';
 import { useHistory } from "react-router-dom";
-import Header from './Header.js'
+import Header from './Header.js';
+import useSpinner from './useSpinner.js';
 
 export default function Search() {
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const [datasetSession, setDatasetSession] = useState(true);
+  const [loading, showLoading, hideLoading] = useSpinner();
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
   let history = useHistory();
 
@@ -44,19 +46,24 @@ export default function Search() {
       type: 'SAVE_KEYWORD',
       keyword: formData.keyword
     })
-    history.push("/edit");
+    showLoading();
+    setTimeout(() => {
+      hideLoading()
+      history.push("/edit")
+    }, 3000);
   }
 
   return (
-    <>
+    <div className='firstScreen'>
       <Header />
-      <div className='input'>
+      <div className='inputForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input name="keyword" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
-          <button name="search" type="submit" className="search" ref={register}> Search </button>
+          <input className='word' name="keyword" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
+            <button className="search" name="search" type="submit" ref={register}>Search</button>
+            {loading}
         </form>
       </div>
-    </>
+    </div>
   )
 }
 

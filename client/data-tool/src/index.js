@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
+
 import store, {setSocket} from './state'
 import {Provider} from 'react-redux'
 import App from './App';

@@ -15,10 +15,7 @@ socket.on('connect', () => {
   store.dispatch(setSocket(socket));
 });
 
-
-
 function App() {
-  
   return (
     <>
     <div className='app-container'>
