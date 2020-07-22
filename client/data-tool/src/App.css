@@ -96,10 +96,11 @@ h1.logo {
 input.word {
   border: none;
   border-bottom: 2px solid black;
-  font-size: 16px;
-  width: 350px;
+  font-size: 15px;
+  width: 380px;
   margin-top: 25%;
   text-transform: uppercase;
+  padding-left: 5px;
 }
 
 button {
@@ -134,6 +135,102 @@ top: 0;
 z-index: 100;
 }
 
+.secondScreen {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+.test {
+  margin-top: 2rem;
+}
+
+.title.result {
+  text-align: left;
+  padding-bottom: 1.2rem;
+  font-family: 'Lato';
+  font-size: 24px;
+}
+
+.title.result-before {
+  color: #F60257;
+  font-weight: 400;
+  padding-left: 5px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.noImages {
+  font-size: 14px;
+  text-align: left;
+  margin-left: .5rem;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+}
+
+.number {
+  text-decoration: underline;
+  padding-left: 5px;
+  font-size: 15px;
+}
+
+.leftSection {
+  max-width: 400px;
+  padding: 30px;
+  text-align: center;
+  /* padding-left: 5rem; */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+explain.main {
+  font-size: 16px;
+}
+
+.explain.two {
+  line-height: 1.5rem;
+  font-size: 14px;
+}
+
+button.more{
+  padding: 8px 50px;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  margin-left: -1rem;
+}
+
+.editForm {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 50px;
+  padding-right: 80px;
+  width: 350px;
+  margin-bottom: 6rem;
+  margin-top: 1.5rem;
+  text-align: left;
+  margin-right: auto;
+  margin-left: -1rem;
+}
+
+
+button.start{
+  padding: 8px 50px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+ text-align: center;
+ margin-left: 3rem;
+
+}
+
+.MuiTypography-root.label {
+  padding-bottom: 10%;
+}
+
+.explain.three {
+  color: rgb(79, 79, 79);
+  font-size: 12px;
+  padding-bottom: 15px;
+}
 
 
 .imageContainer {
@@ -153,97 +250,4 @@ img {
   width: 160px;
   object-fit: cover;
 }
-
-.secondScreen {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.leftSection {
-  max-width: 400px;
-  padding: 30px;
-  text-align: center;
-  margin-left: 2rem;
-}
-
-.title.result {
-  text-align: center;
-  padding-bottom: 2rem;
-}
-.noImages {
-  font-size: 14px;
-  margin-left: -2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.number {
-  text-decoration: underline;
-}
-
-explain.main {
-  font-size: 16px;
-}
-
-.explain.two {
-  line-height: 1.5rem;
-  font-size: 14px;
-}
-
-button.more{
-  padding: 8px 50px;
-  margin-top: 30px;
-  margin-bottom: 50px;
-}
-
-.editForm {
-  border: 1px solid black;
-  padding: 50px;
-  padding-right: 80px;
-  width: 350px;
-  margin-bottom: 6rem;
-  margin-top: 1.5rem;
-  text-align: left;
-}
-
-
-button.start{
-  padding: 8px 50px;
-  margin-top: 30px;
-  margin-bottom: 20px;
- text-align: center;
- margin-left: 3rem;
-
-}
-
-.rangeSlider {
-display: flex;
-margin-top: 1.5rem;
-}
-
-.explain.three {
-  line-height: 1.5rem;
-  font-size: 14px;
-  margin-bottom: 1.5rem;
-  color: grey;
-}
-
-input:checked + label {
-  color: red;
-}
-
-input[type="checkbox"]:checked {
-  outline: none !important;
-  background-color: black !important;
-}
-.check {
-  text-align: left;
-  margin-top: 1rem;
-  
-}
-input[type='checkbox'] { 
-  transform: scale(1.5); 
-
-}
-
 
