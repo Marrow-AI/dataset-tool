@@ -33,6 +33,10 @@ export default function Search() {
             .then((data) => {
               console.log(data);
               if (data.result === "OK") {
+                store.dispatch({
+                  type: 'SAVE_DATA',
+                  storingDataSassion: data.storingDataSassion
+                })
               } else {
                 alert(data.result);
               }
@@ -58,10 +62,10 @@ export default function Search() {
       <Header />
       <div className='inputForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /> <br/><br/>
-          {errors.keyword && "It seems like you didn't type anything" }
-            <button className="search" name="search" type="submit" ref={register}>Search</button>
-            {loading}
+          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /> <br /><br />
+          {errors.keyword && "It seems like you didn't type anything"}
+          <button className="search" name="search" type="submit" ref={register}>Search</button>
+          {loading}
         </form>
       </div>
     </div>

@@ -133,6 +133,7 @@ position: absolute;
 left: 0;
 top: 0;
 z-index: 100;
+
 }
 
 .secondScreen {
@@ -166,6 +167,8 @@ z-index: 100;
   margin-left: .5rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
+  padding-right: 2px;
+  padding-left: 2px;
 }
 
 .number {
@@ -193,7 +196,7 @@ explain.main {
 }
 
 button.more{
-  padding: 8px 50px;
+  padding: 10px 50px;
   margin-top: 3rem;
   margin-bottom: 4rem;
   margin-left: -1rem;
@@ -209,17 +212,15 @@ button.more{
   margin-top: 1.5rem;
   text-align: left;
   margin-right: auto;
-  margin-left: -1rem;
+  margin-left: -.5rem;
 }
 
-
 button.start{
-  padding: 8px 50px;
-  margin-top: 30px;
-  margin-bottom: 20px;
+ padding: 10px 35px;
+ margin-top: 30px;
+ margin-bottom: 20px;
  text-align: center;
  margin-left: 3rem;
-
 }
 
 .MuiTypography-root.label {
@@ -232,10 +233,11 @@ button.start{
   padding-bottom: 15px;
 }
 
-
 .imageContainer {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
 }
 
 .images {
@@ -249,5 +251,20 @@ img {
   height: 160px;
   width: 160px;
   object-fit: cover;
+}
+
+.start.train:disabled {
+  padding: 10px 25px;
+  margin-top: 2rem;
+  margin-bottom: -.5rem;
+}
+
+.start.train:enabled{
+  background-color: #f60257;
+  color: white;
+  border: 1px solid #f60257;
+  padding: 10px 25px;
+  margin-top: 2rem;
+  margin-bottom: -.5rem;
 }
 
