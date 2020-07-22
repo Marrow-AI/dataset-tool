@@ -29,19 +29,18 @@ export default function EditImage() {
   return (
     <div className='secondScreen'>
       <div className='leftSection'>
-        
-        <h1>2. Results for: {keyword}</h1>
-        <p className='noImages'>number of found images: {count}</p><br />
+        <h1 className='title result'>2. Results for: {keyword}</h1>
+        <p className='noImages'>no.images found:<span className="number"> {count}</span></p><br />
         <div className='explaining'>
-        <p className='explain'>what you just did was an example for <strong>Data Scraping</strong></p>
-        <p className='explain'>Data Scraping is a technique in which a computer program extracts data usually from another program, in our case: Google Images.</p>
-        <p className='explain'> This is a common techniqe when trying to collecting Machine Learning datasets.</p>
-        <p>Next step will be cleaning and orginaizing our data</p>
-        <button onClick={() => setKeepGoing(!keepGoing)}>Keep going?</button>
+        <p className='explain main'>what you just did was an example for <strong>Data Scraping</strong></p>
+        <p className='explain two'>Data Scraping is a technique in which a computer program extracts data usually from another program,<br/> <strong>in our case: Google Images</strong>.</p>
+        <p className='explain two'> This is a common techniqe when trying to collecting Machine Learning datasets.</p>
+        <p className='explain two'>Next step will be cleaning and orginaizing our data</p>
+        <button className='more' onClick={() => setKeepGoing(!keepGoing)}>Keep going?</button>
         </div>
+        
         {keepGoing && <div className='editForm'>
         <form onSubmit={fakeSubmit}>
-          <div className='test'>
           number of humans to extract: <br/> 
           <RangeSlider
            className='rangeSlider'
@@ -51,11 +50,13 @@ export default function EditImage() {
             variant='dark'
             value={value}
             onChange={changeEvent => setValue(changeEvent.target.value) }
-          />   
-          </div>       
-          <input type="checkbox" id="augment" name="augment"/>
+          />
+          <p className='explain three'> this will allow you to seperate the human from the background</p>         
+          <input className="check" type="checkbox" id="augment" name="augment"/>
           <label htmlFor="augment"> augment image</label><br />
-          <button name="start" className="start" onClick={handleEdit} ref={register}> Start </button>
+          <p className='explain three'> this will allow you to seperate the human from the background</p>         
+
+          <button className='start' name="start" onClick={handleEdit} ref={register}> Start </button>
         </form>
         </div>}
       </div>
