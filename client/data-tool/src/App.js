@@ -5,6 +5,7 @@ import Search from './components/Search.js'
 import store, { setSocket } from './state'
 import socketIOClient from "socket.io-client";
 import EditImage from './components/EditImage';
+import Footer from './components/Footer.js';
 
 const ENDPOINT = "http://localhost:8080";
 const socket = socketIOClient(ENDPOINT);
@@ -23,8 +24,11 @@ function App() {
         <div>
           <Route exact path="/" component={Search} />
           <Route exact path="/edit" component={EditImage} />
+       
         </div>
+        <Footer />
       </Router>
+    
     </div>
     </>
   );

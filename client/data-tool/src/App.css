@@ -3,30 +3,94 @@
   outline: none;
 }
 
+.app-container {
+  height: 100vh;
+}
+
 .body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  font-family: 'Yanone Kaffeesatz';
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.footerCointainer {
+   display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.mainFooter {
+  width: 100%;
+  bottom: 0;
+  height: 3rem;
+  background-color: black;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+a.footer {
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 15px 15px;
+}
+
 .firstScreen {
  margin-left: auto;
  margin-right: auto;
  position: relative;
+ max-width: 650px;
+ padding: 15px;
 }
 
 h1 {
   font-family: 'Yanone Kaffeesatz';
-  text-align: center;
   margin-top: 5%;
+  letter-spacing: 4px;
+}
+
+.header {
+  text-align: center;
+}
+
+.explain {
+  text-align: left;
+  line-height: 1.2rem;
+  font-family: 'Lato';
+  font-size: 16px;
+}
+
+h1.logo {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 50px;
+  margin-top: 60px;
+}
+
+.example {
+  font-style: italic;
 }
 
 .inputForm{
-  display: flex;
-  margin-left: auto;
+ display: flex;
+ margin-left: auto;
  margin-right: auto;
  text-align: center;
-  width: 400px;
+ width: 400px;
 }
 
 input.word {
@@ -34,8 +98,40 @@ input.word {
   border-bottom: 2px solid black;
   font-size: 16px;
   width: 350px;
-  margin-top: 30%;
+  margin-top: 25%;
   text-transform: uppercase;
+}
+
+button {
+  background:transparent;
+  cursor: pointer;
+  transition: all .25s ease-in;
+  font-size: 16px;
+  border: 1px solide black;
+  border-radius:  50px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+}
+
+button:hover {
+  transform:scale(1.05) translateY(-2px);
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, .75);
+}
+
+button.search {
+  margin-top: 80px;
+  padding: 10px 80px;
+}
+
+.spinner{  
+height: 100%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+left: 0;
+top: 0;
+z-index: 100;
 }
 
 .secondScreen {
@@ -61,43 +157,11 @@ img {
 }
 
 .test {
-  /* display: flex; */
   width: 350px;
 
 }
 
 .rangeSlider {
 display: flex;
-/* width: 350px; */
 }
-
-.search {
-  background:transparent;
-  cursor: pointer;
-  transition: all .25s ease-in;
-  font-size: 16px;
-  border: 1px solide black;
-  border-radius:  50px;
-  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
-  padding: 10px 80px;
-  margin-top: 40px;
-}
-
-.search:hover {
-  transform:scale(1.05) translateY(-2px);
-  box-shadow: 3px 5px 15px rgba(0, 0, 0, .75);
-}
-
-.spinner{  
-height: 100%;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-position: absolute;
-left: 0;
-top: 0;
-z-index: 100;
-}
-
 

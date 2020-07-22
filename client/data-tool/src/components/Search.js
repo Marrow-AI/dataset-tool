@@ -7,7 +7,7 @@ import Header from './Header.js';
 import useSpinner from './useSpinner.js';
 
 export default function Search() {
-  const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const { register, errors, handleSubmit } = useForm({ mode: "onBlur" });
   const [datasetSession, setDatasetSession] = useState(true);
   const [loading, showLoading, hideLoading] = useSpinner();
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
@@ -58,7 +58,8 @@ export default function Search() {
       <Header />
       <div className='inputForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input className='word' name="keyword" autoComplete="off" placeholder="type a word..." ref={register({ required: true })} />
+          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /> <br/><br/>
+          {errors.keyword && "It seems like you didn't type anything" }
             <button className="search" name="search" type="submit" ref={register}>Search</button>
             {loading}
         </form>

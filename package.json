@@ -6,10 +6,12 @@
   "dependencies": {
     "antd": "^4.4.3",
     "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "little-state-machine": "^3.0.3",
     "nodemon": "^2.0.4",
+    "react-bootstrap": "^1.2.2",
     "react-bootstrap-range-slider": "^1.1.2",
     "react-compound-slider": "^2.5.0",
     "react-spring": "^8.0.27",
