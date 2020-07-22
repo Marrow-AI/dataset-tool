@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -32,8 +32,7 @@ export default function EditImage() {
   const [searchImages, setImages] = useState([]);
   const [count, setCount] = useState()
   const [keepGoing, setKeepGoing] = useState(false);
-  const [boxValue, setBoxValue] = useState({ checked: true })
-  const [valueRange, setValueRange] = useState();
+  const [boxValue, setBoxValue] = useState({ checked: true });
   const [visibleTrain, setvisibleTrain] = useState(true)
   const [loading, showLoading, hideLoading] = useSpinner();
 
@@ -77,7 +76,7 @@ export default function EditImage() {
 
   const goTrain = () => {
     console.log('train me!')
-    history.push("/Train")
+    history.push("/train")
   }
 
   useEffect(() => {

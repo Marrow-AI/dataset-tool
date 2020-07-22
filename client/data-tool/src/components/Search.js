@@ -41,15 +41,10 @@ export default function Search() {
                 alert(data.result);
               }
             })
-        } else {
-          alert(data.result);
-        }
+        } 
       })
     console.log("Results are coming!")
-    store.dispatch({
-      type: 'SAVE_KEYWORD',
-      keyword: formData.keyword
-    })
+   
     showLoading();
     setTimeout(() => {
       hideLoading()
