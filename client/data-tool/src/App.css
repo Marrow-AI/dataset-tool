@@ -5,6 +5,8 @@
 
 .app-container {
   height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 .body {
@@ -23,7 +25,7 @@ a:hover {
 }
 
 .footerCointainer {
-   display: block;
+  display: block;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -274,7 +276,50 @@ button:disabled {
   margin-top: 2rem;
   margin-bottom: -.5rem;
 }
-/* 
-.loadingTwo {
-  padding-top: 50%;
-} */
+
+.trainingImages {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  z-index: -100000;
+}
+
+.timer {
+  margin-top: 0;
+  margin-left: 0;
+  z-index: 1000;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.692);
+  padding: 2%;
+  width: 400px;
+}
+
+.trainingTitle {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  padding-bottom: 0;
+  margin-bottom: 5px;
+  font-family: 'Yanone Kaffeesatz';
+  letter-spacing: 5px;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+.timeText {
+  color: white;
+  font-family: 'Lato';
+  padding-right: 5px;
+  padding-left: 5px;
+  z-index: 1000;
+}
+
+
+

@@ -1,10 +1,13 @@
 import React, { useState, useReducer, useRef, useEffect } from "react";
+import FakeImages from '../FakeImagesNames.json';
+import singleImg from "../img/fakes006167.png"
 
 function reducer(currentState, newState) {
   return { ...currentState, ...newState }
 }
 
 export default function Training() {
+
   const [{ running }, setState] = useReducer(reducer, {
     running: false,
     elapse: 0,
@@ -24,7 +27,7 @@ export default function Training() {
       } else {
         intervalRef.current = setInterval(() => {
 
-          setCounter(counter => counter + 10)
+          setCounter(counter => counter + 100)
         }, 1)
       }
       setState({ running: !running })
@@ -35,12 +38,16 @@ export default function Training() {
 
 
   return (
-    <div className="timer">
-      <p className="trainingText">Training time:</p>
-      {day % 24} day : {hour % 60} hour: {min % 60} min: {sec % 60} sec : {counter % 1000} ms
+    <div className="trainingImages"   style={{backgroundImage: `url(${singleImg})`}}>
+      <div className="timer">
+       <p className="trainingTitle">Training time:</p> <br/>
+       <span className="timeText"> {day % 24} day</span> : 
+       <span className="timeText"> {hour % 60} hour</span> : 
+       <span className="timeText"> {min % 60} min</span> :
+       <span className="timeText"> {sec % 60} sec</span> :
+       <span className="timeText ms"> {counter % 1000} ms </span>
+      </div>
     </div>
-
-
   )
 }
 
