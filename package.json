@@ -5,6 +5,9 @@
   "main": "server.js",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "@nivo/bar": "^0.62.0",
+    "@nivo/parallel-coordinates": "^0.62.0",
+    "@nivo/sankey": "^0.62.0",
     "antd": "^4.4.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",

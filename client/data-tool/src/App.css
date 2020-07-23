@@ -138,7 +138,7 @@ z-index: 100;
 }
 
 .secondScreen {
-  width: 1200px;
+  max-width: 1200px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -289,6 +289,7 @@ button:disabled {
   background-size: cover;
   object-fit: cover;
   z-index: -100000;
+  opacity: 0.98;
 }
 
 .timer {
@@ -320,6 +321,4 @@ button:disabled {
   padding-left: 5px;
   z-index: 1000;
 }
-
-
 

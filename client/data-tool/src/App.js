@@ -22,11 +22,9 @@ function App() {
     <>
     <div className='app-container'>
       <Router>
-        <div>
           <Route exact path="/" component={Search} />
           <Route exact path="/edit" component={EditImage} />
           <Route exact path="/train" component={Training} />
-        </div>
         <Footer />
       </Router>
     

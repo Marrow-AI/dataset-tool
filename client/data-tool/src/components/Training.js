@@ -19,7 +19,6 @@ export default function Training() {
   const hour = Math.floor(min / 60);
   const day = Math.floor(hour / 24);
 
-
   useEffect(() => {
     setTimeout(() => {
       if (running) {
@@ -38,6 +37,7 @@ export default function Training() {
 
 
   return (
+    <>
     <div className="trainingImages"   style={{backgroundImage: `url(${singleImg})`}}>
       <div className="timer">
        <p className="trainingTitle">Training time:</p> <br/>
@@ -48,6 +48,7 @@ export default function Training() {
        <span className="timeText ms"> {counter % 1000} ms </span>
       </div>
     </div>
+    </>
   )
 }
 
