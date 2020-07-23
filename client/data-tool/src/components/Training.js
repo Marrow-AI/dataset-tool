@@ -35,10 +35,9 @@ export default function Training() {
     }, 1000)
   }, [])
 
-
   return (
     <>
-    <div className="trainingImages"   style={{backgroundImage: `url(${singleImg})`}}>
+    <div className="trainingImages"  style={{backgroundImage: `url(${singleImg})`}}>
       <div className="timer">
        <p className="trainingTitle">Training time:</p> <br/>
        <span className="timeText"> {day % 24} day</span> : 

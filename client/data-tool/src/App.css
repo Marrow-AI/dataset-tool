@@ -214,7 +214,7 @@ button.more{
   margin-top: .2rem;
   text-align: left;
   margin-right: auto;
-  margin-left: -.5rem;
+  margin-left: auto;
 }
 
 button.start{
@@ -266,15 +266,18 @@ button:disabled {
   padding: 10px 35px;
   margin-top: 2rem;
   margin-bottom: -.5rem;
+  transition: all .25 ease-in;
+  margin-left: 2.8rem;
 }
 
 .start.train:enabled{
   background-color: #f60257;
   color: white;
   border: 1px solid #f60257;
-  padding: 10px 25px;
   margin-top: 2rem;
   margin-bottom: -.5rem;
+  transition: all .35 ease-in;
+  margin-left: 2.7rem;
 }
 
 .trainingImages {
