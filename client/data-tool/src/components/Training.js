@@ -10,10 +10,8 @@ export default function Training() {
     elapse: 0,
   })
   const [counter, setCounter] = useState(1);
-  const intervalRef = useRef(null)
-  let imagePng = [];
+  const intervalRef = useRef(null);
   
-
   useEffect(() =>{
   setTimeout(() => {
     if (running ) {

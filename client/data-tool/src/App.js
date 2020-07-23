@@ -7,9 +7,11 @@ import socketIOClient from "socket.io-client";
 import EditImage from './components/EditImage';
 import Footer from './components/Footer';
 import Training from './components/Training';
+import names from './names.json';
 
 const ENDPOINT = "http://localhost:8080";
 const socket = socketIOClient(ENDPOINT);
+console.log(names);
 
 console.log("Connecting to socket");
 socket.on('connect', () => {

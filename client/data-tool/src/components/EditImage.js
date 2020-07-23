@@ -60,6 +60,7 @@ export default function EditImage() {
       .then((data) => {
         console.log(data);
         if (data.result === "OK") {
+          
         } else {
           alert(data.result);
         }

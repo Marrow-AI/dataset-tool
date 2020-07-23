@@ -33,10 +33,10 @@ export default function Search() {
             .then((data) => {
               console.log(data);
               if (data.result === "OK") {
-                store.dispatch({
-                  type: 'SAVE_DATA',
-                  storingDataSassion: data.storingDataSassion
-                })
+                  // store.dispatch({
+                //   type: 'SAVE_DATA',
+                //   storingDataSassion: data.storingDataSassion
+                // })
               } else {
                 alert(data.result);
               }
@@ -44,7 +44,10 @@ export default function Search() {
         } 
       })
     console.log("Results are coming!")
-   
+    store.dispatch({
+      type: 'SAVE_KEYWORD',
+      keyword: formData.keyword
+    })
     showLoading();
     setTimeout(() => {
       hideLoading()
