@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 import store from '../state';
 import { useHistory } from "react-router-dom";
-import Header from './Header.js';
-import useSpinner from './useSpinner.js';
+import Header from './Header';
+import useSpinner from './useSpinner';
 
 export default function Search() {
   const { register, errors, handleSubmit } = useForm({ mode: "onBlur" });
@@ -33,7 +33,9 @@ export default function Search() {
             .then((data) => {
               console.log(data);
               if (data.result === "OK") {
-                  // store.dispatch({
+                // **i wrote something in the redux to pass to on the 
+                // data when editing the images-  i don't know if we need it**
+                // store.dispatch({
                 //   type: 'SAVE_DATA',
                 //   storingDataSassion: data.storingDataSassion
                 // })
@@ -41,7 +43,7 @@ export default function Search() {
                 alert(data.result);
               }
             })
-        } 
+        }
       })
     console.log("Results are coming!")
     store.dispatch({

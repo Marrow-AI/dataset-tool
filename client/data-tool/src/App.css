@@ -133,17 +133,13 @@ position: absolute;
 left: 0;
 top: 0;
 z-index: 100;
-
 }
 
 .secondScreen {
+  width: 1200px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2rem;
-}
-
-.test {
   margin-top: 2rem;
 }
 
@@ -161,6 +157,7 @@ z-index: 100;
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
 .noImages {
   font-size: 14px;
   text-align: left;
@@ -178,12 +175,15 @@ z-index: 100;
 }
 
 .leftSection {
-  max-width: 400px;
-  padding: 30px;
+  width: 400px;
+  padding: 10px;
   text-align: center;
-  /* padding-left: 5rem; */
   margin-left: auto;
   margin-right: auto;
+}
+
+.explaining {
+  width: 380px;
 }
 
 explain.main {
@@ -198,7 +198,7 @@ explain.main {
 button.more{
   padding: 10px 50px;
   margin-top: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
   margin-left: -1rem;
 }
 
@@ -207,9 +207,9 @@ button.more{
   border-radius: 10px;
   padding: 50px;
   padding-right: 80px;
-  width: 350px;
+  width: 380px;
   margin-bottom: 6rem;
-  margin-top: 1.5rem;
+  margin-top: .2rem;
   text-align: left;
   margin-right: auto;
   margin-left: -.5rem;
@@ -238,6 +238,7 @@ button.start{
   margin-right: auto;
   margin-top: 1rem;
   margin-bottom: 10rem;
+  width: 700px;
 }
 
 .images {
@@ -253,8 +254,14 @@ img {
   object-fit: cover;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  transform:scale(1) translateY(0);
+  box-shadow: none;
+}
+
 .start.train:disabled {
-  padding: 10px 25px;
+  padding: 10px 35px;
   margin-top: 2rem;
   margin-bottom: -.5rem;
 }
@@ -267,4 +274,7 @@ img {
   margin-top: 2rem;
   margin-bottom: -.5rem;
 }
-
+/* 
+.loadingTwo {
+  padding-top: 50%;
+} */

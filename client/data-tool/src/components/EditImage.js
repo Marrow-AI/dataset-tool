@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import useSpinner from './useSpinner';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import useSpinner from './useSpinner.js';
+
+//this belongs to material-ui//
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 250
@@ -21,23 +24,26 @@ const marks = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
 }
+//until here - material-ui// 
 
 export default function EditImage() {
-  let history = useHistory();
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
   const keyword = useSelector(state => state.keyword);
   const socket = useSelector(state => state.socket);
   const storingDataSassion = useSelector(state => state.storingDataSassion);
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  let history = useHistory();
+  const classes = useStyles();
   const [searchImages, setImages] = useState([]);
   const [count, setCount] = useState()
   const [keepGoing, setKeepGoing] = useState(false);
   const [boxValue, setBoxValue] = useState({ checked: true });
-  const [visibleTrain, setvisibleTrain] = useState(true)
-  const [loading, showLoading, hideLoading] = useSpinner();
+  const [visiblebtn, setVisiblebtn] = useState(false)
+  const [visiblebTraining, setvisibleTraining] = useState(false)
 
-  const classes = useStyles();
+  const [loading, showLoading, hideLoading] = useSpinner();
   const [buttonText, setButtonText] = useState('Give it a go?')
+
   const changeButtonText = (text) => setButtonText(text);
 
   const handleChange = (event) => {
@@ -51,27 +57,27 @@ export default function EditImage() {
 
   async function onSubmit() {
     console.log('click')
+    //**demi fetching  **//
     await fetch('http://localhost:8080/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ keyword: 'cats', session: storingDataSassion, socket: socketSessionId })
     })
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.result === "OK") {
-          
-        } else {
-          alert(data.result);
-        }
-      })
+      // .then(res => res.json())
+      // .then((data) => {
+      //   console.log(data);
+      //   if (data.result === "OK") {
+      //   } else {
+      //     alert(data.result);
+      //   }
+      // })
+    //**demi fetching  **//
     showLoading();
     setTimeout(() => {
       hideLoading()
-      history.push("/edit")
     }, 2000);
     changeButtonText('Try Again?');
-    setvisibleTrain(false)
+    setvisibleTraining(true)
     console.log('editing images now')
   }
 
@@ -82,33 +88,36 @@ export default function EditImage() {
 
   useEffect(() => {
     if (socket) {
-      socket.off('image');
       socket.on('image', (data) => {
         setImages([...searchImages, data]);
         setCount(searchImages.length + 1);
       });
     }
-  })
+    return () => {
+      if (socket) {
+        socket.off('image');
+      }
+    }
+  });
 
   return (
     <div className='secondScreen'>
-      <div></div>
       <div className='leftSection'>
         <h1 className='title result'>2.Results for:<span className='title result-before'>{keyword}</span> </h1>
-        <p className='noImages'>no.images found:<span className="number"> {count}</span></p><br />
+        <p className='noImages'>No.images found:<span className="number"> {count}</span></p><br />
         <div className='explaining'>
-          <p className='explain main'>what you just did was an example for <strong>Data Scraping</strong>.</p>
+          <p className='explain main'>What you just did was an example for <strong>Data Scraping</strong>.</p>
           <p className='explain two'>Data Scraping is a technique in which a computer program extracts data usually from another program,<br /> <strong>in our case: Google Images</strong>.</p>
           <p className='explain two'> This is a common techniqe when trying to collecting Machine Learning datasets.</p>
           <p className='explain two'>Next step will be cleaning and orginaizing our data</p>
-          <button className='more' onClick={() => setKeepGoing(!keepGoing)}>Keep going?</button>
+          <button disabled={visiblebtn} className='more' onClick={() => setKeepGoing(!keepGoing, setVisiblebtn(true))}>Keep going?</button>
         </div>
 
         {keepGoing && <div className='editForm'>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={classes.root}>
               <Typography className="label" id="track-false-slider" gutterBottom>
-                Number of human to extract from background:
+                Number of human to leave and extract from background:
             </Typography>
               <Slider
                 defaultValue={0}
@@ -132,14 +141,16 @@ export default function EditImage() {
                 onChange={handleChange}
                 name="checked" />} label="Augment Images" />
             <p className='explain three'> this will shuffle the humans in each image, and will multiple the number of images</p>
+
             <button className='start' name="start" type="submit" ref={register}>{buttonText}</button>
-            <button disabled={visibleTrain} className='start train' name="train" onClick={goTrain}>Start Training</button>
+            <button disabled={!visiblebTraining} className='start train' name="train" onClick={goTrain}>Start Training</button>
+
           </form>
         </div>}
       </div>
 
       {loading}
-      
+
       <div className='imageContainer'>
         <div className='images'>
           {searchImages.map(data => (
