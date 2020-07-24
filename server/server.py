@@ -2,7 +2,7 @@
 # -*- coding: utf-8
 
 import sys
-
+from eventlet import wsgi
 import os, time, re
 import cv2
 import numpy as np
@@ -17,6 +17,7 @@ import base64
 
 from flask import Flask, jsonify, request, render_template, send_file
 from flask_compress import Compress
+from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO,send,emit,join_room
 
 import argparse
@@ -49,8 +50,13 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 app = Flask(__name__, template_folder='../test-client')
-socketio = SocketIO(app)
+app.config['SECRET_KEY'] = 'mysecret'
+socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
+
+CORS(app, support_credentials=True)
+@app.route('/api/test', methods=['POST', 'GET','OPTIONS'])
+@cross_origin(supports_credentials=True)
 
 def get_image_links(main_keyword, download_dir,socket_id, num_requested = 100):
     """get image links with selenium
@@ -169,7 +175,7 @@ def create_session():
         if ('keyword' not in params or len(params['keyword']) == 0):
             raise Exception('Keyword cannot be empty')
         if ('socket' not in params or len(params['socket']) == 0):
-            raise Exception('Keyword cannot be empty')
+            raise Exception('Socket cannot be empty')
 
         timestamp = int(time.time())
         session_id = '{}-{}'.format(params['keyword'],timestamp)
@@ -181,9 +187,7 @@ def create_session():
         except FileExistsError:
             pass
         
-        out = jsonify(result="OK",session_id=session_id)
-        out.set_cookie('dataset_session', session_id)
-        out.set_cookie('session_socket', params['socket'])
+        out = jsonify(result="OK",dataset_session=session_id)
 
         return out
 
@@ -196,13 +200,14 @@ def search():
     try:
         params = request.get_json()
         print(params)
-        session_id = request.cookies.get('dataset_session')
-        socket_id = request.cookies.get('session_socket')
+        session_id = params['session']
+        socket_id =  params['socket']
 
         download_dir = 'sessions/{}'.format(session_id)
         #TODO: Pool doesn't work in eventlet?
         #p = Pool() # number of process is the number of cores of your CPU
         print("Get image links to socket {}".format(socket_id))
+        print("got here")
         #p.apply_async(get_image_links, args=(params['keyword'], download_dir,socket_id))
         get_image_links(params['keyword'], download_dir,socket_id)
         
@@ -215,14 +220,25 @@ def search():
 
 @socketio.on('connect')
 def on_connect():
+    print("request")
+    print(dir(request.sid))
+
     print("Client connected {}".format(request.sid))
     join_room(request.sid)
+    # if(request.method=='POST'):
+    #  some_json=request.get_json()
+    #  return jsonify({"key":some_json})
+    # else:
+    #     return jsonify({"GET":"GET"})
 
 if __name__ == '__main__':
 
 	#print("Generating samples")
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
-        socketio.run(app,host = "0.0.0.0", port = 8080,debug=True)
+  wsgi.server(eventlet.listen(('', 8080)), app)
 
+  # app.run(host = "0.0.0.0", port = 8080,debug=True)
+       
+    
 

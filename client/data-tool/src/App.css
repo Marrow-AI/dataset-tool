@@ -1,0 +1,327 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+.app-container {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-family: 'Yanone Kaffeesatz';
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.footerCointainer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.mainFooter {
+  width: 100%;
+  bottom: 0;
+  height: 3rem;
+  background-color: black;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+a.footer {
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  letter-spacing: 1px;
+  padding: 15px 15px;
+}
+
+.firstScreen {
+ margin-left: auto;
+ margin-right: auto;
+ position: relative;
+ max-width: 650px;
+ padding: 15px;
+}
+
+h1 {
+  font-family: 'Yanone Kaffeesatz';
+  margin-top: 5%;
+  letter-spacing: 4px;
+}
+
+.header {
+  text-align: center;
+}
+
+.explain {
+  text-align: left;
+  line-height: 1.2rem;
+  font-family: 'Lato';
+  font-size: 16px;
+}
+
+h1.logo {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 50px;
+  margin-top: 60px;
+}
+
+.example {
+  font-style: italic;
+}
+
+.inputForm{
+ display: flex;
+ margin-left: auto;
+ margin-right: auto;
+ text-align: center;
+ width: 400px;
+}
+
+input.word {
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 15px;
+  width: 380px;
+  margin-top: 25%;
+  text-transform: uppercase;
+  padding-left: 5px;
+}
+
+button {
+  background:transparent;
+  cursor: pointer;
+  transition: all .25s ease-in;
+  font-size: 16px;
+  border: 1px solide black;
+  border-radius:  50px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+}
+
+button:hover {
+  transform:scale(1.05) translateY(-2px);
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, .75);
+}
+
+button.search {
+  margin-top: 80px;
+  padding: 10px 80px;
+}
+
+.spinner{  
+height: 100%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+left: 0;
+top: 0;
+z-index: 100;
+}
+
+.secondScreen {
+  max-width: 1200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+}
+
+.title.result {
+  text-align: left;
+  padding-bottom: 1.2rem;
+  font-family: 'Lato';
+  font-size: 24px;
+}
+
+.title.result-before {
+  color: #F60257;
+  font-weight: 400;
+  padding-left: 5px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.noImages {
+  font-size: 14px;
+  text-align: left;
+  margin-left: .5rem;
+  margin-bottom: 1rem;
+  margin-top: -1rem;
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.number {
+  text-decoration: underline;
+  padding-left: 5px;
+  font-size: 15px;
+}
+
+.leftSection {
+  width: 400px;
+  padding: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.explaining {
+  width: 380px;
+}
+
+explain.main {
+  font-size: 16px;
+}
+
+.explain.two {
+  line-height: 1.5rem;
+  font-size: 14px;
+}
+
+button.more{
+  padding: 10px 50px;
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  margin-left: -1rem;
+}
+
+.editForm {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 50px;
+  padding-right: 80px;
+  width: 380px;
+  margin-bottom: 6rem;
+  margin-top: .2rem;
+  text-align: left;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+button.start{
+ padding: 10px 35px;
+ margin-top: 30px;
+ margin-bottom: 20px;
+ text-align: center;
+ margin-left: 3rem;
+}
+
+.MuiTypography-root.label {
+  padding-bottom: 10%;
+}
+
+.explain.three {
+  color: rgb(79, 79, 79);
+  font-size: 12px;
+  padding-bottom: 15px;
+}
+
+.imageContainer {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+  width: 700px;
+}
+
+.images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  grid-gap: 10px; 
+}
+
+img {
+  height: 160px;
+  width: 160px;
+  object-fit: cover;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  transform:scale(1) translateY(0);
+  box-shadow: none;
+}
+
+.start.train:disabled {
+  padding: 10px 35px;
+  margin-top: 2rem;
+  margin-bottom: -.5rem;
+  transition: all .25 ease-in;
+  margin-left: 2.8rem;
+}
+
+.start.train:enabled{
+  background-color: #f60257;
+  color: white;
+  border: 1px solid #f60257;
+  margin-top: 2rem;
+  margin-bottom: -.5rem;
+  transition: all .35 ease-in;
+  margin-left: 2.7rem;
+}
+
+.trainingImages {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  z-index: -100000;
+  opacity: 0.98;
+}
+
+.timer {
+  margin-top: 0;
+  margin-left: 0;
+  z-index: 1000;
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.692);
+  padding: 2%;
+  width: 400px;
+}
+
+.trainingTitle {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  padding-bottom: 0;
+  margin-bottom: 5px;
+  font-family: 'Yanone Kaffeesatz';
+  letter-spacing: 5px;
+  font-weight: 600;
+  z-index: 1000;
+}
+
+.timeText {
+  color: white;
+  font-family: 'Lato';
+  padding-right: 5px;
+  padding-left: 5px;
+  z-index: 1000;
+}
+
