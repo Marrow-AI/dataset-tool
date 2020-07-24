@@ -32,6 +32,12 @@ from user_agent import generate_user_agent
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import Firefox
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.support import expected_conditions as expected
+from selenium.webdriver.support.wait import WebDriverWait
 
 import eventlet
 eventlet.monkey_patch()
@@ -60,8 +66,10 @@ def get_image_links(main_keyword, download_dir,socket_id, num_requested = 100):
     number_of_scrolls = int(num_requested / 400) + 1 
     # number_of_scrolls * 400 images will be opened in the browser
 
+    options = Options()
+    options.add_argument('-headless')
     img_urls = set()
-    driver = webdriver.Firefox()
+    driver = webdriver.Firefox(executable_path='geckodriver', options=options)
     search_query = quote(main_keyword)
     url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
     driver.get(url)
