@@ -13,7 +13,12 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "socket.io-client": "^2.3.0",
-    "use-socket.io-client": "^1.1.0"
+    "use-socket.io-client": "^1.1.0",
+    "@material-ui/core": "^4.11.0",
+    "@nivo/bar": "^0.62.0",
+    "@nivo/parallel-coordinates": "^0.62.0",
+    "@nivo/sankey": "^0.62.0",
+    "antd": "^4.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
