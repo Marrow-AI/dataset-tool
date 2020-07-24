@@ -17,7 +17,7 @@ export default function Search() {
     await fetch('http://localhost:8080/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ keyword: 'cats', socket: socketSessionId })
+      body: JSON.stringify({ keyword: formData.keyword, socket: socketSessionId })
     })
       .then(res => res.json())
       .then((data) => {
@@ -27,7 +27,7 @@ export default function Search() {
           fetch('http://localhost:8080/search', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ keyword: 'cats', session: datasetSession, socket: socketSessionId })
+            body: JSON.stringify({ keyword: formData.keyword, session: datasetSession, socket: socketSessionId })
           })
             .then(res => res.json())
             .then((data) => {
