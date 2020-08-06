@@ -27,7 +27,7 @@ export default function Search() {
           fetch('http://localhost:8080/search', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ keyword: formData.keyword, session: datasetSession, socket: socketSessionId })
+            body: JSON.stringify({ keyword: formData.keyword, session: data['dataset_session'], socket: socketSessionId })
           })
             .then(res => res.json())
             .then((data) => {
