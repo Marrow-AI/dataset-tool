@@ -15,7 +15,6 @@
                 object-fit: cover;
             }
             #crop-test img {
-              width: 50%;
             } 
        </style>
     </head>
@@ -25,7 +24,7 @@
         <button disabled id="search">Search</button>
         <div id="crop-test">
           <p>
-            <img id="crop-test-image" src="/static/couple-kissing.jpg">
+            <img id="crop-test-image" src="/static/dinner_table.jpg">
           </p>
           <p>
             <button id="crop-button">Crop people</button>
@@ -36,6 +35,18 @@
         <script>
             let socket = null;
             let socketSessionId = null;
+
+						function getDataUrl(img) {
+							 // Create canvas
+							 const canvas = document.createElement('canvas');
+							 const ctx = canvas.getContext('2d');
+							 // Set width and height
+							 canvas.width = img.width;
+							 canvas.height = img.height;
+							 // Draw the image
+							 ctx.drawImage(img, 0, 0);
+							 return canvas.toDataURL('image/jpeg');
+						}
 
             document.getElementById("create-session").addEventListener('click', () => {
                 console.log("Create session");
@@ -67,6 +78,24 @@
                     } else {
                         alert(data.result);
                     }
+                })
+            })
+            document.getElementById("crop-button").addEventListener('click', () => {
+                console.log("Crop!");
+								const img = document.querySelector('#crop-test-image');
+						 	  const dataUrl = getDataUrl(img);
+								console.log("Data URL",dataUrl);
+
+                fetch('http://52.206.213.41:22100/pose', {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({data: dataUrl})
+                })
+                .then(res => res.json())
+                .then((data) => {
+										const resultImage = new Image();
+										resultImage.src = "data:image/jpg;base64," + data.results;
+										document.querySelector("#crop-test").appendChild(resultImage);
                 })
             })
             console.log("Connecting");
