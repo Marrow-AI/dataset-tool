@@ -1,0 +1,1 @@
+docker run --gpus all --rm -d -v /home/avnerus/Projects/dataset-tool/densepose/server.py:/densepose/server/server.py -p 22100:22100 avnerus/densepose:rwmarrow /usr/local/bin/uwsgi /densepose/server.ini

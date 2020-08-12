@@ -203,12 +203,15 @@ class Scraper(Thread):
 
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
-    print("Serve from sessions {}".format(filepath))
     return send_from_directory('sessions', filepath)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
 
 @app.route('/session',  methods = ['POST'])
 def create_session():
@@ -280,7 +283,7 @@ if __name__ == '__main__':
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
   app.debug = True
-  wsgi.server(eventlet.listen(('', 8080)), app)
+  wsgi.server(eventlet.listen(('', 8540)), app, debug=True)
 
   # app.run(host = "0.0.0.0", port = 8080,debug=True)
        

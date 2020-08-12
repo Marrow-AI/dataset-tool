@@ -42,7 +42,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "webpack & python server/server.py",
     "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
