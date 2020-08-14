@@ -27,7 +27,13 @@
             <img id="crop-test-image" src="/static/dinner_table.jpg">
           </p>
           <p>
-            <button id="crop-button">Crop people</button>
+             <form id="crop-form"> 
+              <label for="num-of-people">Number of people:</label><br>
+              <input type="number" id="num-of-people" name="num-of-people" value="2"><br>
+              <label for="num-of-people">Number of permutations:</label><br>
+              <input type="number" id="num-of-permutations" name="num-of-permutations" value="2"><br>
+              <button type="submit" id="crop-button">Crop people</button>
+            </form> 
           </p>
         </div>
         <div id="images"></div>
@@ -80,22 +86,31 @@
                     }
                 })
             })
-            document.getElementById("crop-button").addEventListener('click', () => {
-                console.log("Crop!");
+            document.getElementById("crop-form").addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formValues = Object.values(
+                  e.currentTarget.elements
+                ).reduce((obj,field) => { obj[field.name] = field.value; return obj }, {})
+
 								const img = document.querySelector('#crop-test-image');
 						 	  const dataUrl = getDataUrl(img);
-								console.log("Data URL",dataUrl);
 
                 fetch('http://52.206.213.41:22100/pose', {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({data: dataUrl})
+                    body: JSON.stringify({
+                      data: dataUrl,
+                      numOfPeople: Number(formValues['num-of-people']),
+                      numOfPermutations: Number(formValues['num-of-permutations']),
+                    })
                 })
                 .then(res => res.json())
                 .then((data) => {
-										const resultImage = new Image();
-										resultImage.src = "data:image/jpg;base64," + data.results;
-										document.querySelector("#crop-test").appendChild(resultImage);
+                    for (const imageText of data.results) {
+                      const resultImage = new Image();
+                      resultImage.src = "data:image/jpg;base64," + imageText;
+                      document.querySelector("#crop-test").appendChild(resultImage);
+                    }
                 })
             })
             console.log("Connecting");

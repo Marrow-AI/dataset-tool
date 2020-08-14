@@ -89,7 +89,7 @@ def stringToImage(base64_string):
 def toRGB(image):
   return cv2.cvtColor(np.array(image), cv2.COLOR_BGR2RGB)
 
-def process_image(input_image):
+def process_image(input_image, num_of_people, num_of_permutations):
   timers = defaultdict(Timer)
   t = time.time()
   image = stringToImage(input_image[input_image.find(",")+1:])
@@ -103,21 +103,24 @@ def process_image(input_image):
   t2 = time.time()
 
   #logger.info('Inference time: {:.3f}s'.format(t2 - t))
+  jpgs = []
+
   if cls_bodys is not None:
-    (finals,num_people) = process_bodies(img, cls_boxes, cls_bodys)
+    (finals,num_people) = process_bodies(img, cls_boxes, cls_bodys, num_of_people, num_of_permutations)
     logger.info('Num of people {}'.format(num_people))
     if len(finals) > 0:
-        retval, buffer = cv2.imencode('.jpg', finals[0])
-        jpg_as_text = base64.b64encode(buffer)
-        return jpg_as_text
+        for final in finals:
+            retval, buffer = cv2.imencode('.jpg', final)
+            jpg_as_text = base64.b64encode(buffer)
+            jpgs.append(jpg_as_text)
     else:
       print('Skipping')
-      return None
   else:
     print('Skipping')
-    return None
 
-def process_bodies(im, boxes, body_uv):
+  return jpgs
+
+def process_bodies(im, boxes, body_uv, num_of_people, num_of_permutations):
     if isinstance(boxes, list):
         box_list = [b for b in boxes if len(b) > 0]
         if len(box_list) > 0:
@@ -147,10 +150,13 @@ def process_bodies(im, boxes, body_uv):
         
     print('Found {} people'.format(len(good_inds)))
     finals = []
-    if len(real_good_inds) >= 1:
-        perms = list(set(permutations(real_good_inds, len(real_good_inds))))
+    if len(real_good_inds) >= num_of_people:
+        perms = list(set(permutations(real_good_inds, num_of_people)))
         np.random.shuffle(perms)
-        for i in range(4):
+        if num_of_permutations > len(perms):
+           num_of_permutations = len(perms)
+        
+        for i in range(num_of_permutations):
             good_inds = perms[i]
             print("Indexes {}".format(good_inds))
 
@@ -162,6 +168,8 @@ def process_bodies(im, boxes, body_uv):
             #np.random.shuffle(good_inds)
             #print("Good index {}".format(good_inds))
 
+            one_body_width = int(512 / num_of_people)
+
             for i, ind in enumerate(good_inds):
                 entry = boxes[ind,:]
                 #print("Box position: {}, score: {}".format(entry[0],entry[4]))
@@ -172,27 +180,18 @@ def process_bodies(im, boxes, body_uv):
                 ###
                 CurrentMask = (output[0,:,:]>0).astype(np.float32)
                 BlackMask = (output[0,:,:]==0)
-                #print("Shape of mask {}".format(CurrentMask.shape))
-                #print("Shape of output {}".format(output.shape))
-                #All_Coords = np.zeros([output.shape[1],output.shape[2], 3])
-                #All_Coords_Old = All_Coords[:output.shape[1],:output.shape[2],:]
-                #All_Coords_Old[All_Coords_Old==0]= im[entry[1]:output.shape[1]+entry[1],entry[0]:output.shape[2]+entry[0],:][All_Coords_Old==0]
-                #All_Coords[ 0 : output.shape[1], 0 : output.shape[2],:]= All_Coords_Old
-
                 All_Coords = np.array(im[entry[1]:output.shape[1]+entry[1],entry[0]:output.shape[2]+entry[0],:])
-                #cv2.imwrite(os.path.join(output_dir, 'coords{}.png'.format(ind)), All_Coords)
-                #cv2.imwrite(os.path.join(output_dir, 'img{}.png'.format(ind)), im)
                 All_Coords[BlackMask] = 0
                 All_Coords = All_Coords.astype(np.uint8)
-                resize_ratio = 128 / output.shape[2]
+                resize_ratio = one_body_width / output.shape[2]
                 #print("Resize ratio {} ({})".format(resize_ratio, output.shape[2]))
-                img = cv2.resize(All_Coords, (128,int(output.shape[1] * resize_ratio)))
+                img = cv2.resize(All_Coords, (one_body_width,int(output.shape[1] * resize_ratio)))
 
                 #cv2.imwrite(os.path.join(output_dir, 'person{}.png'.format(ind)), img)
 
-                Final[128:img.shape[0]+128,current_offset:img.shape[1] + current_offset,:] = img[:384,:,:]
+                Final[128:img.shape[0]+128,current_offset:img.shape[1] + current_offset,:] = img[:(512-128),:,:]
 
-                current_offset = current_offset + 128
+                current_offset = current_offset + one_body_width
 
             finals.append(Final)
 
@@ -242,7 +241,10 @@ def infer():
 def pose():
   print("Running pose!!")
   content = request.get_json(silent=True)
-  results = process_image(content["data"])
+  num_of_people = content["numOfPeople"]
+  num_of_permutations = content["numOfPermutations"]
+
+  results = process_image(content["data"], num_of_people, num_of_permutations)
   return jsonify(results=results)
 
 """
