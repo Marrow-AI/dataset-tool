@@ -8,7 +8,7 @@ import EditImage from './components/EditImage';
 import Footer from './components/Footer';
 import Training from './components/Training';
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "http://localhost:8540";
 const socket = socketIOClient(ENDPOINT);
 
 console.log("Connecting to socket");

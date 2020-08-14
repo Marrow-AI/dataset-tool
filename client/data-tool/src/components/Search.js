@@ -14,7 +14,7 @@ export default function Search() {
   let history = useHistory();
 
   async function onSubmit(formData) {
-    await fetch('http://localhost:8080/session', {
+    await fetch('/session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ keyword: formData.keyword, socket: socketSessionId })
@@ -24,7 +24,7 @@ export default function Search() {
         console.log(data);
         setDatasetSession(data['dataset_session']);
         if (data.result === "OK") {
-          fetch('http://localhost:8080/search', {
+          fetch('/search', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ keyword: formData.keyword, session: data['dataset_session'], socket: socketSessionId })
