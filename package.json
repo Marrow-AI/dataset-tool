@@ -28,6 +28,7 @@
     "react-compound-timer": "^1.2.0",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.0.0",
+    "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
@@ -42,7 +43,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "start": "webpack & python server/server.py",
+    "start": "webpack-dev-server & python server/server.py",
     "build": "webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -64,9 +65,11 @@
   },
   "devDependencies": {
     "@babel/runtime-corejs3": "^7.11.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.1",
     "core-js": "^3.6.5",
     "file-loader": "^6.0.0",
     "react-redux": "^7.2.0",
+    "react-refresh": "^0.8.3",
     "redux": "^4.0.5"
   }
 }

@@ -1,14 +1,23 @@
 const path = require("path");
 const webpack = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  mode: 'development',
-  watch: true,
+  mode: isDevelopment ? 'development' : 'production',
   devServer: {
     contentBase: './server/static',
-      hot: true,
-      disableHostCheck: true
+    hot: true,
+    disableHostCheck: true,
+    port: 8080,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    }
   },
+  devtool: 'source-map',
   entry: {
     app: ["./client/data-tool/src/index.js"]
   },
@@ -17,8 +26,9 @@ module.exports = {
     filename: "bundle.js"
   },
  plugins: [
-     new webpack.HotModuleReplacementPlugin()
-  ],
+     new webpack.HotModuleReplacementPlugin(),
+     isDevelopment && new ReactRefreshWebpackPlugin()
+  ].filter(Boolean),
   module: {
       rules: [
         {
@@ -27,6 +37,7 @@ module.exports = {
           use: {
             loader: 'babel-loader',
             options: {
+              plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
               presets: [['@babel/preset-env',{useBuiltIns: 'usage', corejs: 3}], '@babel/preset-react']
             }
           }

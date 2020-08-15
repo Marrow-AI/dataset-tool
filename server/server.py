@@ -44,6 +44,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 import eventlet
 eventlet.monkey_patch()
 
+from requests import get
+
 parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 
 #parser.add_argument('--dummy', action='store_true' , help='Use a Dummy GAN')
@@ -157,13 +159,32 @@ app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
+WEBPACK_DEV_SERVER_HOST = "http://localhost:8080"
+
+def proxy(host, path):
+    response = get(f"{host}{path}")
+    excluded_headers = [
+        "content-encoding",
+        "content-length",
+        "transfer-encoding",
+        "connection",
+    ]
+    headers = {
+        name: value
+        for name, value in response.raw.headers.items()
+        if name.lower() not in excluded_headers
+    }
+    return (response.content, response.status_code, headers)
+
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
     return send_from_directory('sessions', filepath)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+@app.route("/", defaults={"path": "index.html"})
+@app.route("/<path:path>")
+def main(path):
+    return proxy(WEBPACK_DEV_SERVER_HOST, request.path)
+    #return app.send_static_file(path)
 
 @app.route('/test')
 def test():
