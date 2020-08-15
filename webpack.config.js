@@ -10,7 +10,6 @@ module.exports = {
     contentBase: './server/static',
     hot: true,
     disableHostCheck: true,
-    sockPort: 8080,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
