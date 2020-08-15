@@ -159,32 +159,13 @@ app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
-WEBPACK_DEV_SERVER_HOST = "http://localhost:8080"
-
-def proxy(host, path):
-    response = get(f"{host}{path}")
-    excluded_headers = [
-        "content-encoding",
-        "content-length",
-        "transfer-encoding",
-        "connection",
-    ]
-    headers = {
-        name: value
-        for name, value in response.raw.headers.items()
-        if name.lower() not in excluded_headers
-    }
-    return (response.content, response.status_code, headers)
-
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
     return send_from_directory('sessions', filepath)
 
-@app.route("/", defaults={"path": "index.html"})
-@app.route("/<path:path>")
-def main(path):
-    return proxy(WEBPACK_DEV_SERVER_HOST, request.path)
-    #return app.send_static_file(path)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/test')
 def test():
@@ -252,6 +233,7 @@ if __name__ == '__main__':
 	#for t in np.arange(0, 300, 0.000001):
 	#	s.gen(t)
   app.debug = True
+  print('Running in environment {}'.format(app.config['ENV']))
   wsgi.server(eventlet.listen(('', 8540)), app, debug=True)
 
   # app.run(host = "0.0.0.0", port = 8080,debug=True)
