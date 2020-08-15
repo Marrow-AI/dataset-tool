@@ -50,61 +50,9 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
     
 args = parser.parse_args()
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecret'
-socketio = SocketIO(app, cors_allowed_origins="*")
-Compress(app)
-
-CORS(app, support_credentials=True)
-@app.route('/api/test', methods=['POST', 'GET','OPTIONS'])
-@cross_origin(supports_credentials=True)
-
-def download_images(main_keyword,download_dir):
-    image_links = set()
-    print('Process {0} Main keyword: {1}'.format(os.getpid(), main_keyword))
-
-    # create a directory for a main keyword
-    img_dir = download_dir + '/raw'
-    if not os.path.exists(img_dir):
-        os.makedirs(img_dir)
-
-    search_query = quote(main_keyword)
-    url = 'https://www.google.com/search?q=' + search_query + '&source=lnms&tbm=isch'
-    image_links = image_links.union(parse_page(url))
-    print('Process {0} get {1} links so far'.format(os.getpid(), len(image_links)))
-
-    print ("Start downloading...")
-    count = 1
-    for link in image_links:
-        try:
-            print(link['src'])
-            """
-            req = urllib.request.Request(link, headers = {"User-Agent": generate_user_agent()})
-            response = urllib.request.urlopen(req)
-            data = response.read()
-            file_path = img_dir + '{0}.jpg'.format(count)
-            with open(file_path,'wb') as wf:
-                wf.write(data)
-            print('Process {0} fininsh image {1}/{2}.jpg'.format(os.getpid(), main_keyword, count))
-            count += 1
-            """
-        except urllib.error.URLError as e:
-            logging.error('URLError while downloading image {0}\nreason:{1}'.format(link, e.reason))
-            continue
-        except urllib.error.HTTPError as e:
-            logging.error('HTTPError while downloading image {0}\nhttp code {1}, reason:{2}'.format(link, e.code, e.reason))
-            continue
-        except Exception as e:
-            logging.error('Unexpeted error while downloading image {0}\nerror type:{1}, args:{2}'.format(link, type(e), e.args))
-            continue
-
-    print("Finish downloading, total {0} errors".format(len(image_links) - count))
-
-    print("Done")
-    
-
 class Scraper(Thread):
     def __init__(self,keyword,download_dir,app,socket_id,session_id,num_requested = 100):
+        print("Init scraper")
         self.keyword = keyword
         self.download_dir = download_dir
         self.app = app
@@ -115,6 +63,7 @@ class Scraper(Thread):
 
 
     def run(self):
+        print("Running scraper")
         with self.app.app_context():
             self.get_image_links(
                 self.keyword,
@@ -184,22 +133,29 @@ class Scraper(Thread):
 
                 if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
                     img_urls.add(url)
-                    print("Found image url: downloading ".format(url,socket_id))
-                    path = urlparse(url).path
-                    ext = splitext(path)[1]
-                    req = urllib.request.Request(url, headers = {"User-Agent": generate_user_agent()})
-                    response = urllib.request.urlopen(req)
-                    data = response.read()
-                    file_path = '{0}/{1}{2}'.format(img_dir,len(img_urls),ext)
-                    with open(file_path,'wb') as wf:
-                        wf.write(data)
-                    print("Found image url: {} sending to {} ".format(url,socket_id))
-                    emit('image',{'url':'sessions/{}/raw/{}{}'.format(session_id,len(img_urls),ext)},room=socket_id, namespace='/')
+                    print("Found image url {}".format(url))
+                    emit('image',{'url':url},room=socket_id, namespace='/')
+
+                    # In case we want to download them
+                    #path = urlparse(url).path
+                    #ext = splitext(path)[1]
+                    #req = urllib.request.Request(url, headers = {"User-Agent": generate_user_agent()})
+                    #response = urllib.request.urlopen(req)
+                    #data = response.read()
+                    #file_path = '{0}/{1}{2}'.format(img_dir,len(img_urls),ext)
+                    #with open(file_path,'wb') as wf:
+                    #    wf.write(data)
+                    #emit('image',{'url':'sessions/{}/raw/{}{}'.format(session_id,len(img_urls),ext)},room=socket_id, namespace='/')
 
         print('Process-{0} totally get {1} images'.format(main_keyword, len(img_urls)))
         driver.quit()
 
 
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'mysecret'
+socketio = SocketIO(app, cors_allowed_origins="*")
+Compress(app)
 
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
@@ -225,20 +181,13 @@ def create_session():
         timestamp = int(time.time())
         session_id = '{}-{}'.format(params['keyword'],timestamp)
 
-
-        try:
-            os.mkdir('server/sessions/{}'.format(session_id))
-            
-        except FileExistsError:
-            pass
-        
         out = jsonify(result="OK",dataset_session=session_id)
 
         return out
 
     except Exception as e:
         traceback.print_stack()
-        return jsonify(result=str(e))
+    return jsonify(result=str(e))
 
 @app.route('/search',  methods = ['POST'])
 def search():
@@ -259,12 +208,11 @@ def search():
             session_id
         )
         scraper.start()
-        
+
         return jsonify(result="OK")
 
     except Exception as e:
-        traceback.print_stack()
-        print(e)
+        print("Error in route /search {}".format(str(e)))
         return jsonify(result=str(e))
 
 @socketio.on('connect')
