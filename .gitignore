@@ -3,3 +3,5 @@ node_modules/
 server/sessions/*
 geckodriver.log
 server/static/bundle.js
+*hot*.js
+*hot*.json
