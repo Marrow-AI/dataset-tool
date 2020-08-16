@@ -57,21 +57,6 @@ export default function EditImage() {
 
   async function onSubmit() {
     console.log('click')
-    //**demi fetching  **//
-    await fetch('http://localhost:8080/session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ keyword: 'cats', session: storingDataSassion, socket: socketSessionId })
-    })
-      // .then(res => res.json())
-      // .then((data) => {
-      //   console.log(data);
-      //   if (data.result === "OK") {
-      //   } else {
-      //     alert(data.result);
-      //   }
-      // })
-    //**demi fetching  **//
     showLoading();
     setTimeout(() => {
       hideLoading()

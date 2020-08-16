@@ -33,12 +33,7 @@ export default function Search() {
             .then((data) => {
               console.log(data);
               if (data.result === "OK") {
-                // **i wrote something in the redux to pass to on the 
-                // data when editing the images-  i don't know if we need it**
-                // store.dispatch({
-                //   type: 'SAVE_DATA',
-                //   storingDataSassion: data.storingDataSassion
-                // })
+        
               } else {
                 alert(data.result);
               }

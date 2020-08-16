@@ -18,6 +18,7 @@ socket.on('connect', () => {
 });
 
 function App() {
+  console.log('hi')
   return (
     <>
     <div className='app-container'>
