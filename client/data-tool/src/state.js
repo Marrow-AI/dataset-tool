@@ -4,9 +4,10 @@ const reducer = (state = {
     socket: null,
     images: [],
     keyword: '',
-    dataSassion:[]
+    image64:[]
 }, action) => {
   switch (action.type) {
+
     case 'SET_SOCKET': {
         console.log("Setting socket", action.socket);
         return {...state, socket: action.socket}
@@ -30,17 +31,19 @@ const reducer = (state = {
       keyword: action.keyword
     }
   }
-  case 'SAVE_DATA': {
+  case 'SAVE_BASE64': {
     return {
       ...state, 
-      storingDataSassion: action.storingDataSassion
+      image64: [...state.image64, action.image64]
     }
   }
-  
+
     default:
       return state;
-  };
+  }
 }
+
+
 
 export const setSocket = (socket) => ({
     type: 'SET_SOCKET',

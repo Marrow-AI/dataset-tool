@@ -48,7 +48,7 @@ export default function Search() {
     showLoading();
     setTimeout(() => {
       hideLoading()
-      history.push("/edit")
+      history.push("/display")
     }, 3000);
   }
 
