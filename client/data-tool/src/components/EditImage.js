@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import useSpinner from './useSpinner';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -71,10 +70,21 @@ export default function EditImage() {
     history.push("/train")
   }
 
+  const toDataURL = url => fetch('https://clump.systems/' + url)
+  .then(response => response.blob())
+  .then(blob => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  }));
+
+
   useEffect(() => {
     if (socket) {
-      socket.on('image', (data) => {
-        setImages([...searchImages, data]);
+      socket.on('image', async (data) => {
+        const imageUrl = await toDataURL(data.url);
+        setImages([...searchImages, imageUrl]);
         setCount(searchImages.length + 1);
       });
     }
@@ -84,6 +94,9 @@ export default function EditImage() {
       }
     }
   });
+
+
+
 
   return (
     <div className='secondScreen'>
@@ -138,9 +151,9 @@ export default function EditImage() {
 
       <div className='imageContainer'>
         <div className='images'>
-          {searchImages.map(data => (
-            <div key={data.url}>
-              <img src={data.url} alt="" />
+          {searchImages.map(imageUrl => (
+            <div key={imageUrl}>
+              <img src={imageUrl} alt="" />
             </div>
           ))}
         </div>
