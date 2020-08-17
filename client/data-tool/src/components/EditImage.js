@@ -30,8 +30,8 @@ function valueLabelFormat(value) {
 
 export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
-  const socket = useSelector(state => state.socket);
-  const image64 = useSelector(state => state.image64);
+  const image64 = useSelector(state => state.image64); 
+  
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   let history = useHistory();
   const classes = useStyles();
@@ -40,7 +40,6 @@ export default function EditImage() {
   const [visiblebTraining, setvisibleTraining] = useState(false)
   const [loading, showLoading, hideLoading] = useSpinner();
   const [buttonText, setButtonText] = useState('Give it a go?')
-  const [imageUrl, setImageUrl] = ([])
 
   const changeButtonText = (text) => setButtonText(text);
 
@@ -69,21 +68,10 @@ export default function EditImage() {
   const goTrain = () => {
     console.log('train me!')
     history.push("/train")
-  }
-
-
-
-  useEffect(() => {
-    let newUrl = toDataURL(image64)
-    setImageUrl([...imageUrl, newUrl]);
-
-})
-
+  }   
 
   return (
-
     <div className='secondScreen'>
-
       <div className='leftSection'>
         <h1 className='title result'>2.Results for:<span className='title result-before'>{keyword}</span> </h1>
         <p className='noImages'>No.images found:<span className="number"> {image64.length}</span></p><br />
@@ -129,13 +117,15 @@ export default function EditImage() {
         </form>
       </div>
 
-      <div className='imageContainer'>
+     <div className='imageContainer'>
           <div className='images'>
-           
-                <img src={imageUrl} alt="" />
-             
+            {image64.map(image =>
+            <img key={image} src={image} alt=''/> )
+            }
+
+          </div>
         </div>
-</div>
+
     </div>
 
   )

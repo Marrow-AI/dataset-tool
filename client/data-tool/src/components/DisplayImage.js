@@ -18,7 +18,6 @@ export default function DisplayImage() {
   function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
- 
     history.push("/edit")
   }
 
@@ -35,7 +34,6 @@ export default function DisplayImage() {
     if (socket) {
       socket.on('image', async (data) => {
         const imageUrl = await toDataURL(data.url);
-      
         setImages([...searchImages, imageUrl]);
         store.dispatch({
           type: 'SAVE_BASE64',
