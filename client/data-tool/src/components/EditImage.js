@@ -30,7 +30,7 @@ function valueLabelFormat(value) {
 
 export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
-  const image64 = useSelector(state => state.image64); 
+  const images64 = useSelector(state => state.images64); 
   
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   let history = useHistory();
@@ -74,7 +74,7 @@ export default function EditImage() {
     <div className='secondScreen'>
       <div className='leftSection'>
         <h1 className='title result'>2.Results for:<span className='title result-before'>{keyword}</span> </h1>
-        <p className='noImages'>No.images found:<span className="number"> {image64.length}</span></p><br />
+        <p className='noImages'>No.images found:<span className="number"> {images64.length}</span></p><br />
         <div className='explaining'>
           <p className='explain main'>Now we are entering a "cleaning" and "editing" stage.</p>
           <p className='explain two'>As you can see, the images you received are variety in their angles, alignment, numbers of figures.</p>
@@ -119,8 +119,8 @@ export default function EditImage() {
 
      <div className='imageContainer'>
           <div className='images'>
-            {image64.map(image =>
-            <img key={image} src={image} alt=''/> )
+            {images64.map((image,index) =>
+            <img key={index} src={image} alt=''/> )
             }
 
           </div>

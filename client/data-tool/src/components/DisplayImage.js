@@ -9,7 +9,8 @@ export default function DisplayImage() {
   const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
   let history = useHistory();
 
-  const [searchImages, setImages] = useState([]);
+  const searchImages = useSelector(state => state.images64);
+
   const [count, setCount] = useState()
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
@@ -34,10 +35,9 @@ export default function DisplayImage() {
     if (socket) {
       socket.on('image', async (data) => {
         const imageUrl = await toDataURL(data.url);
-        setImages([...searchImages, imageUrl]);
         store.dispatch({
           type: 'SAVE_BASE64',
-          image64: searchImages
+          image64: imageUrl
         })
         setCount(searchImages.length + 1);
       });
@@ -65,8 +65,8 @@ export default function DisplayImage() {
 
         <div className='imageContainer'>
           <div className='images'>
-            {searchImages.map(imageUrl => (
-              <div key={imageUrl}>
+            {searchImages.map((imageUrl,index) => (
+              <div key={index}>
                 <img src={imageUrl} alt="" />
               </div>
             ))}

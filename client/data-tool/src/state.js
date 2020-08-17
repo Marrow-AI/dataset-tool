@@ -4,7 +4,7 @@ const reducer = (state = {
     socket: null,
     images: [],
     keyword: '',
-    image64:[]
+    images64:[]
 }, action) => {
   switch (action.type) {
 
@@ -34,7 +34,7 @@ const reducer = (state = {
   case 'SAVE_BASE64': {
     return {
       ...state, 
-      image64: [...state.image64, action.image64]
+      images64: [...state.images64, action.image64]
     }
   }
 
