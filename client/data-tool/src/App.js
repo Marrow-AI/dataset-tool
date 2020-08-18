@@ -6,6 +6,7 @@ import store, { setSocket } from './state'
 import socketIOClient from "socket.io-client";
 import DisplayImage from './components/DisplayImage';
 import EditImage from './components/EditImage';
+import Results from './components/Results';
 import Footer from './components/Footer';
 import Training from './components/Training';
 
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/" component={Search} />
           <Route exact path="/display" component={DisplayImage} />
           <Route exact path="/edit" component={EditImage} />
+          <Route exact path="/results" component={Results} />
           <Route exact path="/train" component={Training} />
          
         <Footer />
