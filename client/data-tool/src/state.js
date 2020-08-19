@@ -4,7 +4,8 @@ const reducer = (state = {
     socket: null,
     images: [],
     keyword: '',
-    images64:[]
+    images64:[],
+    cropImages: []
 }, action) => {
   switch (action.type) {
 
@@ -37,12 +38,16 @@ const reducer = (state = {
       images64: [...state.images64, action.image64]
     }
   }
-
+  case 'CROP_IMAGE': {
+    return {
+      ...state,
+      cropImages: [...state.cropImages, action.cropImages]
+    }
+  }
     default:
       return state;
   }
 }
-
 
 
 export const setSocket = (socket) => ({

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import store from '../state';
+import { name } from "file-loader";
 const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
 
 //this belongs to material-ui//
@@ -37,7 +38,7 @@ const keys = [{ id: 1 }, { id: 2 }]
 // }
 
 const marks = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
-{ value: 6 }, { value: 7 }, { values: 8 }, { value: 9 }, { value: 10 }];
+{ value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }, { value: 10 }];
 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
@@ -48,20 +49,24 @@ export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
   const images64 = useSelector(state => state.images64);
 
+
   const { register, unregister, handleSubmit, getValues, setValue } = useForm({ mode: "onBlur" });
   let history = useHistory();
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
   const [boxValue, setBoxValue] = useState({ checked: true });
-  const [visiblebtn, setVisiblebtn] = useState(false)
   const [visiblebTraining, setvisibleTraining] = useState(false)
   const [loading, showLoading, hideLoading] = useSpinner();
   const [buttonText, setButtonText] = useState('Give it a go?')
-  const [valueNumberOfPeople, setValueNumberOfPeople] = useState()
-  const [valueNumberofVersions, setNumberofVersions] = useState()
+  const [valueNumberOfPeople, setValueNumberOfPeople] = useState(0)
+  const [valueNumberofVersions, setNumberofVersions] = useState(0)
   const values = getValues();
 
   const changeButtonText = (text) => setButtonText(text);
+
+  // handleChange = (event, value) => event.value = value;
+
+  // handleDragStop = () => setValueNumberOfPeople(valueNumberOfPeople);
 
   function valuetext(valueNumberOfPeople) {
     console.log(valueNumberOfPeople)
@@ -73,13 +78,13 @@ export default function EditImage() {
     return `${valueNumberofVersions}`;
   }
 
-  // const onChange = (e) => {
-  //   setValueNumberOfPeople(e.target.name, e.target.value, true)
-  // }
+  function handlePersonChange(event, newValue) {
+    setValueNumberOfPeople(newValue);
+  }
 
-  // const handleChange = (e) => {
-  //   setNumberofVersions(e.target.name, e.target.value, true)
-  // }
+  function handleVersionChange(event, newValue) {
+    setNumberofVersions(newValue);
+  }
 
   async function onSubmit() {
     console.log('click')
@@ -92,10 +97,25 @@ export default function EditImage() {
         numOfPermutations: `${valueNumberofVersions}`,
       })
      })
-    .then(res => res.json())
-    .then((data) => {
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return res.text().then(text => { throw new Error(text); });
+      }
+    }).then((data) => {
       console.log(data);
       if (data.result === "OK") {
+
+        for( const imageText of data.result) {
+          debugger;
+          const resultImage = new Image();
+          resultImage.src = "data:image/jpg;base64," + imageText;
+          store.dispatch({
+            type: 'CROP_IMAGE',
+            cropImages: resultImage
+          })
+        }
 
         } else {
           alert(data.result);
@@ -110,24 +130,11 @@ export default function EditImage() {
     }, 2000);
   }
 
-  //   showLoading();
-  //   setTimeout(() => {
-  //     hideLoading()
-  //   }, 2000);
-  //   changeButtonText('Try Again?');
-  //   setvisibleTraining(true)
-
-  // }
 
   const goTrain = () => {
     console.log('train me!')
     // history.push("/train")
   }
-
-  useEffect(() => {
-    register({ name: "num-of-people" }, { name: "num-of-permutations" });
-    return () => unregister({ name: '"num-of-people"' }, { name: "num-of-permutations" });
-  }, [register, unregister]);
 
   return (
     <div className='secondScreen'>
@@ -143,16 +150,17 @@ export default function EditImage() {
 
         <div className='editForm'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={classesOne.root}>
+            <div className={classesOne.root.id}>
               <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
                 Number of human to leave and extract from background:
             </Typography>
               <Slider
-                keys={keys}
+                key={name}
                 id="num-of-people"
                 name="num-of-people"
                 value={valueNumberOfPeople}
-                // onChange= {onChange}
+                onChange={handlePersonChange} 
+                // onDragStop={handleDragStop}
                 defaultValue={0}
                 valueLabelFormat={valueLabelFormat}
                 getAriaValueText={valuetext}
@@ -170,16 +178,16 @@ export default function EditImage() {
               <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
             </div>
 
-            <div className={classesTwo.root}>
+            <div className={classesTwo.root.id}>
               <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
                 Number of human to leave and extract from background:
              </Typography>
               <Slider
-                keys={keys}
+                key={name}
                 id="num-of-permutations"
                 name="num-of-permutations"
                 value={valueNumberofVersions}
-                // handleChange= {handleChange}
+                onChange= {handleVersionChange}
                 defaultValue={0}
                 valueLabelFormat={valueLabelFormat}
                 getAriaValueText={valuetextTwo}
