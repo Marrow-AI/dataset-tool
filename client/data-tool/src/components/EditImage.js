@@ -82,40 +82,39 @@ function foo(){
   }
 }
 
-  async function onSubmit(singleImg) {
-    foo()
-    console.log('click')
-    console.log(singleImg)
-    fetch('http://52.206.213.41:22100/pose', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        data: singleImg,
-        numOfPeople: `${valueNumberOfPeople}`,
-        numOfPermutations: `${valueNumberofVersions}`,
-      })
-     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return res.text().then(text => { throw new Error(text); });
-      }
-    }).then((data) => {
-    
-        for( let imageText of data.result) {
-          let resultImage = new Image();
-          resultImage.src = imageText;
-          store.dispatch({
-            type: 'CROP_IMAGE',
-            cropImages: resultImage
-          })
-        }
-        
-      })
-      
-    
+function fetch (singleImg) {
+  foo()
+  console.log('click')
+  console.log()
+  fetch('http://52.206.213.41:22100/pose', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      data: singleImg,
+      numOfPeople: `${valueNumberOfPeople}`,
+      numOfPermutations: `${valueNumberofVersions}`,
+    })
+   })
+  .then(res => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return res.text().then(text => { throw new Error(text); });
+    }
+  }).then((data) => {
+      for( let imageText of data.result) {
+        let resultImage = new Image();
+        resultImage.src = imageText;
+        store.dispatch({
+          type: 'CROP_IMAGE',
+          cropImages: resultImage
+        })
+      } 
+    })
+}
 
+  async function onSubmit() {
+   fetch()
     console.log('moving to results')
     showLoading();
     setTimeout(() => {
@@ -123,7 +122,6 @@ function foo(){
       history.push("/results")
     }, 2000);
   }
-
 
   const goTrain = () => {
     console.log('train me!')
@@ -201,7 +199,7 @@ function foo(){
 
             {loading}
 
-            <button id="crop-button" className='start' name="start" type="submit" ref={register}>{buttonText}</button>
+            <button id="crop-button" className='start' name="end" type="submit" ref={register}>{buttonText}</button>
             <button disabled={!visiblebTraining} className='start train' name="train" onClick={goTrain}>Start Training</button>
           </form>
         </div>
