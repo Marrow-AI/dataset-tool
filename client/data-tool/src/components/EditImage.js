@@ -32,11 +32,6 @@ const useStylesTwo = makeStyles((theme) => ({
   }
 }));
 
-const keys = [{ id: 1 }, { id: 2 }]
-// function valueLabelFormat(id) {
-//   return keys.findIndex((keys) => keys.id === value);
-// }
-
 const marks = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
 { value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }, { value: 10 }];
 
@@ -49,8 +44,7 @@ export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
   const images64 = useSelector(state => state.images64);
 
-
-  const { register, unregister, handleSubmit, getValues, setValue } = useForm({ mode: "onBlur" });
+  const { register, handleSubmit} = useForm({ mode: "onBlur" });
   let history = useHistory();
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
@@ -60,13 +54,8 @@ export default function EditImage() {
   const [buttonText, setButtonText] = useState('Give it a go?')
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(0)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
-  const values = getValues();
 
   const changeButtonText = (text) => setButtonText(text);
-
-  // handleChange = (event, value) => event.value = value;
-
-  // handleDragStop = () => setValueNumberOfPeople(valueNumberOfPeople);
 
   function valuetext(valueNumberOfPeople) {
     console.log(valueNumberOfPeople)
@@ -86,13 +75,22 @@ export default function EditImage() {
     setNumberofVersions(newValue);
   }
 
-  async function onSubmit() {
+function foo(){
+  for( let singleImg of images64) {
+    console.log(singleImg)
+    return singleImg
+  }
+}
+
+  async function onSubmit(singleImg) {
+    foo()
     console.log('click')
+    console.log(singleImg)
     fetch('http://52.206.213.41:22100/pose', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        data: images64,
+        data: singleImg,
         numOfPeople: `${valueNumberOfPeople}`,
         numOfPermutations: `${valueNumberofVersions}`,
       })
@@ -104,23 +102,19 @@ export default function EditImage() {
         return res.text().then(text => { throw new Error(text); });
       }
     }).then((data) => {
-      console.log(data);
-      if (data.result === "OK") {
-
-        for( const imageText of data.result) {
-          debugger;
-          const resultImage = new Image();
-          resultImage.src = "data:image/jpg;base64," + imageText;
+    
+        for( let imageText of data.result) {
+          let resultImage = new Image();
+          resultImage.src = imageText;
           store.dispatch({
             type: 'CROP_IMAGE',
             cropImages: resultImage
           })
         }
-
-        } else {
-          alert(data.result);
-        }
+        
       })
+      
+    
 
     console.log('moving to results')
     showLoading();
