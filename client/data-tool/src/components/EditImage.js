@@ -15,7 +15,7 @@ const corsServer = 'https://clump.systems/'; // avner change this to cors fetch 
 const useStyles = makeStyles((theme) => ({
   root: {
     id: 1,
-    width: 200
+    width: 180
   },
   margin: {
     height: theme.spacing(3),
@@ -94,7 +94,7 @@ export default function EditImage() {
 
       <div className='leftSection'>
         <h1 className='title result'>3.Editing<span className='title result-before'>{keyword}</span> </h1>
-        <p className='noImages'>No.images found:<span className="number"> {images64.length}</span></p><br />
+        <p className='noImages'>Number of images found:<span className="number"> {images64.length}</span></p><br />
         <div className='explaining'>
           <p className='explain main'>Now we are entering a "cleaning" and "editing" stage.</p>
           <p className='explain two'>As you can see, the images you received are variety in their angles, alignment, numbers of figures.</p>
@@ -103,7 +103,7 @@ export default function EditImage() {
 
         <div className='editForm'>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={classesOne.root.id}>
+            <div className={classesOne.root}>
               <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
                 Number of human to leave and extract from background:
             </Typography>
@@ -131,7 +131,7 @@ export default function EditImage() {
               <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
             </div>
 
-            <div className={classesTwo.root.id}>
+            <div className={classesTwo.root}>
               <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
                 Number of human to leave and extract from background:
              </Typography>

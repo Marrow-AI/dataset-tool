@@ -9,15 +9,17 @@
   padding: 0;
 }
 
-.body {
+body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
+  background-color: black;
 }
 
 a {
   text-decoration: none;
   font-family: 'Yanone Kaffeesatz';
+  color: black;
 }
 
 a:hover {
@@ -35,7 +37,7 @@ a:hover {
   width: 100%;
   bottom: 0;
   height: 3rem;
-  background-color: black;
+  background-color: rgb(120, 120, 120);
 }
 
 .footer {
@@ -44,7 +46,7 @@ a:hover {
 }
 
 a.footer {
-  color: white;
+  color: black;
   display: inline-block;
   font-size: 16px;
   letter-spacing: 1px;
@@ -55,7 +57,7 @@ a.footer {
  margin-left: auto;
  margin-right: auto;
  position: relative;
- max-width: 650px;
+ max-width: 680px;
  padding: 15px;
 }
 
@@ -63,6 +65,7 @@ h1 {
   font-family: 'Yanone Kaffeesatz';
   margin-top: 5%;
   letter-spacing: 4px;
+  color: white;
 }
 
 .header {
@@ -74,17 +77,22 @@ h1 {
   line-height: 1.2rem;
   font-family: 'Lato';
   font-size: 16px;
+  color: white;
 }
 
 h1.logo {
+  margin-top: 10%;
   text-align: center;
-  font-size: 48px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   margin-top: 60px;
+  font-size: 46px;
+  line-height: 3.4rem;
+  font-weight: 400;
 }
 
 .example {
   font-style: italic;
+  color: white;
 }
 
 .inputForm{
@@ -93,16 +101,20 @@ h1.logo {
  margin-right: auto;
  text-align: center;
  width: 400px;
+ color: white;
 }
 
 input.word {
+  background-color: black;
   border: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid white;
+  color: rgb(237, 42, 42);
   font-size: 15px;
   width: 380px;
-  margin-top: 25%;
-  text-transform: uppercase;
+  margin-top: 15%;
+  text-transform: capitalize;
   padding-left: 5px;
+  padding-bottom: 5px;
 }
 
 button {
@@ -110,19 +122,20 @@ button {
   cursor: pointer;
   transition: all .25s ease-in;
   font-size: 16px;
-  border: 1px solide black;
+  color: white;
+  border: 1px solid white;
   border-radius:  50px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
 }
 
 button:hover {
   transform:scale(1.05) translateY(-2px);
-  box-shadow: 3px 5px 15px rgba(0, 0, 0, .75);
+  box-shadow: 3px 2px 5px rgba(249, 249, 249, 0.75);
 }
 
 button.search {
-  margin-top: 80px;
-  padding: 10px 80px;
+  margin-top: 100px;
+  padding: 10px 60px;
 }
 
 .spinner{  
@@ -153,7 +166,7 @@ z-index: 100;
 }
 
 .title.result-before {
-  color: #F60257;
+  color: rgb(237, 42, 42);
   font-weight: 400;
   padding-left: 5px;
   margin-bottom: 0;
@@ -168,12 +181,14 @@ z-index: 100;
   margin-top: -1rem;
   padding-right: 2px;
   padding-left: 2px;
+  color: white;
 }
 
 .number {
   text-decoration: underline;
   padding-left: 5px;
   font-size: 15px;
+  color: white;
 }
 
 .leftSection {
@@ -186,15 +201,18 @@ z-index: 100;
 
 .explaining {
   width: 380px;
+  color: white;
 }
 
 explain.main {
   font-size: 16px;
+  color: white;
 }
 
 .explain.two {
   line-height: 1.5rem;
   font-size: 14px;
+  color: white;
 }
 
 button.more{
@@ -205,7 +223,7 @@ button.more{
 }
 
 .editForm {
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 10px;
   padding: 50px;
   padding-right: 80px;
@@ -227,10 +245,11 @@ button.start{
 
 .MuiTypography-root.label {
   padding-bottom: 10%;
+  color: white;
 }
 
 .explain.three {
-  color: rgb(79, 79, 79);
+  color: rgb(154, 154, 154);
   font-size: 12px;
   padding-bottom: 15px;
 }
@@ -300,7 +319,7 @@ button:disabled {
   margin-left: 0;
   z-index: 1000;
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.692);
+  background-color: rgba(73, 73, 73, 0.692);
   padding: 2%;
   width: 400px;
 }
