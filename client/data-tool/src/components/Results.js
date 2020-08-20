@@ -3,10 +3,11 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import store from '../state';
 
-export default function Results() {
+export default function Results(props) {
   const keyword = useSelector(state => state.keyword);
   const socket = useSelector(state => state.socket);
   const cropImages = useSelector(state => state.cropImages);
+  const images64 = useSelector(state => state.images64);
 
   const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
   let history = useHistory();
@@ -29,17 +30,38 @@ export default function Results() {
   // }
 
   useEffect(() => {
-    if (socket) {
-      socket.on('image', async (data) => {
-         setCleanImages(data.url)
-      });
-    }
-    return () => {
-      if (socket) {
-        socket.off('image');
+    fetchPoses();
+  },[]);
+
+
+  async function fetchPoses () {
+    const {numOfPeople, numOfPermutations} = props.match.params;
+    console.log('fetching poses ', numOfPeople, numOfPermutations);
+
+    for( const singleImg of images64) {
+      const res = await fetch('http://52.206.213.41:22100/pose', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          data: singleImg,
+          numOfPeople,
+          numOfPermutations
+        })
+      })
+      if (res.ok) {
+        const data = await res.json();
+        for( let imageText of data.results) {
+          store.dispatch({
+            type: 'CROP_IMAGE',
+            cropImages: "data:image/jpg;base64," + imageText
+          })
+        } 
+      } else {
+        const text = await res.text();
+        throw new Error(text); 
       }
     }
-  });
+  }
 
 return (
   <div className='secondScreen'>

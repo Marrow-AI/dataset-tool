@@ -75,51 +75,12 @@ export default function EditImage() {
     setNumberofVersions(newValue);
   }
 
-function foo(){
-  for( let singleImg of images64) {
-    console.log(singleImg)
-    return singleImg
-  }
-}
-
-function fetch (singleImg) {
-  foo()
-  console.log('click')
-  console.log()
-  fetch('http://52.206.213.41:22100/pose', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      data: singleImg,
-      numOfPeople: `${valueNumberOfPeople}`,
-      numOfPermutations: `${valueNumberofVersions}`,
-    })
-   })
-  .then(res => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return res.text().then(text => { throw new Error(text); });
-    }
-  }).then((data) => {
-      for( let imageText of data.result) {
-        let resultImage = new Image();
-        resultImage.src = imageText;
-        store.dispatch({
-          type: 'CROP_IMAGE',
-          cropImages: resultImage
-        })
-      } 
-    })
-}
-
   async function onSubmit() {
-   fetch()
     console.log('moving to results')
     showLoading();
     setTimeout(() => {
       hideLoading()
-      history.push("/results")
+      history.push(`/results/${valueNumberOfPeople}/${valueNumberofVersions}`)
     }, 2000);
   }
 
