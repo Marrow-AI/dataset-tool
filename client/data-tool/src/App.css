@@ -85,6 +85,16 @@ h1 {
   color: white;
 }
 
+.explain.modelText {
+  font-size: 18px;
+  line-height: 1.6;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 h1.logo {
   color: #EEBBF9;
   text-align: center;
@@ -137,8 +147,6 @@ button {
 }
 
 button:hover {
-  /* transform:scale(1.05) translateY(-2px); */
-  /* box-shadow: 3px 2px 5px rgba(249, 249, 249, 0.75); */
   border-radius: 10px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
   padding: 15px 50px;
@@ -185,6 +193,21 @@ button.search:hover {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2rem;
+  position: relative;
+}
+
+
+.model {
+  position: absolute;
+  background: black;
+  z-index: 100;
+  height: 300px;
+  width: 600px;
+  margin-top: 100px;
+  margin-left: 250px;
+  border: 3px solid #EEBBF9;
+  padding: 20px 30px;
+  padding-bottom: 60px;
 }
 
 .title.result {
@@ -200,6 +223,10 @@ button.search:hover {
   margin-bottom: 0;
   padding-bottom: 0;
   font-size: 42px;
+}
+
+.title.result-before.final {
+  color: white;
 }
 
 .number {
@@ -228,6 +255,10 @@ button.search:hover {
   border: 1px dotted #EEBBF9;
 }
 
+.leftSection.result {
+  border: none;
+}
+
 .leftSection.edit {
   height: 1200px;
   border: 1px dotted #ED965F;
@@ -245,6 +276,10 @@ button.search:hover {
   border: 1px solid white;
 }
 
+.explaining.result {
+  border:none;
+}
+
 .explain.main {
   font-size: 18px;
   color: white;
@@ -252,6 +287,13 @@ button.search:hover {
   text-transform: uppercase;
   padding: 10px 15px;
   letter-spacing: 2px;
+}
+
+.explain.main.final {
+  padding: 0;
+  text-align: left;
+  font-size: 16px;
+  margin :0;
 }
 
 .explain.main.edit {
@@ -276,6 +318,18 @@ button.more{
   border-radius: 70px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
   padding: 16px 50px;
+}
+
+.more.modelText {
+  background-color: black;
+  border: 2px solid #EEBBF9;
+  border-radius: 20px;
+  margin-top: 60px;
+}
+
+.more.modelText:hover {
+  border: 2px solid #EEBBF9;
+  background-color: #EEBBF9;
 }
 
 button.more:hover {
@@ -308,7 +362,6 @@ button.start {
 
 .editForm {
   border-top: 4px solid #ED965F;
-  /* border-radius: 10px; */
   padding: 20px;
   padding-top: 60px;
   padding-right: 80px;
@@ -384,7 +437,6 @@ button:disabled {
   padding: 10px 35px;
   margin-top: 2rem;
   margin-bottom: -.5rem;
-  /* transition: all .25 ease-in; */
   margin-left: 2.8rem;
   color: grey;
   border: 1px solid grey;
