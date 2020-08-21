@@ -130,15 +130,15 @@ button {
   font-weight: 600;
   color: white;
   border: 1px solid white;
-  border-radius:  50px;
+  border-radius: 70px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
   text-transform: uppercase;
-  padding: 16px 90px;
+  padding: 16px 70px;
 }
 
 button:hover {
-  transform:scale(1.05) translateY(-2px);
-  box-shadow: 3px 2px 5px rgba(249, 249, 249, 0.75);
+  /* transform:scale(1.05) translateY(-2px); */
+  /* box-shadow: 3px 2px 5px rgba(249, 249, 249, 0.75); */
   border-radius: 10px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
   padding: 15px 50px;
@@ -173,8 +173,14 @@ button.search:hover {
   z-index: 100;
 }
 
-.secondScreen {
+.mainTitle {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
   max-width: 1200px;
+}
+
+.secondScreen {
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -182,74 +188,82 @@ button.search:hover {
 }
 
 .title.result {
-  text-align: left;
-  padding-bottom: 1.2rem;
-  font-family: 'Lato';
-  font-size: 28px;
+  padding-bottom: .5rem;
+  font-size: 36px;
   color: white;
+  font-weight: 400;
 }
 
 .title.result-before {
-  color: #EEBBF9;
-  font-weight: 400;
+  color: #ED965F;
   padding-left: 5px;
   margin-bottom: 0;
   padding-bottom: 0;
-}
-
-.noImages {
-  font-size: 18px;
-  text-align: left;
-  margin-bottom: 1rem;
-  margin-top: -1rem;
-  padding-right: 2px;
-  padding-left: 2px;
-  color: #ED965F;
-  letter-spacing: 2px;
+  font-size: 42px;
 }
 
 .number {
-  text-decoration: underline;
   padding-left: 5px;
-  font-size: 20px;
-  color: white;
-
+  font-size: 42px;
+  color: #ED965F;
 }
 
 .leftSection {
+  font-family: 'Roboto', sans-serif; 
   width: 400px;
-  height: 600px;
+  height: 580px;
   padding: 10px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  border:1px dotted #EEBBF9;
+  margin-top: 20px;
+  border: 1px dotted #EEBBF9;
 }
 
 .explaining {
+  font-family: 'Roboto', sans-serif; 
   width: 380px;
+  height: 550px;
   color: white;
-  /* background-color: #EEBBF9; */
   border: 1px solid white;
 
 }
 
 .explain.main {
-  font-size: 20px;
+  font-size: 18px;
   color: white;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px 15px;
+  letter-spacing: 2px;
 }
 
 .explain.two {
   line-height: 1.5rem;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
+  letter-spacing: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 button.more{
-  padding: 10px 50px;
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
+  /* padding: 10px 50px; */
+  margin-bottom: 50px;
   margin-left: -1rem;
+  margin-top: 40px;
+  border: 1px solid white;
+  border-radius: 70px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  padding: 16px 50px;
+}
+
+button.more:hover {
+  border: 2px solid #ED965F;
+  background-color: #ED965F;
+  color: black;
+  border-radius: 10px;
+  padding: 15px 35px;
 }
 
 .editForm {

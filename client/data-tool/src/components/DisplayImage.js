@@ -8,10 +8,7 @@ export default function DisplayImage() {
   const socket = useSelector(state => state.socket);
   const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
   let history = useHistory();
-
   const searchImages = useSelector(state => state.images64);
-
-  const [count, setCount] = useState()
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
 
@@ -39,7 +36,6 @@ export default function DisplayImage() {
           type: 'SAVE_BASE64',
           image64: imageUrl
         })
-        setCount(searchImages.length + 1);
       });
     }
     return () => {
@@ -50,22 +46,24 @@ export default function DisplayImage() {
   });
 
   return (
+    <div className="mainTitle">
+      <h1 className='title result'><span className="number"> {searchImages.length + 1}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
+
       <div className='secondScreen'>
         <div className='leftSection'>
-          <h1 className='title result'>2.Results for:<span className='title result-before'>{keyword}</span> </h1>
-          <p className='noImages'>Number of images found:<span className="number"> {count}</span></p><br />
           <div className='explaining'>
-            <p className='explain main'>What you just did was an example for <strong>Data Scraping</strong>.</p>
-            <p className='explain two'>Data Scraping is a technique in which a computer program extracts data usually from another program,<br /> <strong>in our case: Google Images</strong>.</p>
-            <p className='explain two'> This is a common techniqe when trying to collecting Machine Learning datasets.</p>
-            <p className='explain two'>Next step will be cleaning and orginaizing our data</p>
+            <h2 className='explain main'>Second step: Data Scraping</h2>
+            <p className='explain two'>Data Scraping is a technique in which a computer program extracts data, usually from another program. In our case we used <strong>Google Images</strong>.
+              <br />This could be easily done from a few sources at once.</p>
+            <p className='explain two'> Data Scraping is a common technique when trying to collecting Machine Learning datasets.</p>
+            <p className='explain two'>After collecting all the images, the next step will be cleaning and organizing our data.</p>
             <button disabled={visiblebtn} className='more' onClick={showEdit}>Keep going?</button>
           </div>
         </div>
 
         <div className='imageContainer'>
           <div className='images'>
-            {searchImages.map((imageUrl,index) => (
+            {searchImages.map((imageUrl, index) => (
               <div key={index}>
                 <img src={imageUrl} alt="" />
               </div>
@@ -73,5 +71,6 @@ export default function DisplayImage() {
           </div>
         </div>
       </div>
+    </div>
   );
 }
