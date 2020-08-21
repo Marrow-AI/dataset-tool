@@ -52,7 +52,7 @@ export default function DisplayImage() {
         <div className='leftSection'>
           <div className='explaining'>
             <h2 className='explain main'>Second step: Data Scraping</h2>
-            <p className='explain two'>Data Scraping is a technique in which a computer program extracts data, usually from another program. In our case we used <strong>Google Images</strong>.
+            <p className='explain two'>Data Scraping is a technique in which a computer program extracts data, usually from another program. In our case, we used <strong>Google Images</strong>.
               <br />This could be easily done from a few sources at once.</p>
             <p className='explain two'> Data Scraping is a common technique when trying to collecting Machine Learning datasets.</p>
             <p className='explain two'>After collecting all the images, the next step will be cleaning and organizing our data.</p>

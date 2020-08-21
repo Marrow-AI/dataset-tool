@@ -21,11 +21,11 @@ export default function Results(props) {
         <div className='leftSection result'>
           <div className='explaining result'>
             <h2 className='explain main edit'>Step Four: Moment before training</h2>
-            <p className='explain two'>Now will be a stage where we will manully curate the images we received.<br />
+            <p className='explain two'>Now will be a stage where we will manually curate the images we received.<br />
              Checking what kind of "human's bodies" the Neural Network sent back.</p>
             <p className='explain two'> Another important aspect we should keep in mind
              is the diversity of the dataset &mdas; is it represent all we need?  </p>
-            <p className='explain two'>If everything is Okay and we are pleased, we are proceeding with towward Training. </p>
+            <p className='explain two'>If everything is Okay and we are pleased, we are proceeding with toward Training. </p>
             <button disabled={visible} className='more' onClick={() => setShowModel(!showModel, setDisible(!visible))}>let's train</button>
           </div>
         </div>
@@ -33,8 +33,8 @@ export default function Results(props) {
         {showModel &&
           <div class="model">
             <h2 className='explain main final'>MSG</h2>
-            <p className='explain modelText'>Training is a process that takes days if not weeks.</p>
-            <p className='explain modelText'> The training results you are about to see was done on "Happy Family dinner" dataset </p>
+            <p className='explain modelText'>Training is a process that takes days, if not weeks.</p>
+            <p className='explain modelText'> The training results you are about to see was done on "Happy Family dinner" dataset. </p>
             <p className='explain modelText'> It took 84 hours on ~6400 images that were collected more or less in this method. </p>
             <button className='more modelText' onClick={goTrain}>I understand!</button>
           </div>

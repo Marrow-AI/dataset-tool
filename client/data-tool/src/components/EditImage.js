@@ -130,7 +130,7 @@ export default function EditImage() {
           <div className='leftSection edit'>
             <div className='explaining edit'>
               <h2 className='explain main edit'>Step Three: Cleaning & Editing stage</h2>
-              <p className='explain two'>Even though the images are similiar in their topic, they are very different in their feature: different angles, numbers of figures, colors.</p>
+              <p className='explain two'>Even though the images are similar in their topic, they are very different in their feature: different angles, numbers of figures, colors.</p>
               <p className='explain two'> This creates a lot of noise for the network, and difficulty to identify patterns.<br /> We need to help it a bit.</p> <br />
 
               <div className='editForm'>
