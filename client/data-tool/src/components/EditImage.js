@@ -3,13 +3,29 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import useSpinner from './useSpinner';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import store from '../state';
 import { name } from "file-loader";
-const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
+import getPoses from '../poseRequest';
+
+import { createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+
+  palette: {
+    primary: {
+      main: '#90caf9',
+    },
+    secondary: {
+      main: '#84ffff',
+    },
+  },
+});
+
 
 //this belongs to material-ui//
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +48,14 @@ const useStylesTwo = makeStyles((theme) => ({
   }
 }));
 
-const marks = [{ value: 0 }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
-{ value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }, { value: 10 }];
+const tracks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
+{ value: 6 }, { value: 7, label: '7' }];
+function valueLabelFormatOne(value) {
+  return tracks.findIndex((track) => track.value === value);
+}
+
+const marks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
+{ value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }, { value: 10, label: '10' }];
 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
@@ -76,12 +98,44 @@ export default function EditImage() {
   }
 
   async function onSubmit() {
-    console.log('moving to results')
-    showLoading();
-    setTimeout(() => {
-      hideLoading()
-      history.push(`/results/${valueNumberOfPeople}/${valueNumberofVersions}`)
-    }, 2000);
+    console.log('moving to results');
+    store.dispatch({
+      type: 'SAVE_VALUE_SLIDER',
+      numberPeople: valueNumberOfPeople,
+      numberVersions: valueNumberofVersions
+    });
+    store.dispatch(async (dispatch, getState) => {
+      try {
+        showLoading();
+        const { images64, numberPeople, numberVersions } = getState();
+        for (const singleImg of images64) {
+          try {
+            const data = await getPoses(singleImg, numberPeople, numberVersions)
+            for (let imageText of data.results) {
+              dispatch({
+                type: 'CROP_IMAGE',
+                cropImages: "data:image/jpg;base64," + imageText
+              })
+            }
+          } catch (e) {
+            console.log(e);
+          } finally {
+            hideLoading();
+            history.push(`/results/${numberPeople}/${numberVersions}`)
+          }
+        }
+
+      } catch (e) {
+        console.log('error:  ', e);
+      }
+    });
+
+
+    // showLoading();
+    // setTimeout(() => {
+    //   hideLoading()
+    //   history.push(`/results/${valueNumberOfPeople}/${valueNumberofVersions}`)
+    // }, 2000);
   }
 
   const goTrain = () => {
@@ -90,10 +144,11 @@ export default function EditImage() {
   }
 
   return (
+    <ThemeProvider theme={theme}>
     <div className='secondScreen'>
 
       <div className='leftSection'>
-        <h1 className='title result'>3.Editing<span className='title result-before'>{keyword}</span> </h1>
+        <h1 className='title result'>3.Editing the results for:<span className='title result-before'>{keyword}</span> </h1>
         <p className='noImages'>Number of images found:<span className="number"> {images64.length}</span></p><br />
         <div className='explaining'>
           <p className='explain main'>Now we are entering a "cleaning" and "editing" stage.</p>
@@ -103,6 +158,9 @@ export default function EditImage() {
 
         <div className='editForm'>
           <form onSubmit={handleSubmit(onSubmit)}>
+
+        
+
             <div className={classesOne.root}>
               <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
                 Number of human to leave and extract from background:
@@ -115,17 +173,18 @@ export default function EditImage() {
                 onChange={handlePersonChange} 
                 // onDragStop={handleDragStop}
                 defaultValue={0}
-                valueLabelFormat={valueLabelFormat}
+                valueLabelFormat={valueLabelFormatOne}
                 getAriaValueText={valuetext}
                 aria-labelledby="discrete-slider-restrict-one"
                 step={null}
                 valueLabelDisplay="auto"
-                marks={marks}
+                marks={tracks}
                 aria-labelledby="track-false-slider-one"
                 getAriaValueText={valuetext}
                 defaultValue={0}
                 min={0}
                 max={7}
+                valueLabelDisplay="on"
                 color="secondary"
               />
               <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
@@ -173,5 +232,6 @@ export default function EditImage() {
         </div>
       </div>
     </div>
-  )
+    </ThemeProvider>
+  );
 }

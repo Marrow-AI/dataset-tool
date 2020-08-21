@@ -37,7 +37,7 @@ a:hover {
   width: 100%;
   bottom: 0;
   height: 3rem;
-  background-color: rgb(120, 120, 120);
+  background-color:black;
 }
 
 .footer {
@@ -46,19 +46,24 @@ a:hover {
 }
 
 a.footer {
-  color: black;
+  color: rgba(255, 255, 255, 0.5);
   display: inline-block;
   font-size: 16px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   padding: 15px 15px;
+}
+
+a.footer:hover {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .firstScreen {
  margin-left: auto;
  margin-right: auto;
  position: relative;
- max-width: 680px;
+ max-width: 780px;
  padding: 15px;
+ text-align: center;
 }
 
 h1 {
@@ -81,13 +86,13 @@ h1 {
 }
 
 h1.logo {
-  margin-top: 10%;
+  color: #EEBBF9;
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 60px;
-  font-size: 46px;
-  line-height: 3.4rem;
-  font-weight: 400;
+  margin-bottom: 10px;
+  margin-top: 100px;
+  font-size: 58px;
+  line-height: 3.5rem;
+  font-weight: 300;
 }
 
 .example {
@@ -100,54 +105,72 @@ h1.logo {
  margin-left: auto;
  margin-right: auto;
  text-align: center;
- width: 400px;
+ width: 420px;
  color: white;
 }
 
 input.word {
   background-color: black;
   border: none;
-  border-bottom: 2px solid white;
-  color: rgb(237, 42, 42);
-  font-size: 15px;
-  width: 380px;
-  margin-top: 15%;
+  border-bottom: 3px solid #ED965F;
+  color: white;
+  font-size: 18px;
+  width: 420px;
+  margin-top: 16%;
   text-transform: capitalize;
-  padding-left: 5px;
+  padding-left: 10px;
   padding-bottom: 5px;
 }
 
 button {
   background:transparent;
   cursor: pointer;
-  transition: all .25s ease-in;
-  font-size: 16px;
+  transition: all .15s ease-in;
+  font-size: 14px;
+  font-weight: 600;
   color: white;
   border: 1px solid white;
   border-radius:  50px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  text-transform: uppercase;
+  padding: 16px 90px;
 }
 
 button:hover {
   transform:scale(1.05) translateY(-2px);
   box-shadow: 3px 2px 5px rgba(249, 249, 249, 0.75);
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  padding: 15px 50px;
 }
 
 button.search {
-  margin-top: 100px;
-  padding: 10px 60px;
+  margin-top: 80px;
+  border: 1px solid #EEBBF9;
+  border-radius: 70px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  padding: 16px 70px;
+}
+
+button.search:hover {
+  border: 2px solid #EEBBF9;
+  background-color: #EEBBF9;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  padding: 15px 50px;
 }
 
 .spinner{  
-height: 100%;
-width: 100%;
-display: flex;
-align-items: center;
-justify-content: center;
-position: absolute;
-left: 0;
-top: 0;
-z-index: 100;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
 }
 
 .secondScreen {
@@ -162,11 +185,12 @@ z-index: 100;
   text-align: left;
   padding-bottom: 1.2rem;
   font-family: 'Lato';
-  font-size: 24px;
+  font-size: 28px;
+  color: white;
 }
 
 .title.result-before {
-  color: rgb(237, 42, 42);
+  color: #EEBBF9;
   font-weight: 400;
   padding-left: 5px;
   margin-bottom: 0;
@@ -174,44 +198,50 @@ z-index: 100;
 }
 
 .noImages {
-  font-size: 14px;
+  font-size: 18px;
   text-align: left;
-  margin-left: .5rem;
   margin-bottom: 1rem;
   margin-top: -1rem;
   padding-right: 2px;
   padding-left: 2px;
-  color: white;
+  color: #ED965F;
+  letter-spacing: 2px;
 }
 
 .number {
   text-decoration: underline;
   padding-left: 5px;
-  font-size: 15px;
+  font-size: 20px;
   color: white;
+
 }
 
 .leftSection {
   width: 400px;
+  height: 600px;
   padding: 10px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  border:1px dotted #EEBBF9;
 }
 
 .explaining {
   width: 380px;
   color: white;
+  /* background-color: #EEBBF9; */
+  border: 1px solid white;
+
 }
 
-explain.main {
-  font-size: 16px;
+.explain.main {
+  font-size: 20px;
   color: white;
 }
 
 .explain.two {
   line-height: 1.5rem;
-  font-size: 14px;
+  font-size: 18px;
   color: white;
 }
 

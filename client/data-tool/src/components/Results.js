@@ -29,9 +29,6 @@ export default function Results(props) {
 
   // }
 
-  useEffect(() => {
-    fetchPoses();
-  },[]);
 
 
   async function fetchPoses () {

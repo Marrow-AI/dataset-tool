@@ -1,11 +1,16 @@
-import {createStore} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = (state = {
     socket: null,
     images: [],
     keyword: '',
     images64:[],
-    cropImages: []
+    cropImages: [],
+    numberPeople: 0,
+    numberVersions: 0,
 }, action) => {
   switch (action.type) {
 
@@ -44,6 +49,13 @@ const reducer = (state = {
       cropImages: [...state.cropImages, action.cropImages]
     }
   }
+  case 'SAVE_VALUE_SLIDER': {
+    return {
+      ...state,
+      numberPeople: action.numberPeople,
+      numberVersions: action.numberVersions
+    }
+  }
     default:
       return state;
   }
@@ -61,7 +73,7 @@ export const setSession = (session) => ({
 
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // redux dev tools
+  composeEnhancer(applyMiddleware(thunk)),
 );
 
 export default store;

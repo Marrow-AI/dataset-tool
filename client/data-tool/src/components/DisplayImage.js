@@ -53,7 +53,7 @@ export default function DisplayImage() {
       <div className='secondScreen'>
         <div className='leftSection'>
           <h1 className='title result'>2.Results for:<span className='title result-before'>{keyword}</span> </h1>
-          <p className='noImages'>No.images found:<span className="number"> {count}</span></p><br />
+          <p className='noImages'>Number of images found:<span className="number"> {count}</span></p><br />
           <div className='explaining'>
             <p className='explain main'>What you just did was an example for <strong>Data Scraping</strong>.</p>
             <p className='explain two'>Data Scraping is a technique in which a computer program extracts data usually from another program,<br /> <strong>in our case: Google Images</strong>.</p>

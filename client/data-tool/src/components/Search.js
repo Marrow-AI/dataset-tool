@@ -49,7 +49,7 @@ export default function Search() {
     setTimeout(() => {
       hideLoading()
       history.push("/display")
-    }, 3000);
+    }, 4000);
   }
 
   return (
@@ -57,8 +57,10 @@ export default function Search() {
       <Header />
       <div className='inputForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /> <br /><br />
+          <div>
+          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /><br /><br/>
           {errors.keyword && "It seems like you didn't type anything"}
+          </div>
           <button className="search" name="search" type="submit" ref={register}>Search</button>
           {loading}
         </form>
