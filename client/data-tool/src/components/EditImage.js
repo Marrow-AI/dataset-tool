@@ -10,28 +10,23 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import store from '../state';
 import { name } from "file-loader";
 import getPoses from '../poseRequest';
-
 import { createMuiTheme } from '@material-ui/core/styles';
-
-
+//this belongs to material-ui//
 const theme = createMuiTheme({
-
   palette: {
     primary: {
-      main: '#90caf9',
+      main: '#84ffff',
     },
     secondary: {
-      main: '#84ffff',
+      main: '#fff',
     },
   },
 });
 
-
-//this belongs to material-ui//
 const useStyles = makeStyles((theme) => ({
   root: {
     id: 1,
-    width: 180
+    width: 200
   },
   margin: {
     height: theme.spacing(3),
@@ -48,8 +43,7 @@ const useStylesTwo = makeStyles((theme) => ({
   }
 }));
 
-const tracks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
-{ value: 6 }, { value: 7, label: '7' }];
+const tracks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4, label: '4' }];
 function valueLabelFormatOne(value) {
   return tracks.findIndex((track) => track.value === value);
 }
@@ -65,27 +59,20 @@ function valueLabelFormat(value) {
 export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
   const images64 = useSelector(state => state.images64);
-
-  const { register, handleSubmit} = useForm({ mode: "onBlur" });
+  const { register, handleSubmit } = useForm({ mode: "onBlur" });
   let history = useHistory();
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
-  const [boxValue, setBoxValue] = useState({ checked: true });
-  const [visiblebTraining, setvisibleTraining] = useState(false)
   const [loading, showLoading, hideLoading] = useSpinner();
   const [buttonText, setButtonText] = useState('Give it a go?')
-  const [valueNumberOfPeople, setValueNumberOfPeople] = useState(0)
+  const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
 
-  const changeButtonText = (text) => setButtonText(text);
-
   function valuetext(valueNumberOfPeople) {
-    console.log(valueNumberOfPeople)
     return `${valueNumberOfPeople}`;
   }
 
   function valuetextTwo(valueNumberofVersions) {
-    console.log(valueNumberofVersions)
     return `${valueNumberofVersions}`;
   }
 
@@ -129,109 +116,94 @@ export default function EditImage() {
         console.log('error:  ', e);
       }
     });
-
-
-    // showLoading();
-    // setTimeout(() => {
-    //   hideLoading()
-    //   history.push(`/results/${valueNumberOfPeople}/${valueNumberofVersions}`)
-    // }, 2000);
   }
 
   const goTrain = () => {
     console.log('train me!')
-    // history.push("/train")
   }
 
   return (
     <ThemeProvider theme={theme}>
-    <div className='secondScreen'>
+      <div className="mainTitle">
+        <h1 className='title result'>Editing <span className="number edit"> {images64.length}</span> images with the result of <span className='title result-before edit'>{keyword}</span> </h1>
+        <div className='secondScreen'>
+          <div className='leftSection edit'>
+            <div className='explaining edit'>
+              <h2 className='explain main edit'>Step Three: Cleaning & Editing stage</h2>
+              <p className='explain two'>Even though the images are similiar in their topic, they are very different in their feature: different angles, numbers of figures, colors.</p>
+              <p className='explain two'> This creates a lot of noise for the network, and difficulty to identify patterns.<br /> We need to help it a bit.</p> <br />
 
-      <div className='leftSection'>
-        <h1 className='title result'>3.Editing the results for:<span className='title result-before'>{keyword}</span> </h1>
-        <p className='noImages'>Number of images found:<span className="number"> {images64.length}</span></p><br />
-        <div className='explaining'>
-          <p className='explain main'>Now we are entering a "cleaning" and "editing" stage.</p>
-          <p className='explain two'>As you can see, the images you received are variety in their angles, alignment, numbers of figures.</p>
-          <p className='explain two'> For the network to be able to identify patterns, we need to help it a bit.</p> <br />
-        </div>
-
-        <div className='editForm'>
-          <form onSubmit={handleSubmit(onSubmit)}>
-
-        
-
-            <div className={classesOne.root}>
-              <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
-                Number of human to leave and extract from background:
-            </Typography>
-              <Slider
-                key={name}
-                id="num-of-people"
-                name="num-of-people"
-                value={valueNumberOfPeople}
-                onChange={handlePersonChange} 
-                // onDragStop={handleDragStop}
-                defaultValue={0}
-                valueLabelFormat={valueLabelFormatOne}
-                getAriaValueText={valuetext}
-                aria-labelledby="discrete-slider-restrict-one"
-                step={null}
-                valueLabelDisplay="auto"
-                marks={tracks}
-                aria-labelledby="track-false-slider-one"
-                getAriaValueText={valuetext}
-                defaultValue={0}
-                min={0}
-                max={7}
-                valueLabelDisplay="on"
-                color="secondary"
-              />
-              <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
-            </div>
-
-            <div className={classesTwo.root}>
-              <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
-                Number of human to leave and extract from background:
+              <div className='editForm'>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                  <div className={classesOne.root}>
+                    <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
+                      1 ● How many humans to leave<br /> & extract from background?
              </Typography>
-              <Slider
-                key={name}
-                id="num-of-permutations"
-                name="num-of-permutations"
-                value={valueNumberofVersions}
-                onChange= {handleVersionChange}
-                defaultValue={0}
-                valueLabelFormat={valueLabelFormat}
-                getAriaValueText={valuetextTwo}
-                aria-labelledby="discrete-slider-restrict-two"
-                step={null}
-                valueLabelDisplay="auto"
-                marks={marks}
-                aria-labelledby="track-false-slider-two"
-                getAriaValueText={valuetextTwo}
-                defaultValue={0}
-                min={0}
-                max={10}
-              // color="secondary"
-              />
-              <p className='explain three'> this will shuffle the humans in each image, and will multiple the number of images</p>
+                    <Slider
+                      key={name}
+                      id="num-of-people"
+                      name="num-of-people"
+                      value={valueNumberOfPeople}
+                      onChange={handlePersonChange}
+                      // onDragStop={handleDragStop}
+                      defaultValue={1}
+                      valueLabelFormat={valueLabelFormatOne}
+                      getAriaValueText={valuetext}
+                      aria-labelledby="discrete-slider-restrict-one"
+                      step={null}
+                      valueLabelDisplay="auto"
+                      marks={tracks}
+                      // aria-labelledby="track-false-slider-one"
+                      min={0}
+                      max={4}
+                    // color="secondary"
+                    />
+                    <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
+                  </div>
+
+                  <div className={classesTwo.root}>
+                    <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
+                      2 ● How many versions to create<br /> from each image?
+             </Typography>
+                    <Slider
+                      key={name}
+                      id="num-of-permutations"
+                      name="num-of-permutations"
+                      value={valueNumberofVersions}
+                      onChange={handleVersionChange}
+                      defaultValue={0}
+                      valueLabelFormat={valueLabelFormat}
+                      getAriaValueText={valuetextTwo}
+                      aria-labelledby="discrete-slider-restrict-two"
+                      step={null}
+                      valueLabelDisplay="auto"
+                      marks={marks}
+                      // aria-labelledby="track-false-slider-two"
+                      min={0}
+                      max={10}
+                    // color="secondary"
+                    />
+                    <p className='explain three'> this will shuffle the humans in each image, and will multiple the number of images</p>
+                  </div>
+
+                  {loading}
+
+                  <div className="btns">
+                    <button id="crop-button" className='start' name="end" type="submit" ref={register}>{buttonText}</button>
+                    <button disabled={true} className='start train' name="train" onClick={goTrain}>Start Training</button>
+                  </div>
+                </form>
+              </div>
             </div>
-
-            {loading}
-
-            <button id="crop-button" className='start' name="end" type="submit" ref={register}>{buttonText}</button>
-            <button disabled={!visiblebTraining} className='start train' name="train" onClick={goTrain}>Start Training</button>
-          </form>
+          </div>
+          <div className='imageContainer'>
+            <div className='images'>
+              {images64.map((image, index) =>
+                <img key={index} src={image} alt='' />)}
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className='imageContainer'>
-        <div className='images'>
-          {images64.map((image, index) =>
-            <img key={index} src={image} alt='' />)}
-        </div>
-      </div>
-    </div>
     </ThemeProvider>
   );
 }

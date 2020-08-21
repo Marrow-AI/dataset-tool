@@ -208,6 +208,14 @@ button.search:hover {
   color: #ED965F;
 }
 
+.number.edit {
+  color: #EEBBF9;
+}
+
+.title.result-before.edit{
+  color: #EEBBF9;
+}
+
 .leftSection {
   font-family: 'Roboto', sans-serif; 
   width: 400px;
@@ -220,13 +228,21 @@ button.search:hover {
   border: 1px dotted #EEBBF9;
 }
 
+.leftSection.edit {
+  height: 1200px;
+  border: 1px dotted #ED965F;
+}
+
+.explaining.edit {
+  height: 1160px;
+} 
+
 .explaining {
   font-family: 'Roboto', sans-serif; 
   width: 380px;
   height: 550px;
   color: white;
   border: 1px solid white;
-
 }
 
 .explain.main {
@@ -238,6 +254,10 @@ button.search:hover {
   letter-spacing: 2px;
 }
 
+.explain.main.edit {
+  line-height: 2rem;
+}
+
 .explain.two {
   line-height: 1.5rem;
   font-size: 16px;
@@ -245,10 +265,10 @@ button.search:hover {
   letter-spacing: 1px;
   padding-left: 20px;
   padding-right: 20px;
+  font-family: 'Roboto', sans-serif; 
 }
 
 button.more{
-  /* padding: 10px 50px; */
   margin-bottom: 50px;
   margin-left: -1rem;
   margin-top: 40px;
@@ -266,36 +286,70 @@ button.more:hover {
   padding: 15px 35px;
 }
 
-.editForm {
+button.start {
+  padding: 18px 35px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 3.2rem;
   border: 1px solid white;
+  border-radius: 60px;
+  box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
+  /* padding: 16px 100px; */
+ }
+
+ button.start:hover {
+  border: 2px solid #ED965F;
+  background-color: #ED965F;
+  color: black;
   border-radius: 10px;
-  padding: 50px;
+  padding: 18px 35px;
+ }
+
+.editForm {
+  border-top: 4px solid #ED965F;
+  /* border-radius: 10px; */
+  padding: 20px;
+  padding-top: 60px;
   padding-right: 80px;
-  width: 380px;
-  margin-bottom: 6rem;
-  margin-top: .2rem;
+  width: 330px;
+  margin-top: .3rem;
   text-align: left;
   margin-right: auto;
   margin-left: auto;
+  font-family: 'Roboto', sans-serif; 
 }
 
-button.start{
- padding: 10px 35px;
- margin-top: 30px;
- margin-bottom: 20px;
- text-align: center;
- margin-left: 3rem;
+.MuiSlider-markLabel {
+  color: white !important;
+  font-family: 'Roboto', sans-serif; 
+  font-size: 14px; 
+}
+
+.MuiTypography-body1 {
+  color: white;
+  font-family: 'Yanone Kaffeesatz', sans-serif !important;
+  font-size: 18px !important;
+  width: 300px !important;
+  letter-spacing: 2px !important;
+}
+
+.MuiSlider-markLabel.MuiSlider-markLabelActive {
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .MuiTypography-root.label {
-  padding-bottom: 10%;
-  color: white;
+  padding-bottom: 15%;
 }
 
 .explain.three {
-  color: rgb(154, 154, 154);
+  color: #ED965F !important;
   font-size: 12px;
-  padding-bottom: 15px;
+  padding-bottom: 30px;
+  font-family: 'Roboto', sans-serif; 
 }
 
 .imageContainer {
@@ -321,16 +375,26 @@ img {
 
 button:disabled {
   cursor: not-allowed;
-  transform:scale(1) translateY(0);
+  /* transform:scale(1) translateY(0); */
   box-shadow: none;
+  color: grey;
 }
 
 .start.train:disabled {
   padding: 10px 35px;
   margin-top: 2rem;
   margin-bottom: -.5rem;
-  transition: all .25 ease-in;
+  /* transition: all .25 ease-in; */
   margin-left: 2.8rem;
+  color: grey;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+.start.train:disabled:hover {
+  color: grey;
+  border: 1px solid grey;
+  background-color: transparent;
 }
 
 .start.train:enabled{
