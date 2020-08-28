@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -117,6 +117,10 @@ export default function EditImage() {
       }
     });
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>

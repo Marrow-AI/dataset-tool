@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { saveAs } from "filesaver.js-npm";
 import JSZip from 'jszip';
@@ -37,6 +37,10 @@ export default function Results(props) {
     });
     setShowPopUp(true)
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className="mainTitle">
