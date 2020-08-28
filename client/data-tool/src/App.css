@@ -9,6 +9,16 @@
   padding: 0;
 }
 
+::-moz-selection { /* Code for Firefox */
+  color: black;
+  background: white;
+}
+
+::selection {
+  color: black;
+  background: white;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -20,10 +30,6 @@ a {
   text-decoration: none;
   font-family: 'Yanone Kaffeesatz';
   color: black;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 .footerCointainer {
@@ -186,6 +192,7 @@ button.search:hover {
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
+
 }
 
 .secondScreen {
@@ -194,20 +201,6 @@ button.search:hover {
   margin-right: auto;
   margin-top: 2rem;
   position: relative;
-}
-
-
-.model {
-  position: absolute;
-  background: black;
-  z-index: 100;
-  height: 300px;
-  width: 600px;
-  margin-top: 100px;
-  margin-left: 250px;
-  border: 3px solid #EEBBF9;
-  padding: 20px 30px;
-  padding-bottom: 60px;
 }
 
 .title.result {
@@ -260,12 +253,12 @@ button.search:hover {
 }
 
 .leftSection.edit {
-  height: 1200px;
+  height: 1080px;
   border: 1px dotted #ED965F;
 }
 
 .explaining.edit {
-  height: 1160px;
+  height: 1060px;
 } 
 
 .explaining {
@@ -278,6 +271,7 @@ button.search:hover {
 
 .explaining.result {
   border:none;
+  position: relative;
 }
 
 .explain.main {
@@ -300,6 +294,12 @@ button.search:hover {
   line-height: 2rem;
 }
 
+.explain.main.result {
+  line-height: 2rem;
+  text-align: left;
+  margin-left: 20px;
+}
+
 .explain.two {
   line-height: 1.5rem;
   font-size: 16px;
@@ -311,25 +311,13 @@ button.search:hover {
 }
 
 button.more{
-  margin-bottom: 50px;
-  margin-left: -1rem;
-  margin-top: 40px;
+  margin-bottom: 20px;
+  margin-left: -2.5rem;
+  margin-top: 10px;
   border: 1px solid white;
   border-radius: 70px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
   padding: 16px 50px;
-}
-
-.more.modelText {
-  background-color: black;
-  border: 2px solid #EEBBF9;
-  border-radius: 20px;
-  margin-top: 60px;
-}
-
-.more.modelText:hover {
-  border: 2px solid #EEBBF9;
-  background-color: #EEBBF9;
 }
 
 button.more:hover {
@@ -349,7 +337,6 @@ button.start {
   border: 1px solid white;
   border-radius: 60px;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
-  /* padding: 16px 100px; */
  }
 
  button.start:hover {
@@ -405,6 +392,73 @@ button.start {
   font-family: 'Roboto', sans-serif; 
 }
 
+.modelHover {
+  color: #EEBBF9;
+  letter-spacing: 2px;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modelImage{
+  background-image: url("/static/process1.gif");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 400px;
+  display: none;
+  margin-left: 45%;
+  margin-top: -25%;
+  z-index: 100;
+  border: 2px solid #EEBBF9;
+  opacity: 0.9;
+  padding-bottom: 0;
+  position: absolute;
+}
+
+.modelHover:hover ~ .modelImage {
+  display: inline-block;
+}
+
+.explain.three-image {
+  color: white;
+  font-size: 11px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.explain.three.resutls {
+  max-width: 300px;
+  margin-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 30px;
+}
+
+.popup {
+  background-color: black;
+  margin-left: auto;
+  margin-right:auto;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo.end {
+  color:#84ffff;
+  font-size: 78px;
+  width: 750px;
+  height: 500px;
+  margin-top: -5%;
+  padding-top: 200px;
+  padding-bottom: 600px;
+  background-color: black;
+  opacity: 0.8;
+  margin-left: auto;
+  margin-right:auto;
+  text-align: center;
+  position: absolute;
+}
+
 .imageContainer {
   margin-left: auto;
   margin-right: auto;
@@ -433,31 +487,6 @@ button:disabled {
   color: grey;
 }
 
-.start.train:disabled {
-  padding: 10px 35px;
-  margin-top: 2rem;
-  margin-bottom: -.5rem;
-  margin-left: 2.8rem;
-  color: grey;
-  border: 1px solid grey;
-  border-radius: 10px;
-}
-
-.start.train:disabled:hover {
-  color: grey;
-  border: 1px solid grey;
-  background-color: transparent;
-}
-
-.start.train:enabled{
-  background-color: #f60257;
-  color: white;
-  border: 1px solid #f60257;
-  margin-top: 2rem;
-  margin-bottom: -.5rem;
-  transition: all .35 ease-in;
-  margin-left: 2.7rem;
-}
 
 .trainingImages {
   margin-top: 0;

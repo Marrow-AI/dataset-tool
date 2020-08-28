@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -118,10 +118,6 @@ export default function EditImage() {
     });
   }
 
-  const goTrain = () => {
-    console.log('train me!')
-  }
-
   return (
     <ThemeProvider theme={theme}>
       <div className="mainTitle">
@@ -190,7 +186,6 @@ export default function EditImage() {
 
                   <div className="btns">
                     <button id="crop-button" className='start' name="end" type="submit" ref={register}>{buttonText}</button>
-                    <button disabled={true} className='start train' name="train" onClick={goTrain}>Start Training</button>
                   </div>
                 </form>
               </div>
