@@ -19,7 +19,7 @@ export default function DisplayImage() {
     history.push("/edit")
   }
 
-  const toDataURL = url => fetch(corsServer + url)
+  const toDataURL = url => fetch(url)
     .then(response => response.blob())
     .then(blob => new Promise((resolve, reject) => {
       const reader = new FileReader()

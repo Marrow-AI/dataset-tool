@@ -125,7 +125,7 @@ export default function EditImage() {
   return (
     <ThemeProvider theme={theme}>
       <div className="mainTitle">
-        <h1 className='title result'>Editing <span className="number edit"> {images64.length}</span> images with the result of <span className='title result-before edit'>{keyword}</span> </h1>
+        <h1 className='title result'>Editing <span className="number edit"> {images64.length + 1}</span> images with the result of <span className='title result-before edit'>{keyword}</span> </h1>
         <div className='secondScreen'>
           <div className='leftSection edit'>
             <div className='explaining edit'>
