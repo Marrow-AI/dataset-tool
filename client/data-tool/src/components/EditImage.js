@@ -129,15 +129,15 @@ export default function EditImage() {
         <div className='secondScreen'>
           <div className='leftSection edit'>
             <div className='explaining edit'>
-              <h2 className='explain main edit'>Step Three: Cleaning & Editing stage</h2>
-              <p className='explain two'>Even though the images are similar in their topic, they are very different in their feature: different angles, numbers of figures, colors.</p>
-              <p className='explain two'> This creates a lot of noise for the network, and difficulty to identify patterns.<br /> We need to help it a bit.</p> <br />
+              <h2 className='explain main edit'>Step Two: Filtering stage</h2>
+              <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, character positions.</p>
+              <p className='explain two'> This creates a lot of noise for the nerual network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
 
               <div className='editForm'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={classesOne.root}>
                     <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
-                      1 ● How many humans to leave<br /> & extract from background?
+                      1 ● How many humans to extract <br/> from the background?
              </Typography>
                     <Slider
                       key={name}
@@ -158,7 +158,7 @@ export default function EditImage() {
                       max={4}
                     // color="secondary"
                     />
-                    <p className='explain three'> this will leave the number of humans you choose and will seperate them from the background</p>
+                    <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
                   </div>
 
                   <div className={classesTwo.root}>
@@ -179,11 +179,11 @@ export default function EditImage() {
                       valueLabelDisplay="auto"
                       marks={marks}
                       // aria-labelledby="track-false-slider-two"
-                      min={0}
+                      min={1}
                       max={10}
                     // color="secondary"
                     />
-                    <p className='explain three'> this will shuffle the humans in each image, and will multiple the number of images</p>
+                    <p className='explain three'> this will shuffle the humans in every image, creating multiple data from one source</p>
                   </div>
 
                   {loading}

@@ -51,11 +51,10 @@ export default function DisplayImage() {
       <div className='secondScreen'>
         <div className='leftSection'>
           <div className='explaining'>
-            <h2 className='explain main'>Second step: Data Scraping</h2>
-            <p className='explain two'>Data Scraping is a technique in which a computer program extracts data, usually from another program. In our case, we used <strong>Google Images</strong>.
-              <br />This could be easily done from a few sources at once.</p>
-            <p className='explain two'> Data Scraping is a common technique when trying to collecting Machine Learning datasets.</p>
-            <p className='explain two'>After collecting all the images, the next step will be cleaning and organizing our data.</p>
+            <h2 className='explain main'>First step: Data Scraping</h2>
+            <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong></p>
+						<p className='explain two'> Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model.</p>
+            <p className='explain two'>Once we collected all of the data, the next step will be to extract a meaningful and consistent set of images that the model could easily comprehend.</p>
             <button disabled={visiblebtn} className='more' onClick={showEdit}>Keep going?</button>
           </div>
         </div>
