@@ -6,7 +6,7 @@ import store from '../state';
 export default function DisplayImage() {
   const keyword = useSelector(state => state.keyword);
   const socket = useSelector(state => state.socket);
-  const corsServer = 'https://clump.systems/'; // avner change this to cors fetch in python! 
+  const corsServer = '/proxy/';
   let history = useHistory();
   const searchImages = useSelector(state => state.images64);
   const [keepGoing, setKeepGoing] = useState(false);
@@ -19,7 +19,7 @@ export default function DisplayImage() {
     history.push("/edit")
   }
 
-  const toDataURL = url => fetch(url)
+  const toDataURL = url => fetch(corsServer + url)
     .then(response => response.blob())
     .then(blob => new Promise((resolve, reject) => {
       const reader = new FileReader()

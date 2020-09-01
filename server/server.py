@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8
 
+import eventlet
+eventlet.monkey_patch()
+
 import sys
 from eventlet import wsgi
 import os, time, re
@@ -15,7 +18,7 @@ import random
 import asyncio
 import base64
 
-from flask import Flask, jsonify, request, render_template, send_file, send_from_directory
+from flask import Flask, jsonify, request, render_template, send_file, send_from_directory, Response, stream_with_context
 from flask_compress import Compress
 from flask_cors import CORS, cross_origin
 from flask_socketio import SocketIO,send,emit,join_room
@@ -23,10 +26,6 @@ from flask_socketio import SocketIO,send,emit,join_room
 import argparse
 import json
 import traceback
-
-import urllib.request
-import urllib.error
-from urllib.parse import urlparse,quote
 
 from os.path import splitext
 
@@ -41,10 +40,11 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.wait import WebDriverWait
 
-import eventlet
-eventlet.monkey_patch()
+from urllib.parse import urlparse,quote
+import urllib3
+urllib3.disable_warnings()
 
-from requests import get
+import requests
 
 parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 
@@ -101,28 +101,17 @@ class Scraper(Thread):
         search_query = quote(main_keyword)
         url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
         driver.get(url)
-        """
-        for _ in range(number_of_scrolls):
-            for __ in range(10):
-                # multiple scrolls needed to show all 400 images
-                driver.execute_script("window.scrollBy(0, 1000000)")
-                time.sleep(2)
-            # to load next 400 images
-            time.sleep(1)
-            try:
-                driver.find_element_by_xpath("//input[@value='Show more results']").click()
-            except Exception as e:
-                print("Process-{0} reach the end of page or get the maximum number of requested images".format(main_keyword))
-                break
-
-        """
-        thumbs = driver.find_elements_by_xpath('//a[@class="wXeWr islib nfEiy mM5pbd"]')
-
-        print(len(thumbs))
-        for thumb in thumbs:
+        print("Scrolling")
+        for i in range(2):
+            driver.execute_script("window.scrollBy(0, 1000000)")
+            time.sleep(2)
+        all_thumbs = driver.find_elements_by_xpath('//a[@class="wXeWr islib nfEiy mM5pbd"]')
+        print('Gathered {} thumbs'.format(len(all_thumbs)))
+        print("Collecting full size pics")
+        for thumb in all_thumbs:
             try:
                 thumb.click()
-                time.sleep(0.2)
+                time.sleep(0.5)
             except e:
                 print("Error clicking one thumbnail")
 
@@ -153,6 +142,16 @@ class Scraper(Thread):
         driver.quit()
 
 
+method_requests_mapping = {
+    'GET': requests.get,
+    'HEAD': requests.head,
+    'POST': requests.post,
+    'PUT': requests.put,
+    'DELETE': requests.delete,
+    'PATCH': requests.patch,
+    'OPTIONS': requests.options,
+}
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -162,14 +161,6 @@ Compress(app)
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
     return send_from_directory('sessions', filepath)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-@app.route('/test')
-def test():
-    return render_template('test.html')
 
 @app.route('/session',  methods = ['POST'])
 def create_session():
@@ -216,6 +207,27 @@ def search():
     except Exception as e:
         print("Error in route /search {}".format(str(e)))
         return jsonify(result=str(e))
+
+@app.route('/test')
+def testpage():
+    return render_template('test.html')
+
+@app.route('/proxy/<path:url>', methods=method_requests_mapping.keys())
+def proxy(url):
+    requests_function = method_requests_mapping[request.method]
+    request_handle = requests_function(url, stream=True, verify=False, params=request.args)
+    print('Getting response')
+    response = Response(stream_with_context(request_handle.iter_content()),
+                              content_type=request_handle.headers['content-type'],
+                              status=request_handle.status_code)
+
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return render_template('index.html')
 
 @socketio.on('connect')
 def on_connect():
