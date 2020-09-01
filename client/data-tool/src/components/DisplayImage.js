@@ -31,6 +31,7 @@ export default function DisplayImage() {
   useEffect(() => {
     if (socket) {
       socket.on('image', async (data) => {
+        console.log('Received image:',data.url);
         const imageUrl = await toDataURL(data.url);
         store.dispatch({
           type: 'SAVE_BASE64',
@@ -47,7 +48,7 @@ export default function DisplayImage() {
 
   return (
     <div className="mainTitle">
-      <h1 className='title result'><span className="number"> {searchImages.length + 1}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
+      <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
       <div className='secondScreen'>
         <div className='leftSection'>
           <div className='explaining'>

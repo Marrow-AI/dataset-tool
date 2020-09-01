@@ -53,13 +53,13 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 class Scraper(Thread):
-    def __init__(self,keyword,download_dir,app,socket_id,session_id,num_requested = 100):
+    def __init__(self,keyword,download_dir,app,sessions,session_id,num_requested = 100):
         print("Init scraper")
         self.keyword = keyword
         self.download_dir = download_dir
         self.app = app
-        self.socket_id = socket_id
         self.session_id = session_id
+        self.sessions = sessions
         self.num_requested = num_requested
         Thread.__init__(self)
 
@@ -70,13 +70,13 @@ class Scraper(Thread):
             self.get_image_links(
                 self.keyword,
                 self.download_dir,
-                self.socket_id,
+                self.sessions,
                 self.session_id,
                 self.num_requested
             )
 
 
-    def get_image_links(self, main_keyword, download_dir,socket_id,session_id, num_requested = 100):
+    def get_image_links(self, main_keyword, download_dir,sessions,session_id, num_requested = 100):
         """get image links with selenium
         
         Args:
@@ -125,6 +125,8 @@ class Scraper(Thread):
                 if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
                     img_urls.add(url)
                     print("Found image url {}".format(url))
+                    socket_id = sessions[session_id]
+                    print("Socket ID: {}".format(socket_id))
                     emit('image',{'url':url},room=socket_id, namespace='/')
 
                     # In case we want to download them
@@ -158,23 +160,26 @@ app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
+sessions = {}
+
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
     return send_from_directory('sessions', filepath)
 
 @app.route('/session',  methods = ['POST'])
-def create_session():
+def update_session():
     try:
         params = request.get_json()
-        if ('keyword' not in params or len(params['keyword']) == 0):
-            raise Exception('Keyword cannot be empty')
+        if ('session' not in params or len(params['session']) == 0):
+            raise Exception('Session cannot be empty')
         if ('socket' not in params or len(params['socket']) == 0):
             raise Exception('Socket cannot be empty')
 
-        timestamp = int(time.time())
-        session_id = '{}-{}'.format(params['keyword'],timestamp)
+        session_id = params['session']
 
-        out = jsonify(result="OK",dataset_session=session_id)
+        sessions[session_id] = socket
+
+        out = jsonify(result="OK")
 
         return out
 
@@ -187,8 +192,10 @@ def search():
     try:
         params = request.get_json()
         print(params)
-        session_id = params['session']
+        timestamp = int(time.time())
+        session_id = '{}-{}'.format(params['keyword'],timestamp)
         socket_id =  params['socket']
+        sessions[session_id] = socket_id
 
         download_dir = 'server/sessions/{}'.format(session_id)
         print("Get image links to socket {}".format(socket_id))
@@ -197,12 +204,12 @@ def search():
             params['keyword'],
             download_dir,
             app,
-            socket_id,
+            sessions,
             session_id
         )
         scraper.start()
 
-        return jsonify(result="OK")
+        return jsonify(result="OK", dataset_session=session_id)
 
     except Exception as e:
         print("Error in route /search {}".format(str(e)))

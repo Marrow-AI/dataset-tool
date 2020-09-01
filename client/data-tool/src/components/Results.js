@@ -52,7 +52,7 @@ export default function Results(props) {
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
             <button disabled={visible} className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
-            <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd sourcing techniques to go over tens of thousands of images.</p>
+            <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
             <p className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
               <div className="modelImage">
                 <p className='explain three-image'>*This is from "Happy Families Dinner" dataset training process</p>
