@@ -1,0 +1,2242 @@
+[
+  {
+    "temp": 37,
+    "cost": 51957,
+    "color": "yellow",
+    "target": "B",
+    "volume": 4.067257382234418
+  },
+  {
+    "temp": 38,
+    "cost": 172087,
+    "color": "yellow",
+    "target": "B",
+    "volume": 6.832815758461843
+  },
+  {
+    "temp": -9,
+    "cost": 337969,
+    "color": "green",
+    "target": "E",
+    "volume": 4.313022743386178
+  },
+  {
+    "temp": -1,
+    "cost": 355732,
+    "color": "red",
+    "target": "C",
+    "volume": 1.8155581757565042
+  },
+  {
+    "temp": -9,
+    "cost": 105025,
+    "color": "yellow",
+    "target": "C",
+    "volume": 3.567269702354078
+  },
+  {
+    "temp": 29,
+    "cost": 64622,
+    "color": "yellow",
+    "target": "E",
+    "volume": 6.973630314327285
+  },
+  {
+    "temp": 9,
+    "cost": 298441,
+    "color": "green",
+    "target": "E",
+    "volume": 2.1771766041952048
+  },
+  {
+    "temp": 34,
+    "cost": 240703,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.3839720748882085
+  },
+  {
+    "temp": 24,
+    "cost": 218367,
+    "color": "yellow",
+    "target": "C",
+    "volume": 0.4176888778743514
+  },
+  {
+    "temp": 14,
+    "cost": 233694,
+    "color": "green",
+    "target": "D",
+    "volume": 0.41741838951106547
+  },
+  {
+    "temp": 31,
+    "cost": 89127,
+    "color": "green",
+    "target": "E",
+    "volume": 5.330962165130475
+  },
+  {
+    "temp": 32,
+    "cost": 43570,
+    "color": "green",
+    "target": "D",
+    "volume": 5.145979973523127
+  },
+  {
+    "temp": 27,
+    "cost": 332747,
+    "color": "green",
+    "target": "D",
+    "volume": 2.693559095506501
+  },
+  {
+    "temp": -2,
+    "cost": 383955,
+    "color": "red",
+    "target": "E",
+    "volume": 5.1939993374656614
+  },
+  {
+    "temp": 23,
+    "cost": 364527,
+    "color": "green",
+    "target": "D",
+    "volume": 3.9193193795446195
+  },
+  {
+    "temp": 35,
+    "cost": 176668,
+    "color": "red",
+    "target": "B",
+    "volume": 0.6355463233108919
+  },
+  {
+    "temp": 29,
+    "cost": 346669,
+    "color": "yellow",
+    "target": "B",
+    "volume": 5.655226934965178
+  },
+  {
+    "temp": 38,
+    "cost": 5357,
+    "color": "green",
+    "target": "A",
+    "volume": 0.9334186495247252
+  },
+  {
+    "temp": -5,
+    "cost": 393759,
+    "color": "yellow",
+    "target": "B",
+    "volume": 7.039233579668599
+  },
+  {
+    "temp": 27,
+    "cost": 266661,
+    "color": "yellow",
+    "target": "D",
+    "volume": 0.8455014701270043
+  },
+  {
+    "temp": 16,
+    "cost": 154059,
+    "color": "red",
+    "target": "B",
+    "volume": 7.510596714343928
+  },
+  {
+    "temp": 16,
+    "cost": 247950,
+    "color": "red",
+    "target": "E",
+    "volume": 2.455824477115608
+  },
+  {
+    "temp": 19,
+    "cost": 126546,
+    "color": "green",
+    "target": "B",
+    "volume": 3.105549305548009
+  },
+  {
+    "temp": 25,
+    "cost": 311570,
+    "color": "red",
+    "target": "B",
+    "volume": 5.470221316517012
+  },
+  {
+    "temp": 9,
+    "cost": 157843,
+    "color": "green",
+    "target": "D",
+    "volume": 2.1555766606946154
+  },
+  {
+    "temp": 13,
+    "cost": 54735,
+    "color": "green",
+    "target": "D",
+    "volume": 7.5410161885756555
+  },
+  {
+    "temp": 16,
+    "cost": 307257,
+    "color": "green",
+    "target": "D",
+    "volume": 1.2809661018352394
+  },
+  {
+    "temp": 40,
+    "cost": 341116,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.960804708128505
+  },
+  {
+    "temp": 30,
+    "cost": 65767,
+    "color": "red",
+    "target": "D",
+    "volume": 2.218358744794651
+  },
+  {
+    "temp": 28,
+    "cost": 98771,
+    "color": "red",
+    "target": "B",
+    "volume": 6.676525068428448
+  },
+  {
+    "temp": -9,
+    "cost": 349656,
+    "color": "yellow",
+    "target": "A",
+    "volume": 7.309589067273146
+  },
+  {
+    "temp": -6,
+    "cost": 113814,
+    "color": "red",
+    "target": "E",
+    "volume": 5.541517601367308
+  },
+  {
+    "temp": 21,
+    "cost": 64590,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.4304498756641006
+  },
+  {
+    "temp": 23,
+    "cost": 311724,
+    "color": "red",
+    "target": "D",
+    "volume": 1.1125571147054878
+  },
+  {
+    "temp": 23,
+    "cost": 64758,
+    "color": "red",
+    "target": "D",
+    "volume": 3.2752041390460267
+  },
+  {
+    "temp": 3,
+    "cost": 361182,
+    "color": "red",
+    "target": "E",
+    "volume": 0.2865783682273392
+  },
+  {
+    "temp": -2,
+    "cost": 210988,
+    "color": "red",
+    "target": "D",
+    "volume": 2.3573076329408167
+  },
+  {
+    "temp": 21,
+    "cost": 280226,
+    "color": "red",
+    "target": "B",
+    "volume": 0.3372334044811237
+  },
+  {
+    "temp": -5,
+    "cost": 391576,
+    "color": "green",
+    "target": "B",
+    "volume": 1.5797314717834516
+  },
+  {
+    "temp": 13,
+    "cost": 204163,
+    "color": "yellow",
+    "target": "D",
+    "volume": 4.716033924741972
+  },
+  {
+    "temp": -4,
+    "cost": 342516,
+    "color": "green",
+    "target": "D",
+    "volume": 0.27037950119254645
+  },
+  {
+    "temp": -3,
+    "cost": 363670,
+    "color": "green",
+    "target": "C",
+    "volume": 2.2243890025781097
+  },
+  {
+    "temp": 24,
+    "cost": 380704,
+    "color": "yellow",
+    "target": "A",
+    "volume": 0.6074068169747778
+  },
+  {
+    "temp": -6,
+    "cost": 200312,
+    "color": "yellow",
+    "target": "C",
+    "volume": 4.57553666888403
+  },
+  {
+    "temp": 24,
+    "cost": 78516,
+    "color": "green",
+    "target": "B",
+    "volume": 0.3647017301927227
+  },
+  {
+    "temp": 27,
+    "cost": 98061,
+    "color": "red",
+    "target": "E",
+    "volume": 4.991792713855282
+  },
+  {
+    "temp": 29,
+    "cost": 316694,
+    "color": "red",
+    "target": "A",
+    "volume": 6.794560333696944
+  },
+  {
+    "temp": -2,
+    "cost": 311389,
+    "color": "green",
+    "target": "C",
+    "volume": 6.899859756540128
+  },
+  {
+    "temp": 15,
+    "cost": 69168,
+    "color": "red",
+    "target": "D",
+    "volume": 7.017621636513876
+  },
+  {
+    "temp": 3,
+    "cost": 42465,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.912389643090454
+  },
+  {
+    "temp": 19,
+    "cost": 122871,
+    "color": "green",
+    "target": "A",
+    "volume": 2.3484960714759824
+  },
+  {
+    "temp": 11,
+    "cost": 358919,
+    "color": "red",
+    "target": "A",
+    "volume": 3.846418802538791
+  },
+  {
+    "temp": 35,
+    "cost": 316561,
+    "color": "green",
+    "target": "A",
+    "volume": 0.5016133967356075
+  },
+  {
+    "temp": 19,
+    "cost": 359850,
+    "color": "red",
+    "target": "D",
+    "volume": 1.9563926638438809
+  },
+  {
+    "temp": 34,
+    "cost": 218418,
+    "color": "red",
+    "target": "C",
+    "volume": 5.520802570062146
+  },
+  {
+    "temp": 24,
+    "cost": 267333,
+    "color": "red",
+    "target": "D",
+    "volume": 5.221673310924609
+  },
+  {
+    "temp": 29,
+    "cost": 399746,
+    "color": "yellow",
+    "target": "A",
+    "volume": 2.207643533115121
+  },
+  {
+    "temp": 27,
+    "cost": 210411,
+    "color": "green",
+    "target": "B",
+    "volume": 1.1891404351068746
+  },
+  {
+    "temp": 26,
+    "cost": 347747,
+    "color": "yellow",
+    "target": "E",
+    "volume": 2.7790949267471947
+  },
+  {
+    "temp": -2,
+    "cost": 338658,
+    "color": "green",
+    "target": "D",
+    "volume": 2.0501361081960066
+  },
+  {
+    "temp": 25,
+    "cost": 373437,
+    "color": "yellow",
+    "target": "E",
+    "volume": 0.614127890980847
+  },
+  {
+    "temp": 22,
+    "cost": 182640,
+    "color": "yellow",
+    "target": "B",
+    "volume": 7.44903801148687
+  },
+  {
+    "temp": 23,
+    "cost": 148995,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.3894521872959293
+  },
+  {
+    "temp": 24,
+    "cost": 270108,
+    "color": "yellow",
+    "target": "B",
+    "volume": 4.086643634474277
+  },
+  {
+    "temp": 22,
+    "cost": 15994,
+    "color": "green",
+    "target": "D",
+    "volume": 0.5340091521563315
+  },
+  {
+    "temp": 18,
+    "cost": 324941,
+    "color": "green",
+    "target": "D",
+    "volume": 3.4640048925912463
+  },
+  {
+    "temp": 5,
+    "cost": 92517,
+    "color": "red",
+    "target": "D",
+    "volume": 4.528744228270486
+  },
+  {
+    "temp": 31,
+    "cost": 142464,
+    "color": "green",
+    "target": "C",
+    "volume": 6.852928311006942
+  },
+  {
+    "temp": 30,
+    "cost": 93993,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.6982487277949545
+  },
+  {
+    "temp": 30,
+    "cost": 149342,
+    "color": "green",
+    "target": "B",
+    "volume": 4.130044233167151
+  },
+  {
+    "temp": -2,
+    "cost": 397170,
+    "color": "yellow",
+    "target": "E",
+    "volume": 3.2066377187544313
+  },
+  {
+    "temp": 31,
+    "cost": 216554,
+    "color": "green",
+    "target": "B",
+    "volume": 3.2609664623569445
+  },
+  {
+    "temp": -1,
+    "cost": 375086,
+    "color": "yellow",
+    "target": "E",
+    "volume": 5.40110894543672
+  },
+  {
+    "temp": 28,
+    "cost": 171835,
+    "color": "green",
+    "target": "E",
+    "volume": 5.338787021355691
+  },
+  {
+    "temp": 10,
+    "cost": 275884,
+    "color": "yellow",
+    "target": "C",
+    "volume": 0.5847254462848586
+  },
+  {
+    "temp": 31,
+    "cost": 124963,
+    "color": "yellow",
+    "target": "C",
+    "volume": 4.820194581882584
+  },
+  {
+    "temp": 5,
+    "cost": 222730,
+    "color": "yellow",
+    "target": "E",
+    "volume": 1.0928616455076292
+  },
+  {
+    "temp": -10,
+    "cost": 111233,
+    "color": "green",
+    "target": "E",
+    "volume": 4.646033541237101
+  },
+  {
+    "temp": 31,
+    "cost": 343328,
+    "color": "yellow",
+    "target": "B",
+    "volume": 6.852275982792365
+  },
+  {
+    "temp": 36,
+    "cost": 384799,
+    "color": "green",
+    "target": "D",
+    "volume": 3.3418152234555034
+  },
+  {
+    "temp": 35,
+    "cost": 296258,
+    "color": "yellow",
+    "target": "C",
+    "volume": 6.882940004956577
+  },
+  {
+    "temp": 24,
+    "cost": 318721,
+    "color": "green",
+    "target": "B",
+    "volume": 1.7412936879096124
+  },
+  {
+    "temp": 13,
+    "cost": 253311,
+    "color": "green",
+    "target": "D",
+    "volume": 2.1321393600274514
+  },
+  {
+    "temp": 26,
+    "cost": 20647,
+    "color": "green",
+    "target": "B",
+    "volume": 3.517259739864296
+  },
+  {
+    "temp": -4,
+    "cost": 50240,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.819109103598894
+  },
+  {
+    "temp": 37,
+    "cost": 33007,
+    "color": "yellow",
+    "target": "A",
+    "volume": 7.172837046248566
+  },
+  {
+    "temp": -6,
+    "cost": 97572,
+    "color": "green",
+    "target": "B",
+    "volume": 2.8475158849904156
+  },
+  {
+    "temp": 33,
+    "cost": 72635,
+    "color": "green",
+    "target": "A",
+    "volume": 5.478311336679813
+  },
+  {
+    "temp": 4,
+    "cost": 247550,
+    "color": "green",
+    "target": "D",
+    "volume": 7.3210368390524305
+  },
+  {
+    "temp": 29,
+    "cost": 198205,
+    "color": "red",
+    "target": "E",
+    "volume": 7.231693925271099
+  },
+  {
+    "temp": 9,
+    "cost": 168263,
+    "color": "green",
+    "target": "D",
+    "volume": 1.4571885335073522
+  },
+  {
+    "temp": 40,
+    "cost": 176923,
+    "color": "yellow",
+    "target": "B",
+    "volume": 2.2083440982613216
+  },
+  {
+    "temp": 6,
+    "cost": 398513,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.648672602036649
+  },
+  {
+    "temp": 3,
+    "cost": 271130,
+    "color": "yellow",
+    "target": "E",
+    "volume": 4.125758402581576
+  },
+  {
+    "temp": 15,
+    "cost": 316427,
+    "color": "yellow",
+    "target": "A",
+    "volume": 0.2229525515328321
+  },
+  {
+    "temp": 27,
+    "cost": 19378,
+    "color": "green",
+    "target": "C",
+    "volume": 2.56173872925282
+  },
+  {
+    "temp": 36,
+    "cost": 398157,
+    "color": "green",
+    "target": "E",
+    "volume": 2.8294484200045376
+  },
+  {
+    "temp": 8,
+    "cost": 95039,
+    "color": "green",
+    "target": "E",
+    "volume": 6.049965092658843
+  },
+  {
+    "temp": 4,
+    "cost": 310310,
+    "color": "red",
+    "target": "B",
+    "volume": 0.7449733029257009
+  },
+  {
+    "temp": 37,
+    "cost": 329691,
+    "color": "green",
+    "target": "E",
+    "volume": 2.5369583529622854
+  },
+  {
+    "temp": 14,
+    "cost": 16263,
+    "color": "green",
+    "target": "E",
+    "volume": 1.1967619543751553
+  },
+  {
+    "temp": 20,
+    "cost": 221481,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.03965250076279
+  },
+  {
+    "temp": -6,
+    "cost": 396970,
+    "color": "green",
+    "target": "C",
+    "volume": 3.5994802418068392
+  },
+  {
+    "temp": 23,
+    "cost": 383571,
+    "color": "red",
+    "target": "E",
+    "volume": 4.420750212224279
+  },
+  {
+    "temp": 13,
+    "cost": 304324,
+    "color": "red",
+    "target": "E",
+    "volume": 3.896561838859217
+  },
+  {
+    "temp": 34,
+    "cost": 125401,
+    "color": "green",
+    "target": "E",
+    "volume": 1.7113982777080048
+  },
+  {
+    "temp": 6,
+    "cost": 79888,
+    "color": "red",
+    "target": "D",
+    "volume": 7.21321601942385
+  },
+  {
+    "temp": -6,
+    "cost": 337495,
+    "color": "red",
+    "target": "E",
+    "volume": 2.2858149068461575
+  },
+  {
+    "temp": 29,
+    "cost": 393393,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.0461415446831905
+  },
+  {
+    "temp": -7,
+    "cost": 371935,
+    "color": "yellow",
+    "target": "C",
+    "volume": 0.2866269042679209
+  },
+  {
+    "temp": 23,
+    "cost": 84620,
+    "color": "green",
+    "target": "D",
+    "volume": 2.958252960356031
+  },
+  {
+    "temp": 38,
+    "cost": 340091,
+    "color": "yellow",
+    "target": "D",
+    "volume": 7.5625253456279555
+  },
+  {
+    "temp": 35,
+    "cost": 70214,
+    "color": "yellow",
+    "target": "C",
+    "volume": 5.734912481385406
+  },
+  {
+    "temp": -3,
+    "cost": 372104,
+    "color": "red",
+    "target": "B",
+    "volume": 3.6202274848368363
+  },
+  {
+    "temp": 25,
+    "cost": 332333,
+    "color": "red",
+    "target": "B",
+    "volume": 4.9656303024118245
+  },
+  {
+    "temp": -4,
+    "cost": 221689,
+    "color": "green",
+    "target": "C",
+    "volume": 4.352857224882544
+  },
+  {
+    "temp": 14,
+    "cost": 316944,
+    "color": "green",
+    "target": "A",
+    "volume": 5.020764514024102
+  },
+  {
+    "temp": -2,
+    "cost": 332681,
+    "color": "red",
+    "target": "B",
+    "volume": 0.88729286335353
+  },
+  {
+    "temp": -5,
+    "cost": 336155,
+    "color": "red",
+    "target": "E",
+    "volume": 5.261609224806584
+  },
+  {
+    "temp": 20,
+    "cost": 330846,
+    "color": "red",
+    "target": "B",
+    "volume": 2.1855017477969625
+  },
+  {
+    "temp": -8,
+    "cost": 40834,
+    "color": "green",
+    "target": "E",
+    "volume": 4.618412907553886
+  },
+  {
+    "temp": 32,
+    "cost": 155226,
+    "color": "red",
+    "target": "E",
+    "volume": 0.6477853615033584
+  },
+  {
+    "temp": -7,
+    "cost": 25369,
+    "color": "yellow",
+    "target": "C",
+    "volume": 7.432316182475895
+  },
+  {
+    "temp": 30,
+    "cost": 186768,
+    "color": "yellow",
+    "target": "C",
+    "volume": 4.137628555470689
+  },
+  {
+    "temp": -4,
+    "cost": 129417,
+    "color": "red",
+    "target": "D",
+    "volume": 4.671079386175688
+  },
+  {
+    "temp": 26,
+    "cost": 36340,
+    "color": "yellow",
+    "target": "E",
+    "volume": 6.624550026610072
+  },
+  {
+    "temp": -7,
+    "cost": 198884,
+    "color": "green",
+    "target": "C",
+    "volume": 4.616162638804998
+  },
+  {
+    "temp": 40,
+    "cost": 217372,
+    "color": "green",
+    "target": "B",
+    "volume": 3.188925778635419
+  },
+  {
+    "temp": 25,
+    "cost": 32561,
+    "color": "green",
+    "target": "D",
+    "volume": 4.566571602748132
+  },
+  {
+    "temp": 21,
+    "cost": 267084,
+    "color": "red",
+    "target": "A",
+    "volume": 1.743822284150434
+  },
+  {
+    "temp": 38,
+    "cost": 38783,
+    "color": "red",
+    "target": "B",
+    "volume": 4.780269100840835
+  },
+  {
+    "temp": 31,
+    "cost": 160920,
+    "color": "green",
+    "target": "B",
+    "volume": 7.166462121331094
+  },
+  {
+    "temp": 32,
+    "cost": 114892,
+    "color": "red",
+    "target": "E",
+    "volume": 0.7343188407358592
+  },
+  {
+    "temp": 4,
+    "cost": 201441,
+    "color": "red",
+    "target": "D",
+    "volume": 2.5398601043841413
+  },
+  {
+    "temp": -5,
+    "cost": 136120,
+    "color": "red",
+    "target": "D",
+    "volume": 5.187574229221919
+  },
+  {
+    "temp": -5,
+    "cost": 24071,
+    "color": "yellow",
+    "target": "D",
+    "volume": 4.308509806764792
+  },
+  {
+    "temp": 38,
+    "cost": 341436,
+    "color": "green",
+    "target": "B",
+    "volume": 0.20839769687089868
+  },
+  {
+    "temp": -8,
+    "cost": 202165,
+    "color": "red",
+    "target": "C",
+    "volume": 1.4791078347757607
+  },
+  {
+    "temp": 9,
+    "cost": 397339,
+    "color": "green",
+    "target": "A",
+    "volume": 0.33910325265552116
+  },
+  {
+    "temp": 34,
+    "cost": 285508,
+    "color": "red",
+    "target": "E",
+    "volume": 5.170917140864648
+  },
+  {
+    "temp": -1,
+    "cost": 321842,
+    "color": "yellow",
+    "target": "C",
+    "volume": 0.31664957496765017
+  },
+  {
+    "temp": 8,
+    "cost": 269662,
+    "color": "green",
+    "target": "B",
+    "volume": 7.587454998229227
+  },
+  {
+    "temp": 25,
+    "cost": 236475,
+    "color": "red",
+    "target": "E",
+    "volume": 6.224992242896371
+  },
+  {
+    "temp": 35,
+    "cost": 195697,
+    "color": "red",
+    "target": "B",
+    "volume": 4.15069334868594
+  },
+  {
+    "temp": 14,
+    "cost": 26389,
+    "color": "red",
+    "target": "D",
+    "volume": 0.5289960817885981
+  },
+  {
+    "temp": 10,
+    "cost": 100305,
+    "color": "yellow",
+    "target": "B",
+    "volume": 0.7883441271198546
+  },
+  {
+    "temp": 27,
+    "cost": 323531,
+    "color": "red",
+    "target": "A",
+    "volume": 5.381680934593193
+  },
+  {
+    "temp": 13,
+    "cost": 49139,
+    "color": "yellow",
+    "target": "E",
+    "volume": 2.250936547774575
+  },
+  {
+    "temp": 7,
+    "cost": 363051,
+    "color": "green",
+    "target": "B",
+    "volume": 3.189255304856637
+  },
+  {
+    "temp": -4,
+    "cost": 260266,
+    "color": "red",
+    "target": "D",
+    "volume": 3.6707621619705804
+  },
+  {
+    "temp": 6,
+    "cost": 338764,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.8178270550020956
+  },
+  {
+    "temp": 9,
+    "cost": 303414,
+    "color": "green",
+    "target": "E",
+    "volume": 6.18787913978569
+  },
+  {
+    "temp": -5,
+    "cost": 136819,
+    "color": "red",
+    "target": "A",
+    "volume": 3.207320358173727
+  },
+  {
+    "temp": 1,
+    "cost": 156254,
+    "color": "green",
+    "target": "D",
+    "volume": 2.463408074590175
+  },
+  {
+    "temp": -9,
+    "cost": 267363,
+    "color": "yellow",
+    "target": "E",
+    "volume": 0.4150539897320653
+  },
+  {
+    "temp": 9,
+    "cost": 87673,
+    "color": "red",
+    "target": "E",
+    "volume": 6.053715031407931
+  },
+  {
+    "temp": 1,
+    "cost": 275793,
+    "color": "red",
+    "target": "D",
+    "volume": 5.551888347437642
+  },
+  {
+    "temp": 3,
+    "cost": 367165,
+    "color": "red",
+    "target": "A",
+    "volume": 6.309030640663725
+  },
+  {
+    "temp": 1,
+    "cost": 193369,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.175901335520734
+  },
+  {
+    "temp": 11,
+    "cost": 321161,
+    "color": "green",
+    "target": "E",
+    "volume": 2.6437527421499594
+  },
+  {
+    "temp": 26,
+    "cost": 161172,
+    "color": "red",
+    "target": "D",
+    "volume": 6.235697121753776
+  },
+  {
+    "temp": -10,
+    "cost": 93599,
+    "color": "red",
+    "target": "E",
+    "volume": 6.610203982447183
+  },
+  {
+    "temp": 5,
+    "cost": 315586,
+    "color": "green",
+    "target": "E",
+    "volume": 5.872426687667399
+  },
+  {
+    "temp": 16,
+    "cost": 391762,
+    "color": "green",
+    "target": "E",
+    "volume": 3.772030505047629
+  },
+  {
+    "temp": 40,
+    "cost": 145248,
+    "color": "red",
+    "target": "B",
+    "volume": 3.5418524034699663
+  },
+  {
+    "temp": -6,
+    "cost": 151293,
+    "color": "green",
+    "target": "A",
+    "volume": 5.545858436960856
+  },
+  {
+    "temp": 17,
+    "cost": 187576,
+    "color": "yellow",
+    "target": "D",
+    "volume": 1.0668895685354358
+  },
+  {
+    "temp": 0,
+    "cost": 3269,
+    "color": "green",
+    "target": "A",
+    "volume": 3.134494469060232
+  },
+  {
+    "temp": 15,
+    "cost": 135572,
+    "color": "yellow",
+    "target": "E",
+    "volume": 4.874749917632669
+  },
+  {
+    "temp": -6,
+    "cost": 275831,
+    "color": "yellow",
+    "target": "E",
+    "volume": 1.8462559214586007
+  },
+  {
+    "temp": -5,
+    "cost": 53118,
+    "color": "green",
+    "target": "A",
+    "volume": 6.741180919078062
+  },
+  {
+    "temp": -8,
+    "cost": 92938,
+    "color": "red",
+    "target": "E",
+    "volume": 1.6396386013073023
+  },
+  {
+    "temp": 38,
+    "cost": 230597,
+    "color": "yellow",
+    "target": "E",
+    "volume": 4.253675566987401
+  },
+  {
+    "temp": 33,
+    "cost": 250586,
+    "color": "red",
+    "target": "A",
+    "volume": 1.5266561918271324
+  },
+  {
+    "temp": -5,
+    "cost": 205774,
+    "color": "yellow",
+    "target": "D",
+    "volume": 4.7068634749555684
+  },
+  {
+    "temp": 25,
+    "cost": 6119,
+    "color": "green",
+    "target": "E",
+    "volume": 3.73356046247927
+  },
+  {
+    "temp": 0,
+    "cost": 155171,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.675431408003997
+  },
+  {
+    "temp": 40,
+    "cost": 250140,
+    "color": "yellow",
+    "target": "D",
+    "volume": 1.3117608051973568
+  },
+  {
+    "temp": 31,
+    "cost": 390844,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.588654334890765
+  },
+  {
+    "temp": 36,
+    "cost": 231357,
+    "color": "red",
+    "target": "B",
+    "volume": 3.969171183809877
+  },
+  {
+    "temp": 32,
+    "cost": 291649,
+    "color": "yellow",
+    "target": "E",
+    "volume": 6.17835446702466
+  },
+  {
+    "temp": 22,
+    "cost": 91034,
+    "color": "red",
+    "target": "C",
+    "volume": 5.635634635690105
+  },
+  {
+    "temp": 4,
+    "cost": 306938,
+    "color": "green",
+    "target": "B",
+    "volume": 3.845415751253438
+  },
+  {
+    "temp": 30,
+    "cost": 296632,
+    "color": "green",
+    "target": "D",
+    "volume": 2.361508787928103
+  },
+  {
+    "temp": -4,
+    "cost": 88246,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.9700860626307386
+  },
+  {
+    "temp": -9,
+    "cost": 127326,
+    "color": "green",
+    "target": "B",
+    "volume": 1.224665016561278
+  },
+  {
+    "temp": 37,
+    "cost": 382405,
+    "color": "yellow",
+    "target": "D",
+    "volume": 7.1119100429133795
+  },
+  {
+    "temp": 22,
+    "cost": 28821,
+    "color": "yellow",
+    "target": "A",
+    "volume": 5.824560547403214
+  },
+  {
+    "temp": -2,
+    "cost": 107758,
+    "color": "yellow",
+    "target": "D",
+    "volume": 7.122704758021131
+  },
+  {
+    "temp": 34,
+    "cost": 6558,
+    "color": "green",
+    "target": "B",
+    "volume": 5.062251203633904
+  },
+  {
+    "temp": 12,
+    "cost": 311507,
+    "color": "red",
+    "target": "A",
+    "volume": 2.8984993427594814
+  },
+  {
+    "temp": 8,
+    "cost": 239975,
+    "color": "red",
+    "target": "C",
+    "volume": 5.092338404022959
+  },
+  {
+    "temp": 31,
+    "cost": 116628,
+    "color": "red",
+    "target": "A",
+    "volume": 1.2491398657541477
+  },
+  {
+    "temp": 9,
+    "cost": 357896,
+    "color": "red",
+    "target": "C",
+    "volume": 3.88305821296316
+  },
+  {
+    "temp": 29,
+    "cost": 225124,
+    "color": "red",
+    "target": "D",
+    "volume": 5.4245190227764155
+  },
+  {
+    "temp": 30,
+    "cost": 142029,
+    "color": "yellow",
+    "target": "D",
+    "volume": 1.7657892961106354
+  },
+  {
+    "temp": 28,
+    "cost": 350693,
+    "color": "yellow",
+    "target": "A",
+    "volume": 1.5244560060636867
+  },
+  {
+    "temp": 8,
+    "cost": 18055,
+    "color": "yellow",
+    "target": "E",
+    "volume": 5.061719113046946
+  },
+  {
+    "temp": 40,
+    "cost": 118412,
+    "color": "red",
+    "target": "A",
+    "volume": 1.9732445668789156
+  },
+  {
+    "temp": 4,
+    "cost": 80606,
+    "color": "green",
+    "target": "E",
+    "volume": 5.2310547142658015
+  },
+  {
+    "temp": 27,
+    "cost": 39172,
+    "color": "green",
+    "target": "B",
+    "volume": 5.259190763008315
+  },
+  {
+    "temp": 19,
+    "cost": 252324,
+    "color": "green",
+    "target": "A",
+    "volume": 3.2544841720305757
+  },
+  {
+    "temp": 17,
+    "cost": 207596,
+    "color": "yellow",
+    "target": "E",
+    "volume": 3.043119934533938
+  },
+  {
+    "temp": -10,
+    "cost": 89570,
+    "color": "green",
+    "target": "C",
+    "volume": 4.544282434040415
+  },
+  {
+    "temp": 12,
+    "cost": 186711,
+    "color": "yellow",
+    "target": "E",
+    "volume": 0.7294191408023798
+  },
+  {
+    "temp": 9,
+    "cost": 175057,
+    "color": "red",
+    "target": "D",
+    "volume": 2.469257842903958
+  },
+  {
+    "temp": 35,
+    "cost": 65252,
+    "color": "yellow",
+    "target": "D",
+    "volume": 7.471352546042263
+  },
+  {
+    "temp": 35,
+    "cost": 355983,
+    "color": "red",
+    "target": "D",
+    "volume": 1.3268571984786859
+  },
+  {
+    "temp": 34,
+    "cost": 367707,
+    "color": "green",
+    "target": "E",
+    "volume": 7.298994185459168
+  },
+  {
+    "temp": 20,
+    "cost": 202634,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.445173138446544
+  },
+  {
+    "temp": 16,
+    "cost": 142663,
+    "color": "green",
+    "target": "E",
+    "volume": 1.4045175155323748
+  },
+  {
+    "temp": 5,
+    "cost": 44039,
+    "color": "yellow",
+    "target": "A",
+    "volume": 0.8078231789352444
+  },
+  {
+    "temp": 39,
+    "cost": 270742,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.7746462698138727
+  },
+  {
+    "temp": 33,
+    "cost": 326997,
+    "color": "yellow",
+    "target": "B",
+    "volume": 4.686824756252192
+  },
+  {
+    "temp": 26,
+    "cost": 265280,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.86195318924958
+  },
+  {
+    "temp": 24,
+    "cost": 339659,
+    "color": "red",
+    "target": "E",
+    "volume": 3.8634496747028066
+  },
+  {
+    "temp": 11,
+    "cost": 331231,
+    "color": "green",
+    "target": "B",
+    "volume": 7.1829075221733385
+  },
+  {
+    "temp": 13,
+    "cost": 104892,
+    "color": "red",
+    "target": "D",
+    "volume": 3.7510841734637124
+  },
+  {
+    "temp": 25,
+    "cost": 214880,
+    "color": "red",
+    "target": "D",
+    "volume": 5.220270884057768
+  },
+  {
+    "temp": 25,
+    "cost": 66198,
+    "color": "red",
+    "target": "C",
+    "volume": 1.1189551689925143
+  },
+  {
+    "temp": 22,
+    "cost": 54768,
+    "color": "yellow",
+    "target": "E",
+    "volume": 3.3485493750803816
+  },
+  {
+    "temp": -2,
+    "cost": 298042,
+    "color": "green",
+    "target": "D",
+    "volume": 3.1313624960793542
+  },
+  {
+    "temp": 38,
+    "cost": 100482,
+    "color": "red",
+    "target": "A",
+    "volume": 4.072309043828256
+  },
+  {
+    "temp": -2,
+    "cost": 1151,
+    "color": "yellow",
+    "target": "D",
+    "volume": 5.800932885481452
+  },
+  {
+    "temp": -5,
+    "cost": 253460,
+    "color": "red",
+    "target": "A",
+    "volume": 6.74754200278627
+  },
+  {
+    "temp": -7,
+    "cost": 3570,
+    "color": "yellow",
+    "target": "C",
+    "volume": 1.4628029738105743
+  },
+  {
+    "temp": -4,
+    "cost": 349930,
+    "color": "yellow",
+    "target": "C",
+    "volume": 0.28459983258221744
+  },
+  {
+    "temp": 14,
+    "cost": 294766,
+    "color": "yellow",
+    "target": "A",
+    "volume": 6.936491132231368
+  },
+  {
+    "temp": 18,
+    "cost": 390951,
+    "color": "red",
+    "target": "E",
+    "volume": 1.5078827688273917
+  },
+  {
+    "temp": 13,
+    "cost": 2066,
+    "color": "green",
+    "target": "D",
+    "volume": 3.4453886371061
+  },
+  {
+    "temp": 40,
+    "cost": 337847,
+    "color": "green",
+    "target": "B",
+    "volume": 3.8644775539769594
+  },
+  {
+    "temp": 21,
+    "cost": 376763,
+    "color": "yellow",
+    "target": "C",
+    "volume": 6.15846710565072
+  },
+  {
+    "temp": -5,
+    "cost": 129583,
+    "color": "yellow",
+    "target": "D",
+    "volume": 1.8776307042886606
+  },
+  {
+    "temp": 35,
+    "cost": 27532,
+    "color": "green",
+    "target": "B",
+    "volume": 7.369386540386781
+  },
+  {
+    "temp": -9,
+    "cost": 85639,
+    "color": "red",
+    "target": "C",
+    "volume": 3.537914997044686
+  },
+  {
+    "temp": 28,
+    "cost": 280849,
+    "color": "green",
+    "target": "A",
+    "volume": 6.66943514312983
+  },
+  {
+    "temp": -6,
+    "cost": 148387,
+    "color": "red",
+    "target": "B",
+    "volume": 7.283160347920754
+  },
+  {
+    "temp": 9,
+    "cost": 185651,
+    "color": "yellow",
+    "target": "C",
+    "volume": 7.136557730449733
+  },
+  {
+    "temp": -7,
+    "cost": 42195,
+    "color": "red",
+    "target": "B",
+    "volume": 1.9345691021545857
+  },
+  {
+    "temp": 10,
+    "cost": 162263,
+    "color": "yellow",
+    "target": "B",
+    "volume": 0.6805240046241322
+  },
+  {
+    "temp": -9,
+    "cost": 103344,
+    "color": "yellow",
+    "target": "B",
+    "volume": 4.4824455626982935
+  },
+  {
+    "temp": 38,
+    "cost": 383989,
+    "color": "red",
+    "target": "B",
+    "volume": 1.6098936430931856
+  },
+  {
+    "temp": 4,
+    "cost": 393235,
+    "color": "yellow",
+    "target": "E",
+    "volume": 2.917440441235386
+  },
+  {
+    "temp": 20,
+    "cost": 153467,
+    "color": "red",
+    "target": "C",
+    "volume": 5.722751786389311
+  },
+  {
+    "temp": 27,
+    "cost": 91711,
+    "color": "green",
+    "target": "C",
+    "volume": 6.459488967719289
+  },
+  {
+    "temp": 10,
+    "cost": 99983,
+    "color": "green",
+    "target": "A",
+    "volume": 4.644401225712609
+  },
+  {
+    "temp": 14,
+    "cost": 11069,
+    "color": "green",
+    "target": "E",
+    "volume": 4.604802672245091
+  },
+  {
+    "temp": -3,
+    "cost": 31049,
+    "color": "red",
+    "target": "A",
+    "volume": 4.63406304264092
+  },
+  {
+    "temp": 28,
+    "cost": 218274,
+    "color": "green",
+    "target": "E",
+    "volume": 3.70885631492167
+  },
+  {
+    "temp": 38,
+    "cost": 170477,
+    "color": "red",
+    "target": "C",
+    "volume": 4.91074932818325
+  },
+  {
+    "temp": 5,
+    "cost": 247218,
+    "color": "green",
+    "target": "E",
+    "volume": 3.205515992075349
+  },
+  {
+    "temp": 13,
+    "cost": 338016,
+    "color": "red",
+    "target": "E",
+    "volume": 7.561125631669126
+  },
+  {
+    "temp": -5,
+    "cost": 234817,
+    "color": "yellow",
+    "target": "B",
+    "volume": 3.362242942369149
+  },
+  {
+    "temp": 27,
+    "cost": 201016,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.176832323222673
+  },
+  {
+    "temp": 31,
+    "cost": 176565,
+    "color": "yellow",
+    "target": "E",
+    "volume": 0.6070012735738959
+  },
+  {
+    "temp": -6,
+    "cost": 346834,
+    "color": "yellow",
+    "target": "C",
+    "volume": 1.2662796664728149
+  },
+  {
+    "temp": 1,
+    "cost": 322620,
+    "color": "yellow",
+    "target": "E",
+    "volume": 4.467169454104109
+  },
+  {
+    "temp": 12,
+    "cost": 155254,
+    "color": "yellow",
+    "target": "C",
+    "volume": 3.9279270011428236
+  },
+  {
+    "temp": 11,
+    "cost": 322631,
+    "color": "red",
+    "target": "D",
+    "volume": 2.2132278848459586
+  },
+  {
+    "temp": 33,
+    "cost": 216548,
+    "color": "red",
+    "target": "C",
+    "volume": 0.26473261940679726
+  },
+  {
+    "temp": 16,
+    "cost": 338253,
+    "color": "green",
+    "target": "E",
+    "volume": 3.3646434713465445
+  },
+  {
+    "temp": 4,
+    "cost": 368183,
+    "color": "yellow",
+    "target": "D",
+    "volume": 7.271596165824292
+  },
+  {
+    "temp": -3,
+    "cost": 174581,
+    "color": "green",
+    "target": "B",
+    "volume": 0.6693378826155694
+  },
+  {
+    "temp": 4,
+    "cost": 308831,
+    "color": "red",
+    "target": "E",
+    "volume": 6.889481074177613
+  },
+  {
+    "temp": -3,
+    "cost": 286706,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.4214108083230768
+  },
+  {
+    "temp": 17,
+    "cost": 132663,
+    "color": "yellow",
+    "target": "D",
+    "volume": 6.535252604345507
+  },
+  {
+    "temp": 7,
+    "cost": 164095,
+    "color": "red",
+    "target": "A",
+    "volume": 6.251330663696949
+  },
+  {
+    "temp": 11,
+    "cost": 136445,
+    "color": "green",
+    "target": "C",
+    "volume": 7.2393087545012715
+  },
+  {
+    "temp": 14,
+    "cost": 23927,
+    "color": "red",
+    "target": "A",
+    "volume": 2.737820526013509
+  },
+  {
+    "temp": 33,
+    "cost": 46840,
+    "color": "yellow",
+    "target": "D",
+    "volume": 6.099494841083956
+  },
+  {
+    "temp": 9,
+    "cost": 63556,
+    "color": "green",
+    "target": "C",
+    "volume": 2.1656283220175685
+  },
+  {
+    "temp": 17,
+    "cost": 205567,
+    "color": "yellow",
+    "target": "E",
+    "volume": 5.992712956552922
+  },
+  {
+    "temp": 16,
+    "cost": 222359,
+    "color": "yellow",
+    "target": "E",
+    "volume": 4.29217332195579
+  },
+  {
+    "temp": -1,
+    "cost": 272958,
+    "color": "red",
+    "target": "B",
+    "volume": 2.46456806330002
+  },
+  {
+    "temp": 32,
+    "cost": 211557,
+    "color": "green",
+    "target": "C",
+    "volume": 6.331473191077406
+  },
+  {
+    "temp": 10,
+    "cost": 95787,
+    "color": "red",
+    "target": "A",
+    "volume": 3.210916449136865
+  },
+  {
+    "temp": 1,
+    "cost": 236396,
+    "color": "yellow",
+    "target": "E",
+    "volume": 0.5153414410691868
+  },
+  {
+    "temp": 3,
+    "cost": 2663,
+    "color": "green",
+    "target": "E",
+    "volume": 6.758837360549033
+  },
+  {
+    "temp": 5,
+    "cost": 131988,
+    "color": "red",
+    "target": "A",
+    "volume": 1.6416818292036834
+  },
+  {
+    "temp": 25,
+    "cost": 64481,
+    "color": "green",
+    "target": "A",
+    "volume": 5.006344107498644
+  },
+  {
+    "temp": 12,
+    "cost": 323580,
+    "color": "green",
+    "target": "E",
+    "volume": 0.3890761912848439
+  },
+  {
+    "temp": 35,
+    "cost": 390901,
+    "color": "green",
+    "target": "E",
+    "volume": 5.666188785540414
+  },
+  {
+    "temp": 8,
+    "cost": 211533,
+    "color": "green",
+    "target": "D",
+    "volume": 0.23884633568078747
+  },
+  {
+    "temp": 37,
+    "cost": 191941,
+    "color": "red",
+    "target": "B",
+    "volume": 4.306886687347512
+  },
+  {
+    "temp": 1,
+    "cost": 54672,
+    "color": "green",
+    "target": "A",
+    "volume": 5.058324306896024
+  },
+  {
+    "temp": -4,
+    "cost": 66656,
+    "color": "yellow",
+    "target": "C",
+    "volume": 5.301981304463245
+  },
+  {
+    "temp": -5,
+    "cost": 353453,
+    "color": "green",
+    "target": "D",
+    "volume": 5.5532533843957115
+  },
+  {
+    "temp": 37,
+    "cost": 273831,
+    "color": "red",
+    "target": "A",
+    "volume": 2.744133453564433
+  },
+  {
+    "temp": -2,
+    "cost": 125382,
+    "color": "green",
+    "target": "A",
+    "volume": 4.593038084743857
+  },
+  {
+    "temp": 38,
+    "cost": 377908,
+    "color": "yellow",
+    "target": "E",
+    "volume": 6.152487972706981
+  },
+  {
+    "temp": 34,
+    "cost": 47024,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.8805441572518387
+  },
+  {
+    "temp": -3,
+    "cost": 137285,
+    "color": "red",
+    "target": "E",
+    "volume": 4.898953799840491
+  },
+  {
+    "temp": 15,
+    "cost": 109674,
+    "color": "red",
+    "target": "E",
+    "volume": 1.5197378321502852
+  },
+  {
+    "temp": 3,
+    "cost": 273279,
+    "color": "yellow",
+    "target": "C",
+    "volume": 3.04410147588621
+  },
+  {
+    "temp": 32,
+    "cost": 243354,
+    "color": "yellow",
+    "target": "C",
+    "volume": 4.330089925502525
+  },
+  {
+    "temp": 7,
+    "cost": 302733,
+    "color": "red",
+    "target": "E",
+    "volume": 5.249399322957005
+  },
+  {
+    "temp": -3,
+    "cost": 199033,
+    "color": "red",
+    "target": "A",
+    "volume": 4.431504664360148
+  },
+  {
+    "temp": 25,
+    "cost": 45440,
+    "color": "red",
+    "target": "E",
+    "volume": 0.5351969585791982
+  },
+  {
+    "temp": 8,
+    "cost": 56162,
+    "color": "red",
+    "target": "C",
+    "volume": 3.7245745613674948
+  },
+  {
+    "temp": 9,
+    "cost": 192629,
+    "color": "yellow",
+    "target": "C",
+    "volume": 2.88263012776142
+  },
+  {
+    "temp": 1,
+    "cost": 39943,
+    "color": "green",
+    "target": "C",
+    "volume": 3.63451182986949
+  },
+  {
+    "temp": -7,
+    "cost": 19069,
+    "color": "red",
+    "target": "A",
+    "volume": 0.46879132751203895
+  },
+  {
+    "temp": -9,
+    "cost": 229609,
+    "color": "yellow",
+    "target": "A",
+    "volume": 3.0276612769145124
+  },
+  {
+    "temp": 24,
+    "cost": 155335,
+    "color": "yellow",
+    "target": "D",
+    "volume": 0.3382591790887804
+  },
+  {
+    "temp": -1,
+    "cost": 10526,
+    "color": "green",
+    "target": "E",
+    "volume": 1.4735323129235947
+  },
+  {
+    "temp": -5,
+    "cost": 75282,
+    "color": "green",
+    "target": "B",
+    "volume": 2.466491440850488
+  },
+  {
+    "temp": 35,
+    "cost": 271727,
+    "color": "green",
+    "target": "B",
+    "volume": 1.8182398497844847
+  },
+  {
+    "temp": 39,
+    "cost": 132848,
+    "color": "green",
+    "target": "B",
+    "volume": 7.559404716833691
+  },
+  {
+    "temp": 23,
+    "cost": 365090,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.2409716138869125
+  },
+  {
+    "temp": -4,
+    "cost": 263280,
+    "color": "yellow",
+    "target": "D",
+    "volume": 3.6956505581890804
+  },
+  {
+    "temp": 18,
+    "cost": 226681,
+    "color": "yellow",
+    "target": "E",
+    "volume": 3.6175002825801013
+  },
+  {
+    "temp": 35,
+    "cost": 175546,
+    "color": "green",
+    "target": "D",
+    "volume": 7.5843889077405136
+  },
+  {
+    "temp": 32,
+    "cost": 319445,
+    "color": "green",
+    "target": "C",
+    "volume": 6.949288968495348
+  },
+  {
+    "temp": 27,
+    "cost": 338354,
+    "color": "green",
+    "target": "B",
+    "volume": 3.2171348163967943
+  },
+  {
+    "temp": 31,
+    "cost": 348151,
+    "color": "yellow",
+    "target": "E",
+    "volume": 1.7313597756514878
+  },
+  {
+    "temp": 19,
+    "cost": 22981,
+    "color": "red",
+    "target": "D",
+    "volume": 0.7054802305225656
+  },
+  {
+    "temp": 33,
+    "cost": 91384,
+    "color": "red",
+    "target": "D",
+    "volume": 7.079279400145158
+  },
+  {
+    "temp": 31,
+    "cost": 91159,
+    "color": "yellow",
+    "target": "D",
+    "volume": 2.508490712603032
+  },
+  {
+    "temp": -1,
+    "cost": 107266,
+    "color": "red",
+    "target": "B",
+    "volume": 0.3511567195907376
+  },
+  {
+    "temp": -5,
+    "cost": 133346,
+    "color": "yellow",
+    "target": "C",
+    "volume": 1.6407985038786759
+  }
+]

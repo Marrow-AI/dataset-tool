@@ -179,7 +179,7 @@ export default function EditImage() {
                       valueLabelDisplay="auto"
                       marks={marks}
                       // aria-labelledby="track-false-slider-two"
-                      min={1}
+                      min={0}
                       max={10}
                     // color="secondary"
                     />

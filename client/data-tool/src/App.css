@@ -312,7 +312,7 @@ button.search:hover {
 
 button.more{
   margin-bottom: 20px;
-  margin-left: -2.5rem;
+  /* margin-left: -2.5rem; */
   margin-top: 10px;
   border: 1px solid white;
   border-radius: 70px;
@@ -447,7 +447,7 @@ button.start {
   color:#84ffff;
   font-size: 78px;
   width: 750px;
-  height: 500px;
+  height: 100%;
   margin-top: -5%;
   padding-top: 200px;
   padding-bottom: 600px;
