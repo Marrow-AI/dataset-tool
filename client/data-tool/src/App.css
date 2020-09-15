@@ -175,6 +175,19 @@ button.search:hover {
   padding: 15px 50px;
 }
 
+.btn.explorer {
+  border: none;
+  width: 500px;
+  margin-left: -18%;
+  margin-top: -5%;
+}
+
+.btn.explorer:hover {
+  color: grey;
+  text-decoration: underline;
+}
+
+
 .spinner{  
   height: 100%;
   width: 100%;

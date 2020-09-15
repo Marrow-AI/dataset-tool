@@ -51,7 +51,7 @@ export default function Results(props) {
             <h2 className='explain main result'>Step Three: Curation</h2>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
-            <button disabled={visible} className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
+            <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
             <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
             <p className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
               <div className="modelImage">
@@ -59,6 +59,8 @@ export default function Results(props) {
               </div>
             </p>
           </div>
+          <button className='btn explorer' onClick={()=>  window.location.href='/http://52.206.213.41:8080' }> click to explore latent space </button>
+
         </div>
 
       {showPopUp ? <div className="popup">
