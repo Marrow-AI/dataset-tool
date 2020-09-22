@@ -10,6 +10,7 @@ module.exports = {
     contentBase: './server/static',
     hot: true,
     disableHostCheck: true,
+    historyApiFallback: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -50,7 +51,7 @@ module.exports = {
          use: ['less-loader']
         },
         {
-         test: /\.(png|svg|jpg|gif)$/,
+         test: /\.(png|svg|jpg|jpeg|gif)$/,
          use: [
            'file-loader',
          ],

@@ -14,32 +14,20 @@ export default function Search() {
   let history = useHistory();
 
   async function onSubmit(formData) {
-    await fetch('/session', {
+    await fetch('/search', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ keyword: formData.keyword, socket: socketSessionId })
     })
-      .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-        setDatasetSession(data['dataset_session']);
-        if (data.result === "OK") {
-          fetch('/search', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ keyword: formData.keyword, session: data['dataset_session'], socket: socketSessionId })
-          })
-            .then(res => res.json())
-            .then((data) => {
-              console.log(data);
-              if (data.result === "OK") {
-        
-              } else {
-                alert(data.result);
-              }
-            })
-        }
-      })
+    .then(res => res.json())
+    .then((data) => {
+       console.log(data);
+       if (data.result === "OK") {
+          setDatasetSession(data['dataset_session']);
+       } else {
+          alert(data.result);
+       }
+    });
     console.log("Results are coming!")
     store.dispatch({
       type: 'SAVE_KEYWORD',
@@ -48,8 +36,8 @@ export default function Search() {
     showLoading();
     setTimeout(() => {
       hideLoading()
-      history.push("/edit")
-    }, 3000);
+      history.push("/display")
+    }, 4000);
   }
 
   return (
@@ -57,8 +45,10 @@ export default function Search() {
       <Header />
       <div className='inputForm'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /> <br /><br />
+          <div>
+          <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /><br /><br/>
           {errors.keyword && "It seems like you didn't type anything"}
+          </div>
           <button className="search" name="search" type="submit" ref={register}>Search</button>
           {loading}
         </form>

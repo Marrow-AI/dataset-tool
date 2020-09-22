@@ -4,7 +4,9 @@ import './App.css';
 import Search from './components/Search'
 import store, { setSocket } from './state'
 import socketIOClient from "socket.io-client";
+import DisplayImage from './components/DisplayImage';
 import EditImage from './components/EditImage';
+import Results from './components/Results';
 import Footer from './components/Footer';
 import Training from './components/Training';
 
@@ -18,14 +20,16 @@ socket.on('connect', () => {
 });
 
 function App() {
-  console.log('hi')
   return (
     <>
     <div className='app-container'>
       <Router>
           <Route exact path="/" component={Search} />
+          <Route exact path="/display" component={DisplayImage} />
           <Route exact path="/edit" component={EditImage} />
+          <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
           <Route exact path="/train" component={Training} />
+         
         <Footer />
       </Router>
     

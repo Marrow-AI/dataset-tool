@@ -1,12 +1,19 @@
-import {createStore} from 'redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = (state = {
     socket: null,
     images: [],
     keyword: '',
-    dataSassion:[]
+    images64:[],
+    cropImages: [],
+    numberPeople: 0,
+    numberVersions: 0,
 }, action) => {
   switch (action.type) {
+
     case 'SET_SOCKET': {
         console.log("Setting socket", action.socket);
         return {...state, socket: action.socket}
@@ -30,17 +37,30 @@ const reducer = (state = {
       keyword: action.keyword
     }
   }
-  case 'SAVE_DATA': {
+  case 'SAVE_BASE64': {
     return {
       ...state, 
-      storingDataSassion: action.storingDataSassion
+      images64: [...state.images64, action.image64]
     }
   }
-  
+  case 'CROP_IMAGE': {
+    return {
+      ...state,
+      cropImages: [...state.cropImages, action.cropImages]
+    }
+  }
+  case 'SAVE_VALUE_SLIDER': {
+    return {
+      ...state,
+      numberPeople: action.numberPeople,
+      numberVersions: action.numberVersions
+    }
+  }
     default:
       return state;
-  };
+  }
 }
+
 
 export const setSocket = (socket) => ({
     type: 'SET_SOCKET',
@@ -53,7 +73,7 @@ export const setSession = (session) => ({
 
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), // redux dev tools
+  composeEnhancer(applyMiddleware(thunk)),
 );
 
 export default store;
