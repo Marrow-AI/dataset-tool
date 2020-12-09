@@ -10,7 +10,7 @@ import Results from './components/Results';
 import Footer from './components/Footer';
 import Training from './components/Training';
 
-const ENDPOINT = "http://localhost:8540";
+const ENDPOINT = "http://52.206.213.41:8540";
 const socket = socketIOClient(ENDPOINT);
 
 console.log("Connecting to socket");

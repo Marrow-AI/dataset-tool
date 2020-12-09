@@ -53,95 +53,93 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 class Scraper(Thread):
-    def __init__(self,keyword,download_dir,app,sessions,session_id,num_requested = 100):
+    def __init__(self, queue, app, sessions):
         print("Init scraper")
-        self.keyword = keyword
-        self.download_dir = download_dir
+        self.queue = queue
         self.app = app
-        self.session_id = session_id
         self.sessions = sessions
-        self.num_requested = num_requested
+
         Thread.__init__(self)
 
 
     def run(self):
         print("Running scraper")
-        with self.app.app_context():
-            self.get_image_links(
-                self.keyword,
-                self.download_dir,
-                self.sessions,
-                self.session_id,
-                self.num_requested
-            )
-
-
-    def get_image_links(self, main_keyword, download_dir,sessions,session_id, num_requested = 100):
-        """get image links with selenium
-        
-        Args:
-            main_keyword (str): main keyword
-            link_file_path (str): path of the file to store the links
-            num_requested (int, optional): maximum number of images to download
-        
-        Returns:
-            None
-        """
-        number_of_scrolls = int(num_requested / 400) + 1 
-        # number_of_scrolls * 400 images will be opened in the browser
-
+        print("Starting Firefox Headless WebDriver")
         options = Options()
         options.add_argument('-headless')
-        img_urls = set()
-        img_dir = download_dir + '/raw'
-        print("Image dir: {}".format(img_dir))
-        if not os.path.exists(img_dir):
-            os.makedirs(img_dir)
-        driver = webdriver.Firefox(executable_path='geckodriver', options=options)
-        search_query = quote(main_keyword)
-        url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
-        driver.get(url)
-        print("Scrolling")
-        for i in range(2):
-            driver.execute_script("window.scrollBy(0, 1000000)")
-            time.sleep(2)
-        all_thumbs = driver.find_elements_by_xpath('//a[@class="wXeWr islib nfEiy mM5pbd"]')
-        print('Gathered {} thumbs'.format(len(all_thumbs)))
-        print("Collecting full size pics")
-        for thumb in all_thumbs:
-            try:
-                thumb.click()
-                time.sleep(0.5)
-            except e:
-                print("Error clicking one thumbnail")
+        self.driver = webdriver.Firefox(executable_path='geckodriver', options=options)
+        while True:
+          search_params = self.queue.get()
+          print("New search request {}".format(search_params))
+          self.get_image_links(
+            search_params["keyword"],
+            search_params["download_dir"],
+            search_params["session_id"]
+          )
 
-            url_elements = driver.find_elements_by_xpath('//img[@class="n3VNCb"]')
-            for url_element in url_elements:
+
+
+    def get_image_links(self, main_keyword, download_dir, session_id, num_requested = 100):
+
+        with self.app.app_context():
+        
+            number_of_scrolls = int(num_requested / 400) + 1 
+            # number_of_scrolls * 400 images will be opened in the browser
+
+            img_urls = set()
+            img_dir = download_dir + '/raw'
+            print("Image dir: {}".format(img_dir))
+            if not os.path.exists(img_dir):
+                os.makedirs(img_dir)
+            search_query = quote(main_keyword)
+            url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
+            self.driver.get(url)
+            print("Scrolling")
+            for i in range(2):
+                self.driver.execute_script("window.scrollBy(0, 1000000)")
+                time.sleep(1)
+            all_thumbs = self.driver.find_elements_by_xpath('//a[@class="wXeWr islib nfEiy mM5pbd"]')
+            print('Gathered {} thumbs'.format(len(all_thumbs)))
+            print("Collecting full size pics")
+
+            thumb_gen = (thumb for thumb in all_thumbs if self.queue.empty())
+
+            for thumb in thumb_gen:
                 try:
-                    url = url_element.get_attribute('src')
+                    thumb.click()
+                    time.sleep(0.5)
                 except e:
-                    print("Error getting one url")
+                    print("Error clicking one thumbnail")
 
-                if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
-                    img_urls.add(url)
-                    print("Found image url {}".format(url))
-                    socket_id = sessions[session_id]
-                    print("Socket ID: {}".format(socket_id))
-                    emit('image',{'url':url},room=socket_id, namespace='/')
+                url_elements = self.driver.find_elements_by_xpath('//img[@class="n3VNCb"]')
 
-                    # In case we want to download them
-                    #path = urlparse(url).path
-                    #ext = splitext(path)[1]
-                    #req = urllib.request.Request(url, headers = {"User-Agent": generate_user_agent()})
-                    #response = urllib.request.urlopen(req)
-                    #data = response.read()
-                    #file_path = '{0}/{1}{2}'.format(img_dir,len(img_urls),ext)
-                    #with open(file_path,'wb') as wf:
-                    #    wf.write(data)
-                    #emit('image',{'url':'sessions/{}/raw/{}{}'.format(session_id,len(img_urls),ext)},room=socket_id, namespace='/')
+                url_gen = (url_element for url_element in url_elements if self.queue.empty())
 
-        print('Process-{0} totally get {1} images'.format(main_keyword, len(img_urls)))
-        driver.quit()
+                for url_element in url_gen:
+                    try:
+                        url = url_element.get_attribute('src')
+                    except e:
+                        print("Error getting one url")
+
+                    if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
+                        img_urls.add(url)
+                        print("Found image url {}".format(url))
+                        socket_id = sessions[session_id]
+                        print("Socket ID: {}".format(socket_id))
+                        emit('image',{'url':url},room=socket_id, namespace='/')
+
+                        # In case we want to download them
+                        #path = urlparse(url).path
+                        #ext = splitext(path)[1]
+                        #req = urllib.request.Request(url, headers = {"User-Agent": generate_user_agent()})
+                        #response = urllib.request.urlopen(req)
+                        #data = response.read()
+                        #file_path = '{0}/{1}{2}'.format(img_dir,len(img_urls),ext)
+                        #with open(file_path,'wb') as wf:
+                        #    wf.write(data)
+                        #emit('image',{'url':'sessions/{}/raw/{}{}'.format(session_id,len(img_urls),ext)},room=socket_id, namespace='/')
+
+            print('Process-{0} totally get {1} images'.format(main_keyword, len(img_urls)))
 
 
 method_requests_mapping = {
@@ -161,6 +159,14 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
 sessions = {}
+q = queue.Queue()
+
+scraper = Scraper(
+    q,
+    app,
+    sessions
+)
+scraper.start()
 
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
@@ -200,14 +206,11 @@ def search():
         download_dir = 'server/sessions/{}'.format(session_id)
         print("Get image links to socket {}".format(socket_id))
 
-        scraper = Scraper(
-            params['keyword'],
-            download_dir,
-            app,
-            sessions,
-            session_id
-        )
-        scraper.start()
+        q.put({
+            'keyword': params['keyword'],
+            'download_dir': download_dir,
+            'session_id': session_id
+        })
 
         return jsonify(result="OK", dataset_session=session_id)
 
@@ -221,9 +224,9 @@ def testpage():
 
 @app.route('/proxy/<path:url>', methods=method_requests_mapping.keys())
 def proxy(url):
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
     requests_function = method_requests_mapping[request.method]
-    request_handle = requests_function(url, stream=True, verify=False, params=request.args)
-    print('Getting response')
+    request_handle = requests_function(url, stream=True, verify=False, params=request.args, headers=headers)
     response = Response(stream_with_context(request_handle.iter_content()),
                               content_type=request_handle.headers['content-type'],
                               status=request_handle.status_code)
