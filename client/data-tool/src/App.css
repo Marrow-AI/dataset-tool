@@ -3,12 +3,6 @@
   outline: none;
 }
 
-.app-container {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-
 ::-moz-selection { /* Code for Firefox */
   color: black;
   background: white;
@@ -23,7 +17,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
+  background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 45%, rgba(238,187,240,1) 100%);
+}
+
+.app-container {
+  height: 94vh;
+  margin: 0;
+  width: 98%;
+  margin-left: 20px;
   background-color: black;
+  margin-right: 15px;
+  align-items: center;
+  margin-top: 20px;
 }
 
 a {
@@ -36,14 +42,15 @@ a {
   display: block;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 110%;
+  margin-left: -1.5%;
+  background-color: #EEBBF9;
 }
 
 .mainFooter {
-  width: 100%;
+  width: 90%;
   bottom: 0;
-  height: 3rem;
-  background-color:black;
+  height: 2rem;
 }
 
 .footer {
@@ -52,15 +59,15 @@ a {
 }
 
 a.footer {
-  color: rgba(255, 255, 255, 0.5);
+  color: black;
   display: inline-block;
   font-size: 16px;
   letter-spacing: 2px;
-  padding: 15px 15px;
+  padding: 10px 15px;
 }
 
 a.footer:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: #EEBBF9;
 }
 
 .firstScreen {

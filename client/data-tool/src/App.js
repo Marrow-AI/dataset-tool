@@ -29,10 +29,8 @@ function App() {
           <Route exact path="/edit" component={EditImage} />
           <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
           <Route exact path="/train" component={Training} />
-         
         <Footer />
       </Router>
-    
     </div>
     </>
   );
