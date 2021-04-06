@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import store from '../state';
 
-export default function DisplayImage() {
+export default function DisplayImage(props) {
   const keyword = useSelector(state => state.keyword);
   const socket = useSelector(state => state.socket);
   const corsServer = '/proxy/';
@@ -11,12 +11,14 @@ export default function DisplayImage() {
   const searchImages = useSelector(state => state.images64);
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
+  const {showNext} = props;
 
 
   function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
-    history.push("/edit")
+    // history.push("/edit")
+    showNext()
   }
 
   const toDataURL = url => fetch(corsServer + url)

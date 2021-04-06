@@ -197,6 +197,7 @@ button.search:hover {
   width: 500px;
   margin-left: -18%;
   margin-top: -5%;
+  margin-bottom: 5%;
 }
 
 .btn.explorer:hover {
@@ -221,13 +222,12 @@ button.search:hover {
   text-align: center;
   margin-right: auto;
   margin-left: auto;
-  max-width: 1200px;
+  /* max-width: 1200px; */
 }
 
 .secondScreen {
   display: flex;
   background-color: black;
-  height: 100vh;
   margin: 0;
 }
 
@@ -241,6 +241,7 @@ button.search:hover {
   padding: 10px 50px;
   width: 100%;
   text-transform: uppercase;
+  text-align: center;
 }
 
 .title.result-before {
@@ -275,13 +276,9 @@ button.search:hover {
 .leftSection {
   font-family: 'Roboto', sans-serif; 
   width: 400px;
-  height: 580px;
-  padding: 10px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  /* margin-top: 20px; */
-  /* border: 1px dotted #EEBBF9; */
 }
 
 .leftSection.result {
@@ -298,6 +295,7 @@ button.search:hover {
 
 .explaining.result {
   border:none;
+  margin-bottom: 30%;
   /* position: relative; */
 }
 
@@ -395,7 +393,14 @@ button.start {
    width: 100%;
    margin-bottom: 15%;
    margin-top: 10%;
+   border: 2px solid #ED965F;
+   letter-spacing: 5px;
+   font-size: 18px;
+   padding: 16px 300px;
+ }
 
+ .btn.edit:hover {
+  border: 2px solid white;
  }
 
 .editForm {
@@ -412,6 +417,7 @@ button.start {
   justify-content: space-around;
   justify-content: center;
   width: 80%;
+  margin-top: 4%;
 }
 
 .edit-div {
@@ -494,27 +500,21 @@ button.start {
 }
 
 .popup {
-  background-color: black;
-  margin-left: auto;
-  margin-right:auto;
-  position: relative;
-  z-index: 1000;
+  /* background-color: black; */
+  text-align: center;
+  margin-top: 80%;
+  margin-left: -100%;
+
 }
 
 .logo.end {
-  color:#84ffff;
-  font-size: 78px;
-  width: 750px;
-  height: 100%;
-  margin-top: -5%;
-  padding-top: 200px;
-  padding-bottom: 600px;
-  background-color: black;
-  opacity: 0.8;
+  color: #EEBBF9;
+  font-size: 42px;
+  font-weight: 600;
   margin-left: auto;
   margin-right:auto;
   text-align: center;
-  position: absolute;
+  width: 80%;
 }
 
 .imageContainer {

@@ -54,7 +54,6 @@ const marks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
 }
-//until here - material-ui// 
 
 export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
@@ -64,9 +63,9 @@ export default function EditImage() {
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
   const [loading, showLoading, hideLoading] = useSpinner();
-  const [buttonText, setButtonText] = useState('APPLY')
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
+
 
   function valuetext(valueNumberOfPeople) {
     return `${valueNumberOfPeople}`;
@@ -118,10 +117,6 @@ export default function EditImage() {
     });
   }
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
     <ThemeProvider theme={theme}>
       <div className='secondScreen'>
@@ -140,17 +135,18 @@ export default function EditImage() {
         <div className='edit-imageContainer'>
 
           <div className='imageContainer'>
-            <h1 className='title result'>Editing <span className="number edit"> {images64.length + 1}</span> images for <span className='title result-before edit'>{keyword}</span> </h1>
+            <h1 className='title result'>Editing <span className="number"> {images64.length + 1}</span> images for <span className='title result-before'>{keyword}</span> </h1>
             <div className='images'>
               {images64.map((image, index) =>
                 <img key={index} src={image} alt='' />)}
+              {loading}
             </div>
 
             <div className='editForm'>
               <form onSubmit={handleSubmit(onSubmit)}>
-                
+
                 <div className='edit-slides'>
-                  
+
                   <div className='edit-div'>
                     <div className={classesOne.root}>
                       <Slider
@@ -159,7 +155,6 @@ export default function EditImage() {
                         name="num-of-people"
                         value={valueNumberOfPeople}
                         onChange={handlePersonChange}
-                        // onDragStop={handleDragStop}
                         defaultValue={1}
                         valueLabelFormat={valueLabelFormatOne}
                         getAriaValueText={valuetext}
@@ -172,7 +167,7 @@ export default function EditImage() {
                       />
                       <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
                         How many humans to extract <br /> from the background?
-                    </Typography>
+                      </Typography>
                       <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
                     </div>
                   </div>
@@ -192,29 +187,23 @@ export default function EditImage() {
                         step={null}
                         valueLabelDisplay="auto"
                         marks={marks}
-                        // aria-labelledby="track-false-slider-two"
                         min={0}
                         max={10}
-                      // color="secondary"
                       />
                       <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
-                        How many versions to create<br /> from each image?
-                    </Typography>
+                        How many versions to create from each image?
+                      </Typography>
                       <p className='explain three'> this will shuffle the humans in every image, creating multiple data from one source</p>
                     </div>
                   </div>
-                  
                 </div>
-                {loading}
-
-                  <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>{buttonText}</button>
-               
+   
+                <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>APPLY</button>
               </form>
             </div>
           </div>
         </div>
       </div>
-
     </ThemeProvider>
   );
 }
