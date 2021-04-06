@@ -9,6 +9,7 @@ import EditImage from './components/EditImage';
 import Results from './components/Results';
 import Footer from './components/Footer';
 import Training from './components/Training';
+import SearchContainer from './components/SearchContainer';
 
 const ENDPOINT = "http://localhost:8540";
 const socket = socketIOClient(ENDPOINT);
@@ -24,7 +25,7 @@ function App() {
     <>
     <div className='app-container'>
       <Router>
-          <Route exact path="/" component={Search} />
+          <Route exact path="/" component={SearchContainer} />
           <Route exact path="/display" component={DisplayImage} />
           <Route exact path="/edit" component={EditImage} />
           <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />

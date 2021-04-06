@@ -6,10 +6,11 @@ import { useHistory } from "react-router-dom";
 import Header from './Header';
 import useSpinner from './useSpinner';
 
-export default function Search() {
+export default function Search(props) {
   const { register, errors, handleSubmit } = useForm({ mode: "onBlur" });
   const [datasetSession, setDatasetSession] = useState(true);
   const [loading, showLoading, hideLoading] = useSpinner();
+  const {showNext} = props;
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
   let history = useHistory();
 
@@ -36,7 +37,8 @@ export default function Search() {
     showLoading();
     setTimeout(() => {
       hideLoading()
-      history.push("/display")
+      showNext()
+      // history.push("/display")
     }, 4000);
   }
 
