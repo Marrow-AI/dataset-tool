@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/" component={RenderContainer} />
           {/* <Route exact path="/display" component={DisplayImage} /> */}
           {/* <Route exact path="/edit" component={EditImage} /> */}
-          <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
+          {/* <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} /> */}
         <Footer />
       </Router>
     </div>

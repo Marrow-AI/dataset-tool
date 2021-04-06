@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import Search from './Search';
 import DisplayImage from './DisplayImage';
 import EditImage from './EditImage';
+import Results from './Results';
 
 export default function RenderContainer() {
   const [currentComponent, setCurrentComponent] = useState('search')
+  const [numberPeople, setNumberPeople] = useState()
+  const [numberVersions, setNumberVersions] = useState()
 
   function showCurrentComponent() {
     if (currentComponent === 'display') {
@@ -13,7 +16,14 @@ export default function RenderContainer() {
       )
     } else if (currentComponent === 'edit') {
       return (
-        <EditImage />
+        <EditImage showNext={() => setCurrentComponent('result')}
+         setShowPeople={setNumberPeople}
+         setShowVersions={setNumberVersions}/>
+      )
+    } else if(currentComponent === 'result') {
+      return (
+      <Results showNumberPeople={numberPeople}
+        showNumberVersion={numberVersions}/>
       )
     }
   }

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 import store from '../state';
-import { useHistory } from "react-router-dom";
 import Header from './Header';
 import useSpinner from './useSpinner';
 
@@ -12,7 +11,6 @@ export default function Search(props) {
   const [loading, showLoading, hideLoading] = useSpinner();
   const {showNext} = props;
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
-  let history = useHistory();
 
   async function onSubmit(formData) {
     await fetch('/search', {

@@ -55,7 +55,7 @@ function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
 }
 
-export default function EditImage() {
+export default function EditImage(props) {
   const keyword = useSelector(state => state.keyword);
   const images64 = useSelector(state => state.images64);
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
@@ -65,6 +65,7 @@ export default function EditImage() {
   const [loading, showLoading, hideLoading] = useSpinner();
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
+  const {showNext, setShowPeople, setShowVersions} = props;
 
 
   function valuetext(valueNumberOfPeople) {
@@ -107,7 +108,10 @@ export default function EditImage() {
             console.log(e);
           } finally {
             hideLoading();
-            history.push(`/results/${numberPeople}/${numberVersions}`)
+            setShowPeople(numberPeople)
+            setShowVersions(numberVersions)
+            showNext();
+            //history.push(`/results/${numberPeople}/${numberVersions}`)
           }
         }
 
@@ -197,7 +201,7 @@ export default function EditImage() {
                     </div>
                   </div>
                 </div>
-   
+
                 <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>APPLY</button>
               </form>
             </div>
