@@ -11,11 +11,11 @@ import store from '../state';
 import { name } from "file-loader";
 import getPoses from '../poseRequest';
 import { createMuiTheme } from '@material-ui/core/styles';
-//this belongs to material-ui//
+
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#84ffff',
+      main: '#3F51B5',
     },
     secondary: {
       main: '#fff',
@@ -54,7 +54,6 @@ const marks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value);
 }
-//until here - material-ui// 
 
 export default function EditImage() {
   const keyword = useSelector(state => state.keyword);
@@ -64,9 +63,9 @@ export default function EditImage() {
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
   const [loading, showLoading, hideLoading] = useSpinner();
-  const [buttonText, setButtonText] = useState('Give it a go?')
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
+
 
   function valuetext(valueNumberOfPeople) {
     return `${valueNumberOfPeople}`;
@@ -118,87 +117,89 @@ export default function EditImage() {
     });
   }
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   return (
     <ThemeProvider theme={theme}>
-      <div className="mainTitle">
-        <h1 className='title result'>Editing <span className="number edit"> {images64.length + 1}</span> images with the result of <span className='title result-before edit'>{keyword}</span> </h1>
-        <div className='secondScreen'>
-          <div className='leftSection edit'>
-            <div className='explaining edit'>
-              <h2 className='explain main edit'>Step Two: Filtering stage</h2>
-              <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, character positions.</p>
-              <p className='explain two'> This creates a lot of noise for the nerual network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
-
-              <div className='editForm'>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <div className={classesOne.root}>
-                    <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
-                      1 ● How many humans to extract <br/> from the background?
-             </Typography>
-                    <Slider
-                      key={name}
-                      id="num-of-people"
-                      name="num-of-people"
-                      value={valueNumberOfPeople}
-                      onChange={handlePersonChange}
-                      // onDragStop={handleDragStop}
-                      defaultValue={1}
-                      valueLabelFormat={valueLabelFormatOne}
-                      getAriaValueText={valuetext}
-                      aria-labelledby="discrete-slider-restrict-one"
-                      step={null}
-                      valueLabelDisplay="auto"
-                      marks={tracks}
-                      // aria-labelledby="track-false-slider-one"
-                      min={0}
-                      max={4}
-                    // color="secondary"
-                    />
-                    <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
-                  </div>
-
-                  <div className={classesTwo.root}>
-                    <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
-                      2 ● How many versions to create<br /> from each image?
-             </Typography>
-                    <Slider
-                      key={name}
-                      id="num-of-permutations"
-                      name="num-of-permutations"
-                      value={valueNumberofVersions}
-                      onChange={handleVersionChange}
-                      defaultValue={0}
-                      valueLabelFormat={valueLabelFormat}
-                      getAriaValueText={valuetextTwo}
-                      aria-labelledby="discrete-slider-restrict-two"
-                      step={null}
-                      valueLabelDisplay="auto"
-                      marks={marks}
-                      // aria-labelledby="track-false-slider-two"
-                      min={0}
-                      max={10}
-                    // color="secondary"
-                    />
-                    <p className='explain three'> this will shuffle the humans in every image, creating multiple data from one source</p>
-                  </div>
-
-                  {loading}
-
-                  <div className="btns">
-                    <button id="crop-button" className='start' name="end" type="submit" ref={register}>{buttonText}</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+      <div className='secondScreen'>
+        <div className='leftSection edit'>
+          <div className='explaining-title'>
+            <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
+            <h2 className='explain-number'> 2.</h2>
+            <h2 className='explain main'>Editing</h2>
           </div>
+          <div className='explain-paragraph'>
+            <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, character positions.</p>
+            <p className='explain two'> This creates a lot of noise for the nerual network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
+          </div>
+        </div>
+
+        <div className='edit-imageContainer'>
+
           <div className='imageContainer'>
+            <h1 className='title result'>Editing <span className="number"> {images64.length + 1}</span> images for <span className='title result-before'>{keyword}</span> </h1>
             <div className='images'>
               {images64.map((image, index) =>
                 <img key={index} src={image} alt='' />)}
+              {loading}
+            </div>
+
+            <div className='editForm'>
+              <form onSubmit={handleSubmit(onSubmit)}>
+
+                <div className='edit-slides'>
+
+                  <div className='edit-div'>
+                    <div className={classesOne.root}>
+                      <Slider
+                        key={name}
+                        id="num-of-people"
+                        name="num-of-people"
+                        value={valueNumberOfPeople}
+                        onChange={handlePersonChange}
+                        defaultValue={1}
+                        valueLabelFormat={valueLabelFormatOne}
+                        getAriaValueText={valuetext}
+                        aria-labelledby="discrete-slider-restrict-one"
+                        step={null}
+                        valueLabelDisplay="auto"
+                        marks={tracks}
+                        min={0}
+                        max={4}
+                      />
+                      <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
+                        How many humans to extract <br /> from the background?
+                      </Typography>
+                      <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
+                    </div>
+                  </div>
+
+                  <div className='edit-div'>
+                    <div className={classesTwo.root}>
+                      <Slider
+                        key={name}
+                        id="num-of-permutations"
+                        name="num-of-permutations"
+                        value={valueNumberofVersions}
+                        onChange={handleVersionChange}
+                        defaultValue={0}
+                        valueLabelFormat={valueLabelFormat}
+                        getAriaValueText={valuetextTwo}
+                        aria-labelledby="discrete-slider-restrict-two"
+                        step={null}
+                        valueLabelDisplay="auto"
+                        marks={marks}
+                        min={0}
+                        max={10}
+                      />
+                      <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
+                        How many versions to create from each image?
+                      </Typography>
+                      <p className='explain three'> this will shuffle the humans in every image, creating multiple data from one source</p>
+                    </div>
+                  </div>
+                </div>
+   
+                <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>APPLY</button>
+              </form>
             </div>
           </div>
         </div>

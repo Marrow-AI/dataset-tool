@@ -8,7 +8,7 @@ import DisplayImage from './components/DisplayImage';
 import EditImage from './components/EditImage';
 import Results from './components/Results';
 import Footer from './components/Footer';
-import Training from './components/Training';
+import RenderContainer from './components/RenderContainer';
 
 const ENDPOINT = "http://52.206.213.41:8540";
 const socket = socketIOClient(ENDPOINT);
@@ -24,15 +24,12 @@ function App() {
     <>
     <div className='app-container'>
       <Router>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/display" component={DisplayImage} />
-          <Route exact path="/edit" component={EditImage} />
+          <Route exact path="/" component={RenderContainer} />
+          {/* <Route exact path="/display" component={DisplayImage} /> */}
+          {/* <Route exact path="/edit" component={EditImage} /> */}
           <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
-          <Route exact path="/train" component={Training} />
-         
         <Footer />
       </Router>
-    
     </div>
     </>
   );

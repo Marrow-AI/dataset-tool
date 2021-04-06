@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { saveAs } from "filesaver.js-npm";
 import JSZip from 'jszip';
+import StartAgain from "./StartAgain";
 
 export default function Results(props) {
   const keyword = useSelector(state => state.keyword);
   const cropImages = useSelector(state => state.cropImages);
   const [visible, setDisible] = useState(false)
-  const [ showPopUp, setShowPopUp] = useState(false)
+  const [showPopUp, setShowPopUp] = useState(false)
 
   function downloadFile(url) {
     return new JSZip.external.Promise(function (resolve, reject) {
@@ -44,11 +45,14 @@ export default function Results(props) {
 
   return (
     <div className="mainTitle">
-      <h1 className='title result'>Final results for what was <span className='title result-before final'>{keyword}</span> </h1>
       <div className='secondScreen'>
-        <div className='leftSection result'>
+        <div className='leftSection'>
+          <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
+          <h2 className='explain-number'> 2. <br /> Editing</h2>
+          <h2 className='explain-number'> 3. </h2> <br />
+          <h2 className='explain main result'>Curation</h2>
+
           <div className='explaining result'>
-            <h2 className='explain main result'>Step Three: Curation</h2>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
             <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
@@ -59,15 +63,10 @@ export default function Results(props) {
               </div>
             </p>
           </div>
-          <button className='btn explorer' onClick={()=>  window.location.href='/http://52.206.213.41:8080' }> click to explore latent space </button>
-
         </div>
-
-      {showPopUp ? <div className="popup">
-         <a href='/'> <h1 className="logo end">Start again?</h1></a>
-        </div> : ""}
-
         <div className='imageContainer'>
+          <h1 className='title result'>Final results for what was <span className='title result-before final'>{keyword}</span> </h1>
+
           <div className='images'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
@@ -75,6 +74,8 @@ export default function Results(props) {
               </div>
             ))}
           </div>
+          {showPopUp ?
+            <StartAgain /> : ""}
         </div>
       </div>
     </div>
