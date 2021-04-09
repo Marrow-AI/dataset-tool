@@ -59,7 +59,6 @@ export default function EditImage(props) {
   const keyword = useSelector(state => state.keyword);
   const images64 = useSelector(state => state.images64);
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
-  let history = useHistory();
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
   const [loading, showLoading, hideLoading] = useSpinner();
@@ -130,7 +129,8 @@ export default function EditImage(props) {
       <div className='secondScreen'>
         <div className='leftSection edit'>
           <div className='explaining-title'>
-            <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
+            <h2 className='explain-number'> 1.</h2>
+            <h2 className='explain-number'> Data Scraping</h2>
             <h2 id='edit-section' className='explain-number'> 2.</h2>
             <h2 className='explain main'>Editing</h2>
           </div>
@@ -183,7 +183,7 @@ export default function EditImage(props) {
                         name="num-of-permutations"
                         value={valueNumberofVersions}
                         onChange={handleVersionChange}
-                        defaultValue={0}
+                        defaultValue={1}
                         valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetextTwo}
                         aria-labelledby="discrete-slider-restrict-two"

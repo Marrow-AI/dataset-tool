@@ -284,6 +284,8 @@ button.search:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 10px;
+  margin-top: 20px;
 }
 
 .leftSection.result {
@@ -302,25 +304,26 @@ button.search:hover {
 .explain-number {
   -webkit-text-fill-color: black; 
   /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #ED965F;
-  font-size: 58px;
+  font-size: 70px;
   text-transform: uppercase;
   text-align: left;
-  margin-bottom: -5%;
-  margin-top: 40px;
+  margin-bottom: -3%;
+  margin-top: 20px;
   padding-bottom: 0;
+  font-family: 'Roboto', sans-serif; 
 }
 
 .explain.main {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: black;
-  font-size: 64px;
+  font-size: 76px;
   -webkit-text-fill-color: #ED965F; 
   color: #ED965F;
-  line-height: 4rem;
   margin-top: 20px;
+  line-height: 4rem;
+  font-family: 'Roboto', sans-serif; 
 }
 
 .explain.main.final {
@@ -337,7 +340,6 @@ button.search:hover {
 .explain.main.result {
   line-height: 2rem;
   text-align: left;
-  margin-left: 20px;
   margin-bottom: 20px;
 }
 
@@ -353,7 +355,7 @@ button.search:hover {
 
 button.more{
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 60px;
   margin-left: -3rem;
   border: 1px solid white;
   border-radius: 20px;
@@ -393,7 +395,7 @@ button.start {
    margin-bottom: 15%;
    margin-top: 10%;
    border: 2px solid #ED965F;
-   letter-spacing: 5px;
+   letter-spacing: 15px;
    font-size: 18px;
    padding: 16px 300px;
  }
@@ -415,7 +417,7 @@ button.start {
   display: flex;
   justify-content: space-around;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   margin-top: 4%;
 }
 
@@ -445,8 +447,12 @@ button.start {
   font-size: 16px;
 }
 
-.MuiTypography-root.label {
-  /* padding-bottom: 15%; */
+.MuiSlider-rail {
+  height: 6px !important;
+}
+
+.MuiSlider-track {
+  height: 10px !important;
 }
 
 .explain.three {
@@ -521,6 +527,7 @@ button.start {
   margin-top: 5%;
   margin-bottom: 10rem;
   width: 700px;
+  padding-right: 10px;
 }
 
 .edit-imageContainer {

@@ -7,8 +7,9 @@ import StartAgain from "./StartAgain";
 export default function Results(props) {
   const keyword = useSelector(state => state.keyword);
   const cropImages = useSelector(state => state.cropImages);
-  const [visible, setDisible] = useState(false)
-  const [showPopUp, setShowPopUp] = useState(false)
+  const [visible, setDisible] = useState(false);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [hasClassName, setClassName] = useState(true);
 
   function downloadFile(url) {
     return new JSZip.external.Promise(function (resolve, reject) {
@@ -38,6 +39,7 @@ export default function Results(props) {
     });
     setShowPopUp(true)
     window.location.href='/#start-again'
+    setClassName(false)
   }
 
   useEffect(() => {
@@ -48,19 +50,21 @@ export default function Results(props) {
     <div className="mainTitle">
       <div className='secondScreen'>
         <div className='leftSection'>
-          <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
-          <h2 className='explain-number'> 2. <br /> Editing</h2>
-          <h2 className='explain-number'> 3. </h2> <br />
-          <h2 id='curation-section' className='explain main result'>Curation</h2>
-
+          <h2 className='explain-number'> 1.</h2> 
+          <h2 className='explain-number'>Data Scraping</h2>
+          <h2 className='explain-number'> 2. </h2> 
+          <h2 className='explain-number'> Editing</h2>
+          <h2 className='explain-number'> 3. </h2>
+          <h2 id='curation-section' className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
+      
           <div className='explaining result'>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
-            <p className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
+            <div className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
               <div className="modelImage">
                 <p className='explain three-image'>*This is from "Happy Families Dinner" dataset training process</p>
               </div>
-            </p>
+            </div>
             <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
             <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
           </div>
