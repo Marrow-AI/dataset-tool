@@ -38,25 +38,25 @@ export default function Results(props) {
       saveAs(content, "Marrow_DataTool.zip");
     });
     setShowPopUp(true)
-    window.location.href='/#start-again'
+    window.location.href = '/#start-again'
     setClassName(false)
   }
 
   useEffect(() => {
-    window.location.href='/#curation-section'
+    window.location.href = '/#curation-section'
   }, [])
 
   return (
     <div className="mainTitle">
       <div className='secondScreen'>
         <div className='leftSection'>
-          <h2 className='explain-number'> 1.</h2> 
+          <h2 className='explain-number'> 1.</h2>
           <h2 className='explain-number'>Data Scraping</h2>
-          <h2 className='explain-number'> 2. </h2> 
-          <h2 className='explain-number'> Editing</h2>
+          <h2 className='explain-number'> 2. </h2>
+          <h2 id='curation-section' className='explain-number'> Editing</h2>
           <h2 className='explain-number'> 3. </h2>
-          <h2 id='curation-section' className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
-      
+          <h2 className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
+
           <div className='explaining result'>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
@@ -71,7 +71,7 @@ export default function Results(props) {
         </div>
         <div className='imageContainer'>
           <h1 className='title result'>Final results for what was <span className='title result-before final'>{keyword}</span> </h1>
-          <div className='images'>
+          <div className='images results'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
                 <img src={cleanImages} alt="" />
@@ -79,9 +79,9 @@ export default function Results(props) {
             ))}
           </div>
           <div id='start-again'>
-          {showPopUp ?
-            <StartAgain /> : "" }
-            </div>
+            {showPopUp ?
+              <StartAgain /> : ""}
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import useSpinner from './useSpinner';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
@@ -64,7 +63,7 @@ export default function EditImage(props) {
   const [loading, showLoading, hideLoading] = useSpinner();
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(0)
-  const {showNext, setShowPeople, setShowVersions} = props;
+  const { showNext, setShowPeople, setShowVersions } = props;
 
 
   function valuetext(valueNumberOfPeople) {
@@ -106,11 +105,12 @@ export default function EditImage(props) {
           } catch (e) {
             console.log(e);
           } finally {
-            hideLoading();
-            setShowPeople(numberPeople)
-            setShowVersions(numberVersions)
-            showNext();
-            //history.push(`/results/${numberPeople}/${numberVersions}`)
+            setTimeout(() => {
+              hideLoading()
+              setShowPeople(numberPeople)
+              setShowVersions(numberVersions)
+              showNext();
+            }, 2000);
           }
         }
 
@@ -121,7 +121,7 @@ export default function EditImage(props) {
   }
 
   useEffect(() => {
-    window.location.href='/#edit-section'
+    window.location.href = '/#edit-section'
   }, [])
 
   return (
@@ -130,8 +130,8 @@ export default function EditImage(props) {
         <div className='leftSection edit'>
           <div className='explaining-title'>
             <h2 className='explain-number'> 1.</h2>
-            <h2 className='explain-number'> Data Scraping</h2>
-            <h2 id='edit-section' className='explain-number'> 2.</h2>
+            <h2 id='edit-section' className='explain-number'> Data Scraping</h2>
+            <h2 className='explain-number'> 2.</h2>
             <h2 className='explain main'>Editing</h2>
           </div>
           <div className='explain-paragraph'>
@@ -200,7 +200,7 @@ export default function EditImage(props) {
                     </div>
                   </div>
                 </div>
-                
+
                 <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>APPLY</button>
               </form>
             </div>

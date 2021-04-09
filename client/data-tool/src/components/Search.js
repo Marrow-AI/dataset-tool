@@ -36,7 +36,6 @@ export default function Search(props) {
     setTimeout(() => {
       hideLoading()
       showNext()
-      
     }, 4000);
   }
 

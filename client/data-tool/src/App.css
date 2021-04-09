@@ -49,20 +49,36 @@ a {
   display: block;
   position: fixed;
   bottom: 0;
-  width: 110%;
+  width: 100%;
   margin-left: -1.5%;
   background-color: #EEBBF9;
 }
 
 .mainFooter {
-  width: 90%;
+  width: 100%;
   bottom: 0;
-  height: 2rem;
+  height: 2.3rem;
+}
+
+.footerDiv {
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer {
+  margin: 0 15px;
+}
+
+.logos {
+  height: 25px;
+  object-fit: contain;
+  margin: 5px 0;
+  padding-bottom: 2px;
+}
+
+.logosdiv {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around;  
 }
 
 a.footer {
@@ -78,7 +94,6 @@ a.footer:hover {
 }
 
 .firstScreen {
-
  position: relative;
  /* max-width: 780px; */
  padding: 15px;
@@ -546,6 +561,10 @@ button.start {
   height: 550px; 
   overflow-y: scroll;
   margin-top: 4%;
+}
+
+.images.results {
+  height: 700px
 }
 
 /*SCROLL BAR */
