@@ -121,13 +121,17 @@ export default function EditImage(props) {
     });
   }
 
+  useEffect(() => {
+    window.location.href='/#edit-section'
+  }, [])
+
   return (
     <ThemeProvider theme={theme}>
       <div className='secondScreen'>
         <div className='leftSection edit'>
           <div className='explaining-title'>
             <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
-            <h2 className='explain-number'> 2.</h2>
+            <h2 id='edit-section' className='explain-number'> 2.</h2>
             <h2 className='explain main'>Editing</h2>
           </div>
           <div className='explain-paragraph'>
@@ -135,22 +139,17 @@ export default function EditImage(props) {
             <p className='explain two'> This creates a lot of noise for the nerual network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
           </div>
         </div>
-
         <div className='edit-imageContainer'>
-
           <div className='imageContainer'>
             <h1 className='title result'>Editing <span className="number"> {images64.length + 1}</span> images for <span className='title result-before'>{keyword}</span> </h1>
+            {loading}
             <div className='images'>
               {images64.map((image, index) =>
                 <img key={index} src={image} alt='' />)}
-              {loading}
             </div>
-
             <div className='editForm'>
               <form onSubmit={handleSubmit(onSubmit)}>
-
                 <div className='edit-slides'>
-
                   <div className='edit-div'>
                     <div className={classesOne.root}>
                       <Slider
@@ -201,7 +200,7 @@ export default function EditImage(props) {
                     </div>
                   </div>
                 </div>
-
+                
                 <button id="crop-button" className='btn edit' name="end" type="submit" ref={register}>APPLY</button>
               </form>
             </div>

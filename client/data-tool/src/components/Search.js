@@ -36,21 +36,23 @@ export default function Search(props) {
     setTimeout(() => {
       hideLoading()
       showNext()
-      // history.push("/display")
+      
     }, 4000);
   }
 
   return (
     <div className='firstScreen'>
       <Header />
+      {loading}
       <div className='inputForm'>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form action="#data-scraping" onSubmit={handleSubmit(onSubmit)}>
           <div>
+         
           <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /><br /><br/>
           {errors.keyword && "It seems like you didn't type anything"}
           </div>
-          <button className="search" name="search" type="submit" ref={register}>Search</button>
-          {loading}
+            <button className="search" name="search" type="submit" ref={register}>Search</button>
+      
         </form>
       </div>
     </div>

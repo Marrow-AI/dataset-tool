@@ -46,15 +46,19 @@ export default function DisplayImage(props) {
     }
   });
 
+  useEffect(() => {
+    window.location.href='/#data-scraping'
+  }, [])
+
   return (
     <div className='secondScreen'>
       <div className='leftSection'>
         <div className='explaining-title'>
-          <h2 className='explain-number'> 1.</h2>
+          <h2 id='data-scraping' className='explain-number'> 1.</h2>
           <h2 className='explain main'>Data Scraping</h2>
         </div>
         <div className='explain-paragraph'>
-          <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong></p>
+          <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong>.</p>
           <p className='explain two'> Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model.</p>
           <p className='explain two'>Once we collected all of the data, the next step will be to extract a meaningful and consistent set of images that the model could easily comprehend.</p>
         </div>

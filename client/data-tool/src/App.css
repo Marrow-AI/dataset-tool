@@ -13,15 +13,19 @@
   background: white;
 }
 
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100%;
-  background: rgb(2,0,36);
   background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 45%, rgba(238,187,240,1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+	background-size: 100%;
 }
 
 .app-container {
@@ -207,14 +211,15 @@ button.search:hover {
 
 
 .spinner{  
-  height: 100%;
+  height: 50%;
   width: 100%;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   position: absolute;
+  /* position: relative; */
   left: 0;
-  top: 0;
+  margin-top: 0;
   z-index: 100;
 }
 
@@ -285,18 +290,9 @@ button.search:hover {
   border: none;
 }
 
-/* .leftSection.edit {
-  height: 1080px;
-}
-
-.explaining.edit {
-  height: 1060px;
-}  */
-
 .explaining.result {
-  border:none;
   margin-bottom: 30%;
-  /* position: relative; */
+  margin-top: 40px;
 }
 
 .explain-paragraph {
@@ -308,10 +304,11 @@ button.search:hover {
   /* Will override color (regardless of order) */
   -webkit-text-stroke-width: 0.8px;
   -webkit-text-stroke-color: #ED965F;
-  font-size: 64px;
+  font-size: 58px;
   text-transform: uppercase;
   text-align: left;
   margin-bottom: -5%;
+  margin-top: 40px;
   padding-bottom: 0;
 }
 
@@ -341,6 +338,7 @@ button.search:hover {
   line-height: 2rem;
   text-align: left;
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .explain.two {
@@ -355,6 +353,7 @@ button.search:hover {
 
 button.more{
   margin-bottom: 20px;
+  margin-top: 20px;
   margin-left: -3rem;
   border: 1px solid white;
   border-radius: 20px;
@@ -500,9 +499,8 @@ button.start {
 }
 
 .popup {
-  /* background-color: black; */
   text-align: center;
-  margin-top: 80%;
+  margin-top: 80%; 
   margin-left: -100%;
 
 }

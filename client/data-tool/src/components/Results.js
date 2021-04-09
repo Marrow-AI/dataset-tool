@@ -37,10 +37,11 @@ export default function Results(props) {
       saveAs(content, "Marrow_DataTool.zip");
     });
     setShowPopUp(true)
+    window.location.href='/#start-again'
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.location.href='/#curation-section'
   }, [])
 
   return (
@@ -50,23 +51,22 @@ export default function Results(props) {
           <h2 className='explain-number'> 1.<br />Data Scraping</h2><br />
           <h2 className='explain-number'> 2. <br /> Editing</h2>
           <h2 className='explain-number'> 3. </h2> <br />
-          <h2 className='explain main result'>Curation</h2>
+          <h2 id='curation-section' className='explain main result'>Curation</h2>
 
           <div className='explaining result'>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
-            <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
-            <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
             <p className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
               <div className="modelImage">
                 <p className='explain three-image'>*This is from "Happy Families Dinner" dataset training process</p>
               </div>
             </p>
+            <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
+            <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
           </div>
         </div>
         <div className='imageContainer'>
           <h1 className='title result'>Final results for what was <span className='title result-before final'>{keyword}</span> </h1>
-
           <div className='images'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
@@ -74,8 +74,10 @@ export default function Results(props) {
               </div>
             ))}
           </div>
+          <div id='start-again'>
           {showPopUp ?
-            <StartAgain /> : ""}
+            <StartAgain /> : "" }
+            </div>
         </div>
       </div>
     </div>

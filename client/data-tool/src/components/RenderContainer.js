@@ -3,6 +3,8 @@ import Search from './Search';
 import DisplayImage from './DisplayImage';
 import EditImage from './EditImage';
 import Results from './Results';
+import StartAgain from './StartAgain';
+
 
 export default function RenderContainer() {
   const [currentComponent, setCurrentComponent] = useState('search')
@@ -22,7 +24,8 @@ export default function RenderContainer() {
       )
     } else if(currentComponent === 'result') {
       return (
-      <Results showNumberPeople={numberPeople}
+      <Results
+        showNumberPeople={numberPeople}
         showNumberVersion={numberVersions}/>
       )
     }
