@@ -70,7 +70,7 @@ export default function Results(props) {
           </div>
         </div>
         <div className='imageContainer'>
-          <h1 className='title result'>Final results for what was <span className='title result-before final'>{keyword}</span> </h1>
+          <h1 className='title result'>Final results for what was <span className='title result-before'>{keyword}</span> </h1>
           <div className='images results'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>

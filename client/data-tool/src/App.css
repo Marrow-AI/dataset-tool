@@ -22,7 +22,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 45%, rgba(238,187,240,1) 100%);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 65%, rgba(238,187,240,1) 100%);
   background-repeat: no-repeat;
   background-attachment: fixed; 
 	background-size: 100%;
@@ -272,10 +272,6 @@ button.search:hover {
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.title.result-before.final {
-  color: white;
 }
 
 .number {
