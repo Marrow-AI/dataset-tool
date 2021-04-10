@@ -27,7 +27,7 @@ export default function Results(props) {
 
   function saveToZip() {
     const zip = new JSZip()
-    zip.file("ReadMe.txt", "These are the images you have collected from www.dataset.marrow\nPlease respect the original creators' rights© and remember to check your own bias before training. \nOther than that, we wish you a happy creation session.¸¸.•*¨*•"); //some info
+    zip.file("ReadMe.txt", "These are the images you have collected from www.dataset.tips\nPlease respect the original creators' rights© and remember to check your own biases before training. \nOther than that, we wish you a happy creation session.¸¸.•*¨*• \n shirin anlen and Avner Peled"); //some info
     let img = zip.folder('Your_Images');
     cropImages.map((item, i) => {
       let image = item.slice(0);
