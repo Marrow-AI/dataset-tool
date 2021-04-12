@@ -135,8 +135,8 @@ export default function EditImage(props) {
             <h2 className='explain main'>Editing</h2>
           </div>
           <div className='explain-paragraph'>
-            <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, character positions.</p>
-            <p className='explain two'> This creates a lot of noise for the nerual network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
+            <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, characters' positions.</p>
+            <p className='explain two'> This creates a lot of noise for the neural network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
           </div>
         </div>
         <div className='edit-imageContainer'>

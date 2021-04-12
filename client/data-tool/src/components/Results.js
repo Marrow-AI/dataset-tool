@@ -60,7 +60,7 @@ export default function Results(props) {
           <div className='explaining result'>
             <p className='explain two'>Now will have to manually curate the data we extracted,
             removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
-            <div className='explain two'>If everything is okay and we are pleased, we would proceed after to the<div className="modelHover"> Training stage.</div>
+            <div className='explain two'>If everything is okay and we are pleased, we would proceed to the<div className="modelHover"> Training stage.</div>
               <div className="modelImage">
                 <p className='explain three-image'>*This is from "Happy Families Dinner" dataset training process</p>
               </div>
