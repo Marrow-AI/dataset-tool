@@ -58,15 +58,16 @@ export default function Results(props) {
           <h2 className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
 
           <div className='explaining result'>
-            <p className='explain two'>Now will have to manually curate the data we extracted,
-            removing unrelated images that may skew the learning process and making sure the data is diverse and consistent.</p> <br />
-            <div className='explain two'>If everything is okay and we are pleased, we would proceed to the<div className="modelHover"> Training stage.</div>
+            <p className='explain two'>Creating a dataset usually includes a human selection process, in which we manually curate the data. </p>
+            <p className='explain two'> In this stage, we remove unrelated images that may skew the learning process and make sure the data adequately represents your idea of reality.</p> <br />
+            <div className='explain two'>If you are pleased iwth the results, the next stage would be to <div className="modelHover"> train </div>
+              a suitable machine learning model on this set of images.
               <div className="modelImage">
                 <p className='explain three-image'>*This is from "Happy Families Dinner" dataset training process</p>
               </div>
             </div>
-            <button className='more' onClick={saveToZip}> DOWNLOAD RESULTS </button>
-            <p className='explain three resutls'>*This is still a tiny dataset so we might be able to do this ourselves&mdash; real world datasets require crowd-sourcing techniques to go over tens of thousands of images.</p>
+            <button className='more download' onClick={saveToZip}> DOWNLOAD RESULTS </button>
+            <p className='explain three resutls'>*Note, this is still a tiny dataset&mdash;datasets require additional techniques to go over thousands of images.</p>
           </div>
         </div>
         <div className='imageContainer'>

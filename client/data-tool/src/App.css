@@ -366,7 +366,7 @@ button.search:hover {
 
 button.more{
   margin-bottom: 20px;
-  margin-top: 60px;
+  margin-top: 10px;
   margin-left: -3rem;
   border: 1px solid white;
   border-radius: 20px;
@@ -380,6 +380,10 @@ button.more:hover {
   color: black;
   border-radius: 10px;
   padding: 15px 35px;
+}
+
+button.more.download {
+  margin-top: 50px;
 }
 
 button.start {
@@ -478,6 +482,7 @@ button.start {
   font-size: 16px;
   text-decoration: underline;
   cursor: pointer;
+  display: inline;
 }
 
 .modelImage{
@@ -487,8 +492,8 @@ button.start {
   height: 200px;
   width: 400px;
   display: none;
-  margin-left: 45%;
-  margin-top: -25%;
+  margin-left: 10%;
+  margin-top: -10%;
   z-index: 100;
   border: 2px solid #EEBBF9;
   opacity: 0.9;

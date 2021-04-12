@@ -59,8 +59,8 @@ export default function DisplayImage(props) {
         </div>
         <div className='explain-paragraph'>
           <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong>.</p>
-          <p className='explain two'> Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model.</p>
-          <p className='explain two'>Once we collected all of the data, the next step will be to extract a meaningful and consistent set of images that the model could easily comprehend.</p>
+          <p className='explain two'>Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model. Look at the resulting set of images&mdash;does it contain what you had in mind?</p>
+          <p className='explain two'>Once we have assembled the raw data, it has to be post-processed into a meaningful and consistent set of images that our model could easily comprehend.</p>
         </div>
         <br /><br />
         <button disabled={visiblebtn} className='more' onClick={showEdit}>Keep going?</button>

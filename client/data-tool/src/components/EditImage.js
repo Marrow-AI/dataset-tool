@@ -135,8 +135,11 @@ export default function EditImage(props) {
             <h2 className='explain main'>Editing</h2>
           </div>
           <div className='explain-paragraph'>
-            <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, characters' positions.</p>
-            <p className='explain two'> This creates a lot of noise for the neural network, making it difficult to identify patterns.<br /> We need to help it a bit.</p> <br />
+            <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, characters’ positions.</p>
+            <p className='explain two'> This creates a lot of noise for the neural network, making it difficult to identify patterns. We need to help it a bit. </p>
+            <p className='explain two'> We can use Computer Vision to extract the humans from the photo and place them in fixed locations.
+            We can then augment the dataset by shuffling the humans’ positions, creating several variations of the same image.</p> 
+            <p className='explain two'>Please choose how many humans you would like each image to have and how many variations you would like to create from each image.</p>
           </div>
         </div>
         <div className='edit-imageContainer'>
@@ -169,7 +172,7 @@ export default function EditImage(props) {
                         max={4}
                       />
                       <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
-                        How many humans to extract <br /> from the background?
+                        Number of humans to extract <br/> from the background.
                       </Typography>
                       <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
                     </div>
@@ -194,7 +197,7 @@ export default function EditImage(props) {
                         max={10}
                       />
                       <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
-                        How many versions to create from each image?
+                        Number of versions to create from each image.
                       </Typography>
                       <p className='explain three'> this will shuffle the humans in every image, creating multiple data from one source</p>
                     </div>
