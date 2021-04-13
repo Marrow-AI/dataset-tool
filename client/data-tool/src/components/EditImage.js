@@ -42,16 +42,17 @@ const useStylesTwo = makeStyles((theme) => ({
   }
 }));
 
-const tracks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4, label: '4' }];
+const tracks = [{ value: 1, label: '1' }, { value: 2, label: '2'  }, { value: 3, label: '3'  }, { value: 4, label: '4' }];
+
 function valueLabelFormatOne(value) {
   return tracks.findIndex((track) => track.value === value);
 }
 
-const marks = [{ value: 0, label: '0' }, { value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 },
-{ value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }, { value: 10, label: '10' }];
+const marks = [{ value: 1, label: '1' }, { value: 2, label: '2' }, { value: 3,  label: '3' }, { value: 4,  label: '4' }, { value: 5, label: '5'},
+{ value: 6,  label: '6' }, { value: 7,  label: '7' }, { value: 8,  label: '8' }, { value: 9,  label: '9' }, { value: 10, label: '10' }];
 
 function valueLabelFormat(value) {
-  return marks.findIndex((mark) => mark.value === value);
+  return marks.findIndex((mark) => mark.value === (value));
 }
 
 export default function EditImage(props) {
@@ -166,9 +167,9 @@ export default function EditImage(props) {
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict-one"
                         step={null}
-                        valueLabelDisplay="auto"
+                        valueLabelDisplay="off"
                         marks={tracks}
-                        min={0}
+                        min={1}
                         max={4}
                       />
                       <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
@@ -191,9 +192,9 @@ export default function EditImage(props) {
                         getAriaValueText={valuetextTwo}
                         aria-labelledby="discrete-slider-restrict-two"
                         step={null}
-                        valueLabelDisplay="auto"
+                        valueLabelDisplay="off"
                         marks={marks}
-                        min={0}
+                        min={1}
                         max={10}
                       />
                       <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
