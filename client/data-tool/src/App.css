@@ -45,6 +45,22 @@ a {
   color: black;
 }
 
+.btn.footer {
+  background-color: transparent;
+  box-shadow: none;
+  padding-bottom: 10px;
+  float: left;
+  color: black;
+  border: none;
+  padding: 10px 30px;
+}
+
+.btn.footer:hover {
+  transition: none;
+  color: white;
+  padding: 10px 30px;
+}
+
 .footerCointainer {
   display: block;
   position: fixed;
@@ -57,7 +73,7 @@ a {
 .mainFooter {
   width: 100%;
   bottom: 0;
-  height: 2.3rem;
+  height: 2.4rem;
 }
 
 .footerDiv {
@@ -74,11 +90,12 @@ a {
   object-fit: contain;
   margin: 5px 0;
   padding-bottom: 2px;
+  padding-right: 10px;
 }
 
 .logosdiv {
   display: flex;
-  justify-content: space-around;  
+  float: right;
 }
 
 a.footer {
@@ -91,6 +108,10 @@ a.footer {
 
 a.footer:hover {
   color: #EEBBF9;
+}
+
+.MuiDialog-paper {
+  background-color: #EEBBF9 !important;
 }
 
 .firstScreen {
