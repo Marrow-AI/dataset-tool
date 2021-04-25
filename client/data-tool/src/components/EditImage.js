@@ -173,7 +173,7 @@ export default function EditImage(props) {
                         max={4}
                       />
                       <Typography className="label" id="track-false-slider-one" htmlFor="num-of-people" gutterBottom>
-                        Number of humans to extract <br/> from the background.
+                        Number of humans to extract from background.
                       </Typography>
                       <p className='explain three'> this will clear the background of the images, eliminating noise, and make sure all humans are aligned to the same position.</p>
                     </div>

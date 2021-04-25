@@ -45,6 +45,13 @@ a {
   color: black;
 }
 
+.link.footer {
+  font-family: 'Lato', sans-serif;
+  color: black;
+  display: inline-flex;
+  margin: 0 2px ;
+}
+
 .btn.footer {
   background-color: transparent;
   box-shadow: none;
@@ -99,15 +106,15 @@ a {
 }
 
 a.footer {
-  color: black;
+  /* color: black;
   display: inline-block;
   font-size: 16px;
   letter-spacing: 2px;
-  padding: 10px 15px;
+  padding: 10px 15px; */
 }
 
 a.footer:hover {
-  color: #EEBBF9;
+  color: #666;
 }
 
 .MuiDialog-paper {
@@ -244,7 +251,6 @@ button.search:hover {
   color: grey;
   text-decoration: underline;
 }
-
 
 .spinner{  
   height: 50%;
@@ -470,10 +476,7 @@ button.start {
 
 .MuiTypography-body1 {
   color: white;
-  font-family: 'Yanone Kaffeesatz', sans-serif !important;
-  font-size: 18px !important;
-  width: 300px !important;
-  letter-spacing: 2px !important;
+  font-family: 'lato', sans-serif !important;
 }
 
 .MuiSlider-markLabel.MuiSlider-markLabelActive {
