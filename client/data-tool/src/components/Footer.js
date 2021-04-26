@@ -52,9 +52,9 @@ const Footer = () => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            The struggle in collecting and allocating data is a real struggle for the majority of people who are outside of those big companies.
+            The struggle in collecting and allocating data is a real struggle for most people outside of those big companies.
             It has real implications for our lives.
-            The dataset tool aims to explore alternative methods that can help us augment and allocate dataset for machine learning training.
+            The dataset tool aims to explore alternative methods that can help us augment and allocate datasets for machine learning training.
             <br />
             <br />
             This tool was developed and designed for Ars Electronica Future Thinking School by
