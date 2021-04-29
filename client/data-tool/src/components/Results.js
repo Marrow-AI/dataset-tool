@@ -51,9 +51,9 @@ export default function Results(props) {
       <div className='secondScreen'>
         <div className='leftSection'>
           <h2 className='explain-number'> 1.</h2>
-          <h2 className='explain-number'>Data Scraping</h2>
+          <h2 id='curation-section' className='explain-number'>Data Scraping</h2>
           <h2 className='explain-number'> 2. </h2>
-          <h2 id='curation-section' className='explain-number'> Editing</h2>
+          <h2 className='explain-number'> Editing</h2>
           <h2 className='explain-number'> 3. </h2>
           <h2 className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
 
