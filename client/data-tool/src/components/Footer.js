@@ -55,16 +55,19 @@ const Footer = () => {
             The struggle in collecting and allocating data is a real struggle for most people outside of those big companies.
             It has real implications for our lives.
             The dataset tool aims to explore alternative methods that can help us augment and allocate datasets for machine learning training.
-            <br />
-            <br />
-            This tool was developed and designed for Ars Electronica Future Thinking School by
-            <a className='link footer' href="https://avner.js.org/" alt="" target="_blank" rel="noopener noreferrer"> Avner Peled </a>
+            <br/>
+            <br/>
+            The tool was developed and designed for Ars Electronica Future Thinking School by
+            <a className='link footer' href="https://avner.js.org/" alt="" target="_blank" rel="noopener noreferrer"> Avner Peled </a> 
             and <a className='link footer' href="https://shirin.works/" alt="" target="_blank" rel="noopener noreferrer">shirin anlen</a>,
-            and is part of the development of the
-            <a className='link footer' href="https://shirin.works/Marrow-teach-me-how-to-see-you-mother-Machine-learning-immersive" alt="" target="_blank" rel="noopener noreferrer"> Marrow project</a>,
-            with the support of the National Film Board of Canada.
-            <br />
-            <br />
+            co-funded by the European Commission's DG CONNECT, in the framework of the Horizon 2020 program of the European Union under the S+T+ARTS program's Regional STARTS Centers, 
+            and with the support of the National Film Board of Canada. 
+            <br/> 
+            <br/>
+            This project is part of the development of the <a className='link footer' href="https://shirin.works/Marrow-teach-me-how-to-see-you-mother-Machine-learning-immersive" alt="" target="_blank" rel="noopener noreferrer">Marrow project</a>, 
+            with the support of the National Film Board of Canada, ATLAS V and the CNC.
+            <br/>
+            <br/>
             Read more about the motivation and code in this <a className='link footer' href="https://towardsdatascience.com/small-family-small-dataset-7f7db708f06d" alt="" target="_blank" rel="noopener noreferrer">
               Medium post</a>.
 
