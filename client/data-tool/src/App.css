@@ -73,6 +73,7 @@ a {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 3rem;
   margin-left: -1.5%;
   background-color: #EEBBF9;
 }
@@ -80,7 +81,6 @@ a {
 .mainFooter {
   width: 100%;
   bottom: 0;
-  height: 2.4rem;
 }
 
 .footerDiv {
@@ -93,16 +93,26 @@ a {
 }
 
 .logos {
-  height: 25px;
+  height: 20px;
   object-fit: contain;
   margin: 5px 0;
   padding-bottom: 2px;
-  padding-right: 10px;
 }
 
-.logosdiv {
-  display: flex;
+.startLogo {
+  margin-top: 3px;
+}
+
+.addCred {
+  /* width: 500px; */
+  font-size: 8px;
   float: right;
+  padding-right: 25px;
+  margin-top: -6px;
+  padding-bottom: 2px;
+  color: #000;
+  text-align: right;
+  font-family: 'Lato', sans-serif;
 }
 
 a.footer {

@@ -34,9 +34,13 @@ const Footer = () => {
                 <a href='https://atlasv.io/' target="_blank"><img className='logos' src="/static/atlasV.png" alt='' /></a>
                 <a href='https://www.nfb.ca/interactive/marrow' target="_blank"><img className='logos' src="/static/NFB.png" alt='' /></a>
                 <a href='https://ars.electronica.art/news/de/' target="_blank"><img className='logos' src="/static/Ars-Electronica.png" alt='' /></a>
+                <a className='startLogo' href='https://www.starts.eu/' target="_blank"><img className='logos' src="/static/start.png" alt='' /></a>
+                <a href='https://ec.europa.eu/programmes/horizon2020/en/home' target="_blank"><img className='logos' src="/static/enLogo.png" alt='' /></a>
               </div>
             </div>
           </div>
+          <p className='addCred'>This project is has received funding through the S+T+ARTS initiative of the European Union’s Horizon 2020 research & innovation programme under grant agreement No LC-01207687 in the framework of the Regional S+T+ARTS Centers project.</p>
+
         </div>
       </div>
       
