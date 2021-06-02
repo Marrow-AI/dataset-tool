@@ -53,9 +53,10 @@ parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 args = parser.parse_args()
 
 class Scraper(Thread):
-    def __init__(self, queue, app, sessions):
+    def __init__(self, queue, stop_flag, app, sessions):
         print("Init scraper")
         self.queue = queue
+        self.stop_flag = stop_flag
         self.app = app
         self.sessions = sessions
 
@@ -76,6 +77,7 @@ class Scraper(Thread):
             search_params["download_dir"],
             search_params["session_id"]
           )
+          self.stop_flag = False
 
 
 
@@ -102,7 +104,7 @@ class Scraper(Thread):
             print('Gathered {} thumbs'.format(len(all_thumbs)))
             print("Collecting full size pics")
 
-            thumb_gen = (thumb for thumb in all_thumbs if self.queue.empty())
+            thumb_gen = (thumb for thumb in all_thumbs if self.queue.empty() and not self.stop_flag)
 
             for thumb in thumb_gen:
                 try:
@@ -160,9 +162,11 @@ Compress(app)
 
 sessions = {}
 q = queue.Queue()
+stop_flag = False
 
 scraper = Scraper(
     q,
+    stop_flag,
     app,
     sessions
 )
@@ -213,6 +217,16 @@ def search():
         })
 
         return jsonify(result="OK", dataset_session=session_id)
+
+    except Exception as e:
+        print("Error in route /search {}".format(str(e)))
+        return jsonify(result=str(e))
+
+@app.route('/test')
+def stop():
+    try:
+        self.stop_flag = True
+        return jsonify(result="OK")
 
     except Exception as e:
         print("Error in route /search {}".format(str(e)))
