@@ -14,7 +14,7 @@ export default function DisplayImage(props) {
   const {showNext} = props;
 
 
-  async function showEdit(e) {
+  function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
     await fetch('/stop', {
@@ -60,34 +60,36 @@ export default function DisplayImage(props) {
     }
   });
 
+  useEffect(() => {
+    window.location.href='/#data-scraping'
+  }, [])
+
   return (
-      <div className='secondScreen'>
-        <div className='leftSection'>
-          <div className='explaining-title'>
-            <h2 className='explain-number'> 1.</h2>
-            <h2 className='explain main'>Data Scraping</h2>
-          </div>
-          <div className='explain-paragraph'>
-            <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong></p>
-            <p className='explain two'> Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model.</p>
-            <p className='explain two'>Once we collected all of the data, the next step will be to extract a meaningful and consistent set of images that the model could easily comprehend.</p>
-          </div>
-          <br /><br />
-          <button disabled={visiblebtn} className='more' onClick={showEdit}>Keep going?</button>
-
+    <div className='secondScreen'>
+      <div className='leftSection'>
+        <div className='explaining-title'>
+          <h2 id='data-scraping' className='explain-number'> 1.</h2>
+          <h2 className='explain main'>Data Scraping</h2>
         </div>
+        <div className='explain-paragraph'>
+          <p className='explain two'>Data Scraping is a technique in which a computer program extracts readable data from a data source. In our case, we scrape the web by extracting links to images from <strong>Google Images</strong>.</p>
+          <p className='explain two'>Web Scraping is a common technique for obtaining massive amounts of data required to train a machine learning model. Look at the resulting set of images&mdash;does it contain what you had in mind?</p>
+          <p className='explain two'>Once we have assembled the raw data, it has to be post-processed into a meaningful and consistent set of images that our model could easily comprehend.</p>
+        </div>
+        <br /><br />
+        <button disabled={visiblebtn} className='more' onClick={showEdit}>Keep going?</button>
+      </div>
 
-        <div className='imageContainer'>
-          <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
-
-          <div className='images'>
-            {searchImages.map((imageUrl, index) => (
-              <div key={index}>
-                <img src={imageUrl} alt="" />
-              </div>
-            ))}
-          </div>
+      <div className='imageContainer'>
+        <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
+        <div className='images'>
+          {searchImages.map((imageUrl, index) => (
+            <div key={index}>
+              <img src={imageUrl} alt="" />
+            </div>
+          ))}
         </div>
       </div>
+    </div>
   );
 }

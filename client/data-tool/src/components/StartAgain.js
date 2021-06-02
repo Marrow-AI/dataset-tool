@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function StartAgain() {
 
-  return(
+ 
 
-    <div className="popup">
-        <a href='/'> <h1 className="logo end">//Start again?</h1></a>
-        <a href='/http://52.206.213.41:8080'>  <h1 className="logo end">//Explore Latent Space</h1></a>
+  return(
+    <div id='start-again' className="popup">
+        <a className='startagain link' href='/'> <h1 className="logo end">//Start again?</h1></a>
+        <a href='/http://52.206.213.41:8080'>  
+          <h1 className='startagain link' className="logo end">//Explore Latent Space</h1>
+        </a>
     </div>
   )
 }

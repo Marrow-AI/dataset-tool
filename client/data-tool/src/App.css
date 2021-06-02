@@ -13,15 +13,19 @@
   background: white;
 }
 
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Yanone Kaffeesatz','Lato', sans-serif;
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 65%, rgba(238,187,240,1) 100%);
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100%;
-  background: rgb(2,0,36);
-  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(235,148,94,1) 0%, rgba(236,161,144,1) 45%, rgba(238,187,240,1) 100%);
+  background-attachment: fixed; 
+	background-size: 100%;
 }
 
 .app-container {
@@ -41,40 +45,93 @@ a {
   color: black;
 }
 
+.link.footer {
+  font-family: 'Lato', sans-serif;
+  color: black;
+  display: inline-flex;
+  margin: 0 2px ;
+}
+
+.btn.footer {
+  background-color: transparent;
+  box-shadow: none;
+  padding-bottom: 10px;
+  float: left;
+  color: black;
+  border: none;
+  padding: 10px 30px;
+}
+
+.btn.footer:hover {
+  transition: none;
+  color: white;
+  padding: 10px 30px;
+}
+
 .footerCointainer {
   display: block;
   position: fixed;
   bottom: 0;
-  width: 110%;
+  width: 100%;
+  height: 3rem;
   margin-left: -1.5%;
   background-color: #EEBBF9;
 }
 
 .mainFooter {
-  width: 90%;
+  width: 100%;
   bottom: 0;
-  height: 2rem;
+}
+
+.footerDiv {
+  display: flex;
+  justify-content: space-between;
 }
 
 .footer {
-  display: flex;
-  justify-content: space-around;
+  margin: 0 15px;
+}
+
+.logos {
+  height: 20px;
+  object-fit: contain;
+  margin: 5px 0;
+  padding-bottom: 2px;
+}
+
+.startLogo {
+  margin-top: 3px;
+}
+
+.addCred {
+  /* width: 500px; */
+  font-size: 8px;
+  float: right;
+  padding-right: 25px;
+  margin-top: -6px;
+  padding-bottom: 2px;
+  color: #000;
+  text-align: right;
+  font-family: 'Lato', sans-serif;
 }
 
 a.footer {
-  color: black;
+  /* color: black;
   display: inline-block;
   font-size: 16px;
   letter-spacing: 2px;
-  padding: 10px 15px;
+  padding: 10px 15px; */
 }
 
 a.footer:hover {
-  color: #EEBBF9;
+  color: #666;
+}
+
+.MuiDialog-paper {
+  background-color: #EEBBF9 !important;
 }
 
 .firstScreen {
-
  position: relative;
  /* max-width: 780px; */
  padding: 15px;
@@ -126,6 +183,10 @@ h1.logo {
   font-size: 58px;
   line-height: 3.5rem;
   font-weight: 300;
+}
+
+h1.logo:hover {
+  color: #ED965F;
 }
 
 .example {
@@ -205,16 +266,16 @@ button.search:hover {
   text-decoration: underline;
 }
 
-
 .spinner{  
-  height: 100%;
+  height: 50%;
   width: 100%;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   position: absolute;
+  /* position: relative; */
   left: 0;
-  top: 0;
+  margin-top: 0;
   z-index: 100;
 }
 
@@ -254,10 +315,6 @@ button.search:hover {
   text-transform: uppercase;
 }
 
-.title.result-before.final {
-  color: white;
-}
-
 .number {
   padding-left: 5px;
   font-size: 24px;
@@ -279,24 +336,17 @@ button.search:hover {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 10px;
+  margin-top: 20px;
 }
 
 .leftSection.result {
   border: none;
 }
 
-/* .leftSection.edit {
-  height: 1080px;
-}
-
-.explaining.edit {
-  height: 1060px;
-}  */
-
 .explaining.result {
-  border:none;
   margin-bottom: 30%;
-  /* position: relative; */
+  margin-top: 40px;
 }
 
 .explain-paragraph {
@@ -306,24 +356,26 @@ button.search:hover {
 .explain-number {
   -webkit-text-fill-color: black; 
   /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #ED965F;
-  font-size: 64px;
+  font-size: 70px;
   text-transform: uppercase;
   text-align: left;
-  margin-bottom: -5%;
+  margin-bottom: -3%;
+  margin-top: 20px;
   padding-bottom: 0;
+  font-family: 'Roboto', sans-serif; 
 }
 
 .explain.main {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: black;
-  font-size: 64px;
+  font-size: 76px;
   -webkit-text-fill-color: #ED965F; 
   color: #ED965F;
-  line-height: 4rem;
   margin-top: 20px;
+  line-height: 4rem;
+  font-family: 'Roboto', sans-serif; 
 }
 
 .explain.main.final {
@@ -340,7 +392,7 @@ button.search:hover {
 .explain.main.result {
   line-height: 2rem;
   text-align: left;
-  margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .explain.two {
@@ -355,6 +407,7 @@ button.search:hover {
 
 button.more{
   margin-bottom: 20px;
+  margin-top: 10px;
   margin-left: -3rem;
   border: 1px solid white;
   border-radius: 20px;
@@ -368,6 +421,10 @@ button.more:hover {
   color: black;
   border-radius: 10px;
   padding: 15px 35px;
+}
+
+button.more.download {
+  margin-top: 50px;
 }
 
 button.start {
@@ -394,13 +451,18 @@ button.start {
    margin-bottom: 15%;
    margin-top: 10%;
    border: 2px solid #ED965F;
-   letter-spacing: 5px;
+   letter-spacing: 15px;
    font-size: 18px;
+   box-shadow: 2px 3px 5px rgba(0, 0, 0, .75);
    padding: 16px 300px;
  }
 
  .btn.edit:hover {
-  border: 2px solid white;
+  /* border: 2px solid white; */
+  border: 2px solid #ED965F;
+  background-color: #ED965F;
+  border-radius: 10px;
+  color: black;
  }
 
 .editForm {
@@ -416,7 +478,7 @@ button.start {
   display: flex;
   justify-content: space-around;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   margin-top: 4%;
 }
 
@@ -433,10 +495,7 @@ button.start {
 
 .MuiTypography-body1 {
   color: white;
-  font-family: 'Yanone Kaffeesatz', sans-serif !important;
-  font-size: 18px !important;
-  width: 300px !important;
-  letter-spacing: 2px !important;
+  font-family: 'lato', sans-serif !important;
 }
 
 .MuiSlider-markLabel.MuiSlider-markLabelActive {
@@ -446,8 +505,12 @@ button.start {
   font-size: 16px;
 }
 
-.MuiTypography-root.label {
-  /* padding-bottom: 15%; */
+.MuiSlider-rail {
+  height: 6px !important;
+}
+
+.MuiSlider-track {
+  height: 10px !important;
 }
 
 .explain.three {
@@ -462,6 +525,7 @@ button.start {
   font-size: 16px;
   text-decoration: underline;
   cursor: pointer;
+  display: inline;
 }
 
 .modelImage{
@@ -471,8 +535,8 @@ button.start {
   height: 200px;
   width: 400px;
   display: none;
-  margin-left: 45%;
-  margin-top: -25%;
+  margin-left: 10%;
+  margin-top: -10%;
   z-index: 100;
   border: 2px solid #EEBBF9;
   opacity: 0.9;
@@ -500,9 +564,8 @@ button.start {
 }
 
 .popup {
-  /* background-color: black; */
   text-align: center;
-  margin-top: 80%;
+  margin-top: 80%; 
   margin-left: -100%;
 
 }
@@ -523,6 +586,7 @@ button.start {
   margin-top: 5%;
   margin-bottom: 10rem;
   width: 700px;
+  padding-right: 10px;
 }
 
 .edit-imageContainer {
@@ -541,6 +605,10 @@ button.start {
   height: 550px; 
   overflow-y: scroll;
   margin-top: 4%;
+}
+
+.images.results {
+  height: 700px
 }
 
 /*SCROLL BAR */
