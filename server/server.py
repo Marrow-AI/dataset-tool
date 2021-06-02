@@ -77,7 +77,7 @@ class Scraper(Thread):
             search_params["download_dir"],
             search_params["session_id"]
           )
-          self.stop_flag = False
+          self.stop_flag.reset()
 
 
 
@@ -104,7 +104,7 @@ class Scraper(Thread):
             print('Gathered {} thumbs'.format(len(all_thumbs)))
             print("Collecting full size pics")
 
-            thumb_gen = (thumb for thumb in all_thumbs if self.queue.empty() and not self.stop_flag)
+            thumb_gen = (thumb for thumb in all_thumbs if self.queue.empty() and not self.stop_flag.stop)
 
             for thumb in thumb_gen:
                 try:
@@ -154,6 +154,15 @@ method_requests_mapping = {
     'OPTIONS': requests.options,
 }
 
+class StopFlag:
+   def __init__(self):
+       self.stop = False
+
+   def flag(self):
+       self.stop = True
+
+   def reset(self):
+       self.stop = False
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -162,7 +171,7 @@ Compress(app)
 
 sessions = {}
 q = queue.Queue()
-stop_flag = False
+stop_flag = StopFlag()
 
 scraper = Scraper(
     q,
@@ -222,10 +231,10 @@ def search():
         print("Error in route /search {}".format(str(e)))
         return jsonify(result=str(e))
 
-@app.route('/test')
+@app.route('/stop',  methods = ['POST'])
 def stop():
     try:
-        self.stop_flag = True
+        stop_flag.flag()
         return jsonify(result="OK")
 
     except Exception as e:

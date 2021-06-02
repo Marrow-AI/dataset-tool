@@ -10,8 +10,7 @@ import Results from './components/Results';
 import Footer from './components/Footer';
 import RenderContainer from './components/RenderContainer';
 
-const ENDPOINT = "http://52.206.213.41:8540";
-const socket = socketIOClient(ENDPOINT);
+const socket = socketIOClient();
 
 console.log("Connecting to socket");
 socket.on('connect', () => {

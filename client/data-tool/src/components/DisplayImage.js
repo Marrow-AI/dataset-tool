@@ -14,11 +14,23 @@ export default function DisplayImage(props) {
   const {showNext} = props;
 
 
-  function showEdit(e) {
+  async function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
-    // history.push("/edit")
-    showNext()
+    await fetch('/stop', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({})
+    })
+    .then(res => res.json())
+    .then((data) => {
+       console.log("Stop search", data);
+       if (data.result === "OK") {
+          showNext()
+       } else {
+          alert(data.result);
+       }
+    });
   }
 
   const toDataURL = url => fetch(corsServer + url)
