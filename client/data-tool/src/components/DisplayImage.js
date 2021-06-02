@@ -14,7 +14,7 @@ export default function DisplayImage(props) {
   const {showNext} = props;
 
 
-  function showEdit(e) {
+  async function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
     await fetch('/stop', {
