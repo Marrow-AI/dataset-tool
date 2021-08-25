@@ -131,7 +131,7 @@ export default function EditImage(props) {
 
   const scrollToSection = () => {
     scroller.scrollTo("edit-section", {
-      duration: 200,
+      duration: 20,
       delay: 0,
       smooth: "easeInOutQuart",
     });
@@ -147,8 +147,8 @@ export default function EditImage(props) {
         <div className='leftSection edit'>
           <div className='explaining-title'>
             <h2 className='explain-number'> 1.</h2>
-            <Link className='hoverTitle' to='/display'>
-              <h2 className='explain-number'> Data Scraping</h2>
+            <Link to='/display'>
+              <h2 className='explain-number hover'> Data Scraping</h2>
             </Link>
             <h2 className='explain-number'> 2.</h2>
             <h2 id='edit-section' className='explain main'>Editing</h2>

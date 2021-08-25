@@ -36,12 +36,23 @@ function App() {
   }
   return (
     <>
+      <div className='mobile-container Main'>
+        <div className="mobileContainer">
+          <p className="mobileMsg">This website is not suitable for small size screens.
+            <br />
+            Please increase your window or revist from desktop.
+            <br />
+            <br />
+            Thank you! </p>
+        </div>
+      </div>
+
       <div className='app-container'>
         <Router>
-            <Search />
-            <Route exact path="/display" component={DisplayImage} />
-            <Route exact path="/edit" component={EditImage} />  
-            <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
+          <Search />
+          <Route exact path="/display" component={DisplayImage} />
+          <Route exact path="/edit" component={EditImage} />
+          <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
           <Footer />
         </Router>
       </div>

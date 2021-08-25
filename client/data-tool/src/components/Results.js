@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ModalImage from "react-modal-image";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { saveAs } from "filesaver.js-npm";
@@ -19,7 +18,7 @@ export default function Results(props) {
   const [hasClassName, setClassName] = useState(true);
 
   const scrollToStartOver = () => {
-    scroller.scrollTo("start-again", {
+    scroller.scrollToBottom("start-again", {
       duration: 200,
       delay: 0,
       smooth: "easeInOutQuart",
@@ -93,12 +92,12 @@ export default function Results(props) {
       <div className='secondScreen'>
         <div className='leftSection'>
           <h2 className='explain-number'> 1.</h2>
-          <Link className='hoverTitle' to='/display'>
-            <h2 id='curation-section' className='explain-number'>Data Scraping</h2>
+          <Link to='/display'>
+            <h2 id='curation-section' className='explain-number hover'>Data Scraping</h2>
           </Link>
           <h2 className='explain-number'> 2. </h2>
-          <Link className='hoverTitle' to='/edit'>
-            <h2 className='explain-number'> Editing</h2>
+          <Link to='/edit'>
+            <h2 className='explain-number hover'> Editing</h2>
           </Link>
           <h2 className='explain-number'> 3. </h2>
           <h2 className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>

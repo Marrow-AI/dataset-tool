@@ -31,11 +31,11 @@ const Footer = () => {
             </div>
             <div >
               <div className='logosdiv'>
-                <a href='https://atlasv.io/' target="_blank"><img className='logos' src="/static/atlasV.png" alt='' /></a>
-                <a href='https://www.nfb.ca/interactive/marrow' target="_blank"><img className='logos' src="/static/NFB.png" alt='' /></a>
-                <a href='https://ars.electronica.art/news/de/' target="_blank"><img className='logos' src="/static/Ars-Electronica.png" alt='' /></a>
-                <a className='startLogo' href='https://www.starts.eu/' target="_blank"><img className='logos' src="/static/start.png" alt='' /></a>
-                <a href='https://ec.europa.eu/programmes/horizon2020/en/home' target="_blank"><img className='logos' src="/static/enLogo.png" alt='' /></a>
+                <a href='https://atlasv.io/' target="_blank" rel="noopener noreferrer"><img className='logos' src="/static/atlasV.png" alt='' /></a>
+                <a href='https://www.nfb.ca/interactive/marrow' target="_blank" rel="noopener noreferrer"><img className='logos' src="/static/NFB.png" alt='' /></a>
+                <a href='https://ars.electronica.art/news/de/' target="_blank" rel="noopener noreferrer"><img className='logos' src="/static/Ars-Electronica.png" alt='' /></a>
+                <a className='startLogo' href='https://www.starts.eu/' target="_blank" rel="noopener noreferrer"><img className='logos' src="/static/start.png" alt='' /></a>
+                <a href='https://ec.europa.eu/programmes/horizon2020/en/home' target="_blank" rel="noopener noreferrer"><img className='logos' src="/static/enLogo.png" alt='' /></a>
               </div>
             </div>
           </div>
@@ -73,7 +73,8 @@ const Footer = () => {
             <br/>
             <br/>
             Read more about the motivation and code in this <a className='link footer' href="https://towardsdatascience.com/small-family-small-dataset-7f7db708f06d" alt="" target="_blank" rel="noopener noreferrer">
-              Medium post</a>.
+            Medium post</a>. And check out our <a className='link footer' href="https://latentspace.tools/" alt="" target="_blank" rel="noopener noreferrer">Latent Space explorer tool</a>.
+
 
           </DialogContentText>
         </DialogContent>
