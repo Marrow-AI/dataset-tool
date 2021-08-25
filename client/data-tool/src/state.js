@@ -6,8 +6,8 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const reducer = (state = {
     socket: null,
     images: [],
+    imageUrls: [],
     keyword: '',
-    images64:[],
     cropImages: [],
     numberPeople: 0,
     numberVersions: 0,
@@ -37,10 +37,10 @@ const reducer = (state = {
       keyword: action.keyword
     }
   }
-  case 'SAVE_BASE64': {
+  case 'SAVE_IMAGE_URL': {
     return {
       ...state, 
-      images64: [...state.images64, action.image64]
+      imageUrls: [...state.imageUrls, action.imageUrl]
     }
   }
   case 'CROP_IMAGE': {

@@ -47,7 +47,10 @@ export default function Results(props) {
   }, [])
 
   return (
-    <div className="mainTitle">
+    <div 
+      className="mainTitle"
+      style={props.visible ? {} : { display: 'none' }}
+    >
       <div className='secondScreen'>
         <div className='leftSection'>
           <h2 className='explain-number'> 1.</h2>

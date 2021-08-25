@@ -45,6 +45,7 @@ import urllib3
 urllib3.disable_warnings()
 
 import requests
+import shutil 
 
 parser = argparse.ArgumentParser(description='Marrow Dataset tool server')
 
@@ -128,7 +129,7 @@ class Scraper(Thread):
                         print("Found image url {}".format(url))
                         socket_id = sessions[session_id]
                         print("Socket ID: {}".format(socket_id))
-                        emit('image',{'url':url},room=socket_id, namespace='/')
+                        emit('image',{'url':url},broadcast=True, namespace='/')
 
                         # In case we want to download them
                         #path = urlparse(url).path
@@ -205,6 +206,41 @@ def update_session():
     except Exception as e:
         traceback.print_stack()
     return jsonify(result=str(e))
+
+@app.route('/poseUrl',  methods = ['POST'])
+def pose_url():
+    try:
+        ENDPOINT = 'https://densepose.dataset.tools/pose'
+
+        params = request.get_json()
+        url =  params['url']
+        response = requests.get(url)
+
+        print("Decoding {}".format(url))
+
+        if response.status_code == 200:
+            response.raw.decode_content = True
+            uri = (
+                "data:" +
+               response.headers['Content-Type'] + ";" +
+               "base64," + base64.b64encode(response.content).decode("utf-8")
+            )
+            
+            pose = requests.post(ENDPOINT, json={
+                "data": uri,
+                "numOfPeople" : params['numOfPeople'],
+                "numOfPermutations" : params['numOfPermutations']
+            })
+
+            emit('pose',pose.json(),broadcast=True, namespace='/')
+            return jsonify(result="OK")
+        else:
+            return jsonify(result=str(response.status_code))
+
+
+    except Exception as e:
+        print("Error in route /poseUrl {}".format(str(e)))
+        return jsonify(result=str(e))
 
 @app.route('/search',  methods = ['POST'])
 def search():

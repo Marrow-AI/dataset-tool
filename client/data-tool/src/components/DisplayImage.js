@@ -8,7 +8,7 @@ export default function DisplayImage(props) {
   const socket = useSelector(state => state.socket);
   const corsServer = '/proxy/';
   let history = useHistory();
-  const searchImages = useSelector(state => state.images64);
+  const searchImages = useSelector(state => state.imageUrls);
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
   const {showNext} = props;
@@ -46,10 +46,10 @@ export default function DisplayImage(props) {
     if (socket) {
       socket.on('image', async (data) => {
         console.log('Received image:', data.url);
-        const imageUrl = await toDataURL(data.url);
+        //const imageUrl = await toDataURL(data.url);
         store.dispatch({
-          type: 'SAVE_BASE64',
-          image64: imageUrl
+          type: 'SAVE_IMAGE_URL',
+          imageUrl: data.url
         })
       });
     }
@@ -65,7 +65,10 @@ export default function DisplayImage(props) {
   }, [])
 
   return (
-    <div className='secondScreen'>
+    <div 
+      className='secondScreen'
+      style={props.visible ? {} : { display: 'none' }}
+    >
       <div className='leftSection'>
         <div className='explaining-title'>
           <h2 id='data-scraping' className='explain-number'> 1.</h2>

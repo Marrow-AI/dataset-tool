@@ -12,23 +12,25 @@ export default function RenderContainer() {
   const [numberVersions, setNumberVersions] = useState()
 
   function showCurrentComponent() {
-    if (currentComponent === 'display') {
-      return (
-        <DisplayImage showNext={() => setCurrentComponent('edit')}/>
-      )
-    } else if (currentComponent === 'edit') {
-      return (
-        <EditImage showNext={() => setCurrentComponent('result')}
+    return (
+      <>
+        <DisplayImage
+          visible={currentComponent === 'display'}
+          showNext={() => setCurrentComponent('edit')}
+        />
+        <EditImage
+         visible={currentComponent === 'edit'}
+         showNext={() => setCurrentComponent('result')}
          setShowPeople={setNumberPeople}
-         setShowVersions={setNumberVersions}/>
-      )
-    } else if(currentComponent === 'result') {
-      return (
-      <Results
-        showNumberPeople={numberPeople}
-        showNumberVersion={numberVersions}/>
-      )
-    }
+         setShowVersions={setNumberVersions}
+        />
+        <Results
+          visible={currentComponent === 'result'}
+          showNumberPeople={numberPeople}
+          showNumberVersion={numberVersions}
+        />
+      </>
+    ) 
   }
 
   return (
