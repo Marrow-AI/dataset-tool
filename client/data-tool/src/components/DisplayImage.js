@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import store from '../state';
+import { scroller } from "react-scroll";
 
 export default function DisplayImage(props) {
   const keyword = useSelector(state => state.keyword);
@@ -24,9 +25,9 @@ export default function DisplayImage(props) {
     })
       .then(res => res.json())
       .then((data) => {
-        console.log("Stop search", data);
         if (data.result === "OK") {
-          showNext()
+          // showNext()
+          history.push("/edit")
         } else {
           alert(data.result);
         }
@@ -60,15 +61,20 @@ export default function DisplayImage(props) {
     }
   });
 
+ const scrollToSection = () => {
+    scroller.scrollTo("data-scraping", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
   useEffect(() => {
-    window.location.href = '/#data-scraping'
+    scrollToSection()
   }, [])
 
   return (
-    <div
-      className='secondScreen'
-      style={props.visible ? {} : { display: 'none' }}
-    >
+    <div className='secondScreen'>
       <div className='leftSection'>
         <div className='explaining-title'>
           <h2 id='data-scraping' className='explain-number'> 1.</h2>

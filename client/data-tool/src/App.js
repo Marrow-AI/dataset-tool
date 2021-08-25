@@ -1,11 +1,15 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css';
 import store, { setSocket } from './state';
 import socketIOClient from "socket.io-client";
 import Footer from './components/Footer';
 import RenderContainer from './components/RenderContainer';
 import { isMobile } from 'react-device-detect';
+import DisplayImage from './components/DisplayImage.js';
+import Search from './components/Search.js';
+import EditImage from './components/EditImage.js';
+import Results from './components/Results.js';
 
 const socket = socketIOClient();
 
@@ -34,7 +38,10 @@ function App() {
     <>
       <div className='app-container'>
         <Router>
-          <Route exact path="/" component={RenderContainer} />
+            <Search />
+            <Route exact path="/display" component={DisplayImage} />
+            <Route exact path="/edit" component={EditImage} />  
+            <Route exact path="/results/:numOfPeople/:numOfPermutations" component={Results} />
           <Footer />
         </Router>
       </div>

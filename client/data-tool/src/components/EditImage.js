@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
+import { Link, useHistory } from "react-router-dom";
+import { scroller } from "react-scroll";
 import useSpinner from './useSpinner';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -42,14 +44,14 @@ const useStylesTwo = makeStyles((theme) => ({
   }
 }));
 
-const tracks = [{ value: 1, label: '1' }, { value: 2, label: '2'  }, { value: 3, label: '3'  }, { value: 4, label: '4' }];
+const tracks = [{ value: 1, label: '1' }, { value: 2, label: '2' }, { value: 3, label: '3' }, { value: 4, label: '4' }];
 
 function valueLabelFormatOne(value) {
   return tracks.findIndex((track) => track.value === value);
 }
 
-const marks = [{ value: 1, label: '1' }, { value: 2, label: '2' }, { value: 3,  label: '3' }, { value: 4,  label: '4' }, { value: 5, label: '5'},
-{ value: 6,  label: '6' }, { value: 7,  label: '7' }, { value: 8,  label: '8' }, { value: 9,  label: '9' }, { value: 10, label: '10' }];
+const marks = [{ value: 1, label: '1' }, { value: 2, label: '2' }, { value: 3, label: '3' }, { value: 4, label: '4' }, { value: 5, label: '5' },
+{ value: 6, label: '6' }, { value: 7, label: '7' }, { value: 8, label: '8' }, { value: 9, label: '9' }, { value: 10, label: '10' }];
 
 function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === (value));
@@ -63,6 +65,7 @@ export default function EditImage(props) {
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
   const [loading, showLoading, hideLoading] = useSpinner();
+  let history = useHistory();
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(1)
   const { showNext, setShowPeople, setShowVersions } = props;
@@ -95,7 +98,6 @@ export default function EditImage(props) {
   }
 
   async function onSubmit() {
-    console.log('moving to results');
     store.dispatch({
       type: 'SAVE_VALUE_SLIDER',
       numberPeople: valueNumberOfPeople,
@@ -113,9 +115,10 @@ export default function EditImage(props) {
           } finally {
             setTimeout(() => {
               hideLoading()
-              setShowPeople(numberPeople)
-              setShowVersions(numberVersions)
-              showNext();
+              history.push(`/results/${numberPeople}/${numberVersions}`)
+              // setShowPeople(numberPeople)
+              // setShowVersions(numberVersions)
+              // showNext();
             }, 100);
           }
         }
@@ -126,27 +129,35 @@ export default function EditImage(props) {
     });
   }
 
+  const scrollToSection = () => {
+    scroller.scrollTo("edit-section", {
+      duration: 200,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
   useEffect(() => {
-    window.location.href = '/#edit-section'
+    scrollToSection()
   }, [])
 
   return (
     <ThemeProvider theme={theme}>
-      <div className='secondScreen'
-       style={props.visible ? {} : { display: 'none' }}
-      >
+      <div className='secondScreen'>
         <div className='leftSection edit'>
           <div className='explaining-title'>
             <h2 className='explain-number'> 1.</h2>
-            <h2 id='edit-section' className='explain-number'> Data Scraping</h2>
+            <Link className='hoverTitle' to='/display'>
+              <h2 className='explain-number'> Data Scraping</h2>
+            </Link>
             <h2 className='explain-number'> 2.</h2>
-            <h2 className='explain main'>Editing</h2>
+            <h2 id='edit-section' className='explain main'>Editing</h2>
           </div>
           <div className='explain-paragraph'>
             <p className='explain two'>Even though the images are similar in topic, they are very different in their features: different backgrounds, camera angles, characters’ positions.</p>
             <p className='explain two'> This creates a lot of noise for the neural network, making it difficult to identify patterns. We need to help it a bit. </p>
             <p className='explain two'> We can use Computer Vision to extract the humans from the photo and place them in fixed locations.
-            We can then augment the dataset by shuffling the humans’ positions, creating several variations of the same image.</p> 
+              We can then augment the dataset by shuffling the humans’ positions, creating several variations of the same image.</p>
             <p className='explain two'>Please choose how many humans you would like each image to have and how many variations you would like to create from each image.</p>
           </div>
         </div>

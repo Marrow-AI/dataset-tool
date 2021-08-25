@@ -378,6 +378,10 @@ button.search:hover {
   font-family: 'Roboto', sans-serif; 
 }
 
+.hoverTitle:hover {
+  color: #ED965F;
+}
+
 .explain.main.final {
   padding: 0;
   text-align: left;

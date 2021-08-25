@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toast';
 import store from '../state';
 import Header from './Header';
@@ -13,6 +14,7 @@ export default function Search(props) {
   const [loading, showLoading, hideLoading] = useSpinner();
   const { showNext } = props;
   const [newKeyword, setNewKeyword] = useState()
+  let history = useHistory();
 
   async function onSubmit(formData) {
 
@@ -38,7 +40,7 @@ export default function Search(props) {
     showLoading();
     setTimeout(() => {
       hideLoading()
-      showNext()
+      history.push("/display")
     }, 4000);
   }
 

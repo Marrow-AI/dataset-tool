@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ModalImage from "react-modal-image";
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import { saveAs } from "filesaver.js-npm";
 import JSZip from 'jszip';
+import { scroller } from "react-scroll";
 import StartAgain from "./StartAgain";
 import store from '../state';
 
@@ -16,6 +17,14 @@ export default function Results(props) {
   const [visible, setDisible] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [hasClassName, setClassName] = useState(true);
+
+  const scrollToStartOver = () => {
+    scroller.scrollTo("start-again", {
+      duration: 200,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
 
   function downloadFile(url) {
     return new JSZip.external.Promise(function (resolve, reject) {
@@ -44,7 +53,7 @@ export default function Results(props) {
       saveAs(content, "Marrow_DataTool.zip");
     });
     setShowPopUp(true)
-    window.location.href = '/#start-again'
+    scrollToStartOver()
     setClassName(false)
   }
 
@@ -67,21 +76,30 @@ export default function Results(props) {
     }
   });
 
+  const scrollToSection = () => {
+    scroller.scrollTo("curation-section", {
+      duration: 200,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
   useEffect(() => {
-    window.location.href = '/#curation-section'
+    scrollToSection()
   }, [])
 
   return (
-    <div
-      className="mainTitle"
-      style={props.visible ? {} : { display: 'none' }}
-    >
+    <div className="mainTitle">
       <div className='secondScreen'>
         <div className='leftSection'>
           <h2 className='explain-number'> 1.</h2>
-          <h2 id='curation-section' className='explain-number'>Data Scraping</h2>
+          <Link className='hoverTitle' to='/display'>
+            <h2 id='curation-section' className='explain-number'>Data Scraping</h2>
+          </Link>
           <h2 className='explain-number'> 2. </h2>
-          <h2 className='explain-number'> Editing</h2>
+          <Link className='hoverTitle' to='/edit'>
+            <h2 className='explain-number'> Editing</h2>
+          </Link>
           <h2 className='explain-number'> 3. </h2>
           <h2 className={hasClassName ? "explain main result" : "explain-number"}>Curation</h2>
 
