@@ -10,27 +10,25 @@ export default function RenderContainer() {
   const [currentComponent, setCurrentComponent] = useState('search')
   const [numberPeople, setNumberPeople] = useState()
   const [numberVersions, setNumberVersions] = useState()
-
   function showCurrentComponent() {
-    return (
-      <>
-        <DisplayImage
-          visible={currentComponent === 'display'}
-          showNext={() => setCurrentComponent('edit')}
-        />
-        <EditImage
-         visible={currentComponent === 'edit'}
-         showNext={() => setCurrentComponent('result')}
+    if (currentComponent === 'display') {
+      return (
+        <DisplayImage visible={true} showNext={() => setCurrentComponent('edit')}/>
+      )
+    } else if (currentComponent === 'edit') {
+      return (
+        <EditImage visible={true}  showNext={() => setCurrentComponent('result')}
          setShowPeople={setNumberPeople}
-         setShowVersions={setNumberVersions}
-        />
-        <Results
-          visible={currentComponent === 'result'}
-          showNumberPeople={numberPeople}
-          showNumberVersion={numberVersions}
-        />
-      </>
-    ) 
+         setShowVersions={setNumberVersions}/>
+      )
+    } else if(currentComponent === 'result') {
+      return (
+      <Results
+        visible={true}
+        showNumberPeople={numberPeople}
+        showNumberVersion={numberVersions}/>
+      )
+    }
   }
 
   return (
