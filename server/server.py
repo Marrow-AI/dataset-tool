@@ -206,6 +206,7 @@ class Poser(Thread):
 
                     emit('pose', result ,broadcast=True, namespace='/')
             except Exception as e:
+                print("Failed")
                 pass
 
 app = Flask(__name__)

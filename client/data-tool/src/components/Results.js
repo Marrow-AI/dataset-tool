@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { saveAs } from "filesaver.js-npm";
 import JSZip from 'jszip';
 import StartAgain from "./StartAgain";
+import store from '../state';
 
 export default function Results(props) {
   const keyword = useSelector(state => state.keyword);
@@ -10,6 +11,7 @@ export default function Results(props) {
   const [visible, setDisible] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [hasClassName, setClassName] = useState(true);
+  const socket = useSelector(state => state.socket);
 
   function downloadFile(url) {
     return new JSZip.external.Promise(function (resolve, reject) {
@@ -41,6 +43,25 @@ export default function Results(props) {
     window.location.href = '/#start-again'
     setClassName(false)
   }
+
+  useEffect(() => {
+    if (socket) {
+      socket.on('pose', async (data) => {
+        console.log('Received crop image:', data);
+        for (let imageText of data.results) {
+          store.dispatch({
+            type: 'CROP_IMAGE',
+            cropImages: "data:image/jpg;base64," + imageText
+          })
+        }
+      });
+    }
+    return () => {
+      if (socket) {
+        socket.off('pose');
+      }
+    }
+  });
 
   useEffect(() => {
     window.location.href = '/#curation-section'

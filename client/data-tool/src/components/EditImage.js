@@ -116,7 +116,7 @@ export default function EditImage(props) {
               setShowPeople(numberPeople)
               setShowVersions(numberVersions)
               showNext();
-            }, 2000);
+            }, 100);
           }
         }
 
@@ -126,24 +126,6 @@ export default function EditImage(props) {
     });
   }
 
-  useEffect(() => {
-    if (socket) {
-      socket.on('pose', async (data) => {
-        console.log('Received crop image:', data);
-        for (let imageText of data.results) {
-          store.dispatch({
-            type: 'CROP_IMAGE',
-            cropImages: "data:image/jpg;base64," + imageText
-          })
-        }
-      });
-    }
-    return () => {
-      if (socket) {
-        socket.off('pose');
-      }
-    }
-  });
   useEffect(() => {
     window.location.href = '/#edit-section'
   }, [])
