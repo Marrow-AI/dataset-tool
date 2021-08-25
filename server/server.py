@@ -165,22 +165,66 @@ class StopFlag:
    def reset(self):
        self.stop = False
 
+class Poser(Thread):
+    def __init__(self, queue, app):
+        print("Init poser")
+        self.queue = queue
+        self.app = app
+
+        Thread.__init__(self)
+
+    def run(self):
+        print("Running poser")
+        print("Starting Firefox Headless WebDriver")
+
+        ENDPOINT = 'https://densepose.dataset.tools/pose'
+
+        while True:
+          params = self.queue.get()
+          print("New image request")
+          with self.app.app_context():
+            response = requests.get(params['url'])
+            print("Decoding {}".format(params['url']))
+
+            if response.status_code == 200:
+                response.raw.decode_content = True
+                uri = (
+                    "data:" +
+                   response.headers['Content-Type'] + ";" +
+                   "base64," + base64.b64encode(response.content).decode("utf-8")
+                )
+                
+                pose = requests.post(ENDPOINT, json={
+                    "data": uri,
+                    "numOfPeople" : params['numOfPeople'],
+                    "numOfPermutations" : params['numOfPermutations']
+                })
+
+                emit('pose',pose.json(),broadcast=True, namespace='/')
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
 Compress(app)
 
 sessions = {}
-q = queue.Queue()
+scraper_q = queue.Queue()
+poser_q = queue.Queue()
 stop_flag = StopFlag()
 
 scraper = Scraper(
-    q,
+    scraper_q,
     stop_flag,
     app,
     sessions
 )
 scraper.start()
+
+poser = Poser(
+    poser_q,
+    app
+)
+poser.start()
 
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
@@ -210,33 +254,9 @@ def update_session():
 @app.route('/poseUrl',  methods = ['POST'])
 def pose_url():
     try:
-        ENDPOINT = 'https://densepose.dataset.tools/pose'
-
         params = request.get_json()
-        url =  params['url']
-        response = requests.get(url)
-
-        print("Decoding {}".format(url))
-
-        if response.status_code == 200:
-            response.raw.decode_content = True
-            uri = (
-                "data:" +
-               response.headers['Content-Type'] + ";" +
-               "base64," + base64.b64encode(response.content).decode("utf-8")
-            )
-            
-            pose = requests.post(ENDPOINT, json={
-                "data": uri,
-                "numOfPeople" : params['numOfPeople'],
-                "numOfPermutations" : params['numOfPermutations']
-            })
-
-            emit('pose',pose.json(),broadcast=True, namespace='/')
-            return jsonify(result="OK")
-        else:
-            return jsonify(result=str(response.status_code))
-
+        poser_q.put(params)
+        return jsonify(result="OK")
 
     except Exception as e:
         print("Error in route /poseUrl {}".format(str(e)))
@@ -255,7 +275,7 @@ def search():
         download_dir = 'server/sessions/{}'.format(session_id)
         print("Get image links to socket {}".format(socket_id))
 
-        q.put({
+        scraper_q.put({
             'keyword': params['keyword'],
             'download_dir': download_dir,
             'session_id': session_id
