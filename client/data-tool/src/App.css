@@ -73,7 +73,7 @@ a {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 3rem;
+  height: 2.2rem;
   margin-left: -1.5%;
   background-color: #EEBBF9;
 }
@@ -689,3 +689,21 @@ button:disabled {
   z-index: 1000;
 }
 
+.mobile-container {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.mobileContainer {
+ width: 60%;
+ margin-left: auto;
+ margin-right: auto;
+ padding-top: 200px;
+ text-align: center;
+
+}
+
+.mobileMsg {
+  color: black;
+  font-size: 22px;
+}

@@ -11,7 +11,7 @@ export default function DisplayImage(props) {
   const searchImages = useSelector(state => state.imageUrls);
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
-  const {showNext} = props;
+  const { showNext } = props;
 
 
   async function showEdit(e) {
@@ -22,15 +22,15 @@ export default function DisplayImage(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({})
     })
-    .then(res => res.json())
-    .then((data) => {
-       console.log("Stop search", data);
-       if (data.result === "OK") {
+      .then(res => res.json())
+      .then((data) => {
+        console.log("Stop search", data);
+        if (data.result === "OK") {
           showNext()
-       } else {
+        } else {
           alert(data.result);
-       }
-    });
+        }
+      });
   }
 
   const toDataURL = url => fetch(corsServer + url)
@@ -61,11 +61,11 @@ export default function DisplayImage(props) {
   });
 
   useEffect(() => {
-    window.location.href='/#data-scraping'
+    window.location.href = '/#data-scraping'
   }, [])
 
   return (
-    <div 
+    <div
       className='secondScreen'
       style={props.visible ? {} : { display: 'none' }}
     >
@@ -84,7 +84,9 @@ export default function DisplayImage(props) {
       </div>
 
       <div className='imageContainer'>
-        <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for <span className='title result-before'>{keyword}</span> </h1>
+        <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for
+          <span className='title result-before'>{keyword}</span>
+        </h1>
         <div className='images'>
           {searchImages.map((imageUrl, index) => (
             <div key={index}>

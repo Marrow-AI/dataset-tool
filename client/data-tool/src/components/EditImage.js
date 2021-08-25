@@ -64,7 +64,7 @@ export default function EditImage(props) {
   const classesTwo = useStylesTwo();
   const [loading, showLoading, hideLoading] = useSpinner();
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
-  const [valueNumberofVersions, setNumberofVersions] = useState(0)
+  const [valueNumberofVersions, setNumberofVersions] = useState(1)
   const { showNext, setShowPeople, setShowVersions } = props;
 
 

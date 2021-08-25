@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ModalImage from "react-modal-image";
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 import { saveAs } from "filesaver.js-npm";
 import JSZip from 'jszip';
 import StartAgain from "./StartAgain";
 import store from '../state';
 
 export default function Results(props) {
+  const socket = useSelector(state => state.socket);
   const keyword = useSelector(state => state.keyword);
   const cropImages = useSelector(state => state.cropImages);
   const [visible, setDisible] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const [hasClassName, setClassName] = useState(true);
-  const socket = useSelector(state => state.socket);
 
   function downloadFile(url) {
     return new JSZip.external.Promise(function (resolve, reject) {
@@ -68,7 +72,7 @@ export default function Results(props) {
   }, [])
 
   return (
-    <div 
+    <div
       className="mainTitle"
       style={props.visible ? {} : { display: 'none' }}
     >
@@ -99,7 +103,9 @@ export default function Results(props) {
           <div className='images results'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
-                <img src={cleanImages} alt="" />
+                <Zoom>
+                  <img alt={keyword} src={cleanImages} />
+                </Zoom>
               </div>
             ))}
           </div>

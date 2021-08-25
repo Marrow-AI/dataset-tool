@@ -10,6 +10,7 @@ export default function RenderContainer() {
   const [currentComponent, setCurrentComponent] = useState('search')
   const [numberPeople, setNumberPeople] = useState()
   const [numberVersions, setNumberVersions] = useState()
+  
   function showCurrentComponent() {
     if (currentComponent === 'display') {
       return (

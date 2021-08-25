@@ -7,7 +7,7 @@ const reducer = (state = {
     socket: null,
     images: [],
     imageUrls: [],
-    keyword: '',
+    keyword: [],
     cropImages: [],
     numberPeople: 0,
     numberVersions: 0,
@@ -34,7 +34,7 @@ const reducer = (state = {
   case 'SAVE_KEYWORD': {
     return {
       ...state,
-      keyword: action.keyword
+      keyword: [...state.keyword, action.keyword, '+']
     }
   }
   case 'SAVE_IMAGE_URL': {

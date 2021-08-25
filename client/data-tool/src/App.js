@@ -5,6 +5,7 @@ import store, { setSocket } from './state';
 import socketIOClient from "socket.io-client";
 import Footer from './components/Footer';
 import RenderContainer from './components/RenderContainer';
+import { isMobile } from 'react-device-detect';
 
 const socket = socketIOClient();
 
@@ -15,14 +16,28 @@ socket.on('connect', () => {
 });
 
 function App() {
+  if (isMobile) {
+    return (
+      <div className='mobile-container'>
+        <div className="mobileContainer">
+          <p className="mobileMsg">This website is not suitable for mobile devices.
+            <br />
+            Please come back from your desktop.
+            <br />
+            <br />
+            Thank you! </p>
+        </div>
+      </div>
+    )
+  }
   return (
     <>
-    <div className='app-container'>
-      <Router>
+      <div className='app-container'>
+        <Router>
           <Route exact path="/" component={RenderContainer} />
-        <Footer />
-      </Router>
-    </div>
+          <Footer />
+        </Router>
+      </div>
     </>
   );
 }

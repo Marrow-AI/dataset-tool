@@ -39,7 +39,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <p className='addCred'>This project is has received funding through the S+T+ARTS initiative of the European Union’s Horizon 2020 research & innovation programme under grant agreement No LC-01207687 in the framework of the Regional S+T+ARTS Centers project.</p>
+          {/* <p className='addCred'>This project is has received funding through the S+T+ARTS initiative of the European Union’s Horizon 2020 research & innovation programme under grant agreement No LC-01207687 in the framework of the Regional S+T+ARTS Centers project.</p> */}
 
         </div>
       </div>
