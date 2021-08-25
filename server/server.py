@@ -183,27 +183,30 @@ class Poser(Thread):
           params = self.queue.get()
           print("New image request")
           with self.app.app_context():
-            response = requests.get(params['url'])
-            print("Decoding {}".format(params['url']))
+            try:
+                response = requests.get(params['url'])
+                print("Decoding {}".format(params['url']))
 
-            if response.status_code == 200:
-                response.raw.decode_content = True
-                uri = (
-                    "data:" +
-                   response.headers['Content-Type'] + ";" +
-                   "base64," + base64.b64encode(response.content).decode("utf-8")
-                )
-                
-                pose = requests.post(ENDPOINT, json={
-                    "data": uri,
-                    "numOfPeople" : params['numOfPeople'],
-                    "numOfPermutations" : params['numOfPermutations']
-                })
+                if response.status_code == 200:
+                    response.raw.decode_content = True
+                    uri = (
+                        "data:" +
+                       response.headers['Content-Type'] + ";" +
+                       "base64," + base64.b64encode(response.content).decode("utf-8")
+                    )
+                    
+                    pose = requests.post(ENDPOINT, json={
+                        "data": uri,
+                        "numOfPeople" : params['numOfPeople'],
+                        "numOfPermutations" : params['numOfPermutations']
+                    })
 
-                result = pose.json()
-                result['keyword'] = params['keyword']
+                    result = pose.json()
+                    result['keyword'] = params['keyword']
 
-                emit('pose', result ,broadcast=True, namespace='/')
+                    emit('pose', result ,broadcast=True, namespace='/')
+            except Exception as e:
+                pass
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
