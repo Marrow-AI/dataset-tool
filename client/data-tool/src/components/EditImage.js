@@ -107,7 +107,7 @@ export default function EditImage(props) {
         const { imageUrls, numberPeople, numberVersions } = getState();
         for (const singleImg of imageUrls) {
           try {
-            getPoses(singleImg, numberPeople, numberVersions)
+            getPoses(singleImg, keyword, numberPeople, numberVersions)
           } catch (e) {
             console.warn("Error in pose ", data);
           } finally {

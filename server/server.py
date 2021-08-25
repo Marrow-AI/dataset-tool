@@ -129,7 +129,7 @@ class Scraper(Thread):
                         print("Found image url {}".format(url))
                         socket_id = sessions[session_id]
                         print("Socket ID: {}".format(socket_id))
-                        emit('image',{'url':url},broadcast=True, namespace='/')
+                        emit('image',{'url':url, 'keyword': main_keyword},broadcast=True, namespace='/')
 
                         # In case we want to download them
                         #path = urlparse(url).path
@@ -200,7 +200,10 @@ class Poser(Thread):
                     "numOfPermutations" : params['numOfPermutations']
                 })
 
-                emit('pose',pose.json(),broadcast=True, namespace='/')
+                result = pose.json()
+                result['keyword'] = params['keyword']
+
+                emit('pose', result ,broadcast=True, namespace='/')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'

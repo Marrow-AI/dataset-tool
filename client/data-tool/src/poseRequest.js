@@ -1,4 +1,4 @@
-export default async function getPoses (singleImg, numOfPeople, numOfPermutations) {
+export default async function getPoses (singleImg, keyword, numOfPeople, numOfPermutations) {
   console.log('fetching poses ', numOfPeople, numOfPermutations);
   const res = await fetch('/poseUrl', {
     method: 'POST',
@@ -6,7 +6,8 @@ export default async function getPoses (singleImg, numOfPeople, numOfPermutation
     body: JSON.stringify({
       url: singleImg,
       numOfPeople,
-      numOfPermutations
+      numOfPermutations,
+      keyword
     })
   })
   if (res.ok) {

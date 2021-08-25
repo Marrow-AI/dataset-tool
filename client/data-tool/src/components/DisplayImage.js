@@ -45,7 +45,7 @@ export default function DisplayImage(props) {
   useEffect(() => {
     if (socket) {
       socket.on('image', async (data) => {
-        console.log('Received image:', data.url);
+        console.log('Received image:', data);
         //const imageUrl = await toDataURL(data.url);
         store.dispatch({
           type: 'SAVE_IMAGE_URL',
