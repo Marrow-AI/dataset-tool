@@ -265,7 +265,22 @@ def update_session():
 def pose_url():
     try:
         params = request.get_json()
-        poser_q.put(params)
+        
+        # Clear the queue
+        while not poser_q.empty():
+            try:
+                poser_q.get(False)
+            except Empty:
+                continue
+
+        for url in params['urls']:
+            imgParams = {
+                'url': url,
+                'numOfPeople': params['numOfPeople'],
+                'numOfPermutations': params['numOfPermutations'],
+                'keyword': params['keyword']
+            }
+            poser_q.put(imgParams)
         return jsonify(result="OK")
 
     except Exception as e:

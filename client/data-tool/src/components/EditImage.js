@@ -107,22 +107,19 @@ export default function EditImage(props) {
       try {
         showLoading();
         const { imageUrls, numberPeople, numberVersions } = getState();
-        for (const singleImg of imageUrls) {
-          try {
-            getPoses(singleImg, keyword, numberPeople, numberVersions)
-          } catch (e) {
-            console.warn("Error in pose ", data);
-          } finally {
-            setTimeout(() => {
-              hideLoading()
-              history.push(`/results/${numberPeople}/${numberVersions}`)
-              // setShowPeople(numberPeople)
-              // setShowVersions(numberVersions)
-              // showNext();
-            }, 100);
-          }
+        try {
+          getPoses(imageUrls, keyword, numberPeople, numberVersions)
+        } catch (e) {
+          console.warn("Error in pose ", data);
+        } finally {
+          setTimeout(() => {
+            hideLoading()
+            history.push(`/results/${numberPeople}/${numberVersions}`)
+            // setShowPeople(numberPeople)
+            // setShowVersions(numberVersions)
+            // showNext();
+          }, 100);
         }
-
       } catch (e) {
         console.log('error:  ', e);
       }
