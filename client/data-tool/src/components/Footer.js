@@ -58,7 +58,8 @@ const Footer = () => {
           <DialogContentText>
             The struggle in collecting and allocating data is a real struggle for most people outside of those big companies.
             It has real implications for our lives.
-            The dataset tool aims to explore alternative methods that can help us augment and allocate datasets for machine learning training.
+            The dataset tool aims to simulate alternative methods that can help us augment and allocate datasets for machine learning training.
+            It explores these ideas as collaborative online tool. 
             <br/>
             <br/>
             The tool was developed and designed for Ars Electronica Future Thinking School by

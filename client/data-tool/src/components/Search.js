@@ -59,20 +59,24 @@ export default function Search(props) {
 
   return (
     <div className='firstScreen'>
-      <Header />
+      <div className="header">
+        <h1 className="logo">This is a collaborative effort<br />
+          to train a Machine Learning network<br />
+          on human values and social rituals,<br />
+          what would you like to contribute?</h1>
+      </div>
       {loading}
       <div className='inputForm'>
         <form action="#data-scraping" onSubmit={handleSubmit(onSubmit)}>
           <div>
-
             <input className='word' name="keyword" autoComplete="off" placeholder="start typing..." ref={register({ required: true })} /><br /><br />
             {errors.keyword && "It seems like you didn't type anything"}
           </div>
           <button className="search" name="search" type="submit" ref={register}>Search</button>
-
         </form>
       </div>
-      <ToastContainer position='top-left' delay={8000}/>
+      <p className='logo-people'>There are now <span className='logo-people number'>X</span> people together with you.</p>
+      <ToastContainer position='top-left' delay={8000} />
     </div>
   )
 }
