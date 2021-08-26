@@ -14,10 +14,18 @@ const reducer = (state = {
 }, action) => {
   switch (action.type) {
 
-    case 'SET_SOCKET': {
-        console.log("Setting socket", action.socket);
-        return {...state, socket: action.socket}
-    }
+  case 'SET_SOCKET': {
+      console.log("Setting socket", action.socket);
+      action.socket.off('connected-clients');
+      action.socket.on('connected-clients', (data) => {
+        console.log('Conneted clients:', data);
+        store.dispatch({
+          type: 'NUMBER_PEOPLE',
+          value: data.value
+        })
+      });
+      return {...state, socket: action.socket}
+  }
 	case 'SET_SESSION': {
 		console.log("Setting session", action.session);
 		return {...state, session: action.session}
@@ -47,6 +55,12 @@ const reducer = (state = {
     return {
       ...state,
       cropImages: [...state.cropImages, action.cropImages]
+    }
+  }
+  case 'NUMBER_PEOPLE': {
+    return {
+      ...state,
+      numberPeople: action.value
     }
   }
   case 'SAVE_VALUE_SLIDER': {

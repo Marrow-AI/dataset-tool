@@ -9,6 +9,7 @@ import useSpinner from './useSpinner';
 
 export default function Search(props) {
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
+  const numberPeople = useSelector(state => state.numberPeople);
   const { register, errors, handleSubmit } = useForm({ mode: "onBlur" });
   const [datasetSession, setDatasetSession] = useState(true);
   const [loading, showLoading, hideLoading] = useSpinner();
@@ -75,7 +76,7 @@ export default function Search(props) {
           <button className="search" name="search" type="submit" ref={register}>Search</button>
         </form>
       </div>
-      <p className='logo-people'>There are now <span className='logo-people number'>X</span> people together with you.</p>
+      <p className='logo-people'>There are now <span className='logo-people number'>{numberPeople - 1}</span> people together with you.</p>
       <ToastContainer position='top-left' delay={8000} />
     </div>
   )

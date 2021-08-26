@@ -209,6 +209,8 @@ class Poser(Thread):
                 print("Failed")
                 pass
 
+connected_clients = 0
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -232,6 +234,7 @@ poser = Poser(
     app
 )
 poser.start()
+
 
 @app.route('/sessions/<path:filepath>')
 def data(filepath):
@@ -327,13 +330,23 @@ def catch_all(path):
 
 @socketio.on('connect')
 def on_connect():
-    print("Client connected {}".format(request.sid))
-    join_room(request.sid)
+    global connected_clients
+    connected_clients = connected_clients + 1 
+    print("Client connected {}. Total: {}".format(request.sid, connected_clients))
+    emit('connected-clients',{'value': connected_clients },broadcast=True, namespace='/')
+    #join_room(request.sid)
     # if(request.method=='POST'):
     #  some_json=request.get_json()
     #  return jsonify({"key":some_json})
     # else:
     #     return jsonify({"GET":"GET"})
+
+@socketio.on('disconnect')
+def on_disconnect():
+    global connected_clients
+    connected_clients = connected_clients - 1
+    print("Client disconnected {}. Total: {}".format(request.sid, connected_clients))
+    emit('connected-clients',{'value': connected_clients },broadcast=True, namespace='/')
 
 if __name__ == '__main__':
 
