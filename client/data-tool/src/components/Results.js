@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-medium-image-zoom';
@@ -11,6 +11,7 @@ import store from '../state';
 import { ToastContainer, toast } from 'react-toast';
 
 export default function Results(props) {
+  let imagesEndRef = useRef(null);
   const socket = useSelector(state => state.socket);
   const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0);
   const croppingSession = useSelector(state => state.croppingSession);
@@ -60,7 +61,7 @@ export default function Results(props) {
   }
 
   const notification = () => {
-    toast(`Another user has initiated an edit request`, {
+    toast(`Another user is adding to the results`, {
       backgroundColor: '#8329C5',
       color: '#ffffff',
     })
@@ -108,6 +109,15 @@ export default function Results(props) {
     scrollToSection()
   }, [])
 
+  useEffect(() => {
+    if (imagesEndRef) {
+      imagesEndRef.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
+    }
+  }, [])
+
   return (
     <div className="mainTitle">
       <div className='secondScreen'>
@@ -138,7 +148,7 @@ export default function Results(props) {
         </div>
         <div className='imageContainer'>
           <h1 className='title result'>Edited images</h1>
-          <div className='images results'>
+          <div ref={imagesEndRef} className='images results'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
                 <Zoom>

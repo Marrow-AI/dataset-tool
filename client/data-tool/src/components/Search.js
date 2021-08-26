@@ -65,7 +65,7 @@ export default function Search(props) {
           <button className="search" name="search" type="submit" ref={register}>Search</button>
         </form>
       </div>
-      { numberPeople == 2 ? 
+      { numberPeople === 2 ? 
         <p className='logo-people'>There is now <span className='logo-people number'>{numberPeople - 1}</span> person together with you.</p>
         :
         <p className='logo-people'>There are now <span className='logo-people number'>{numberPeople - 1}</span> people together with you.</p>

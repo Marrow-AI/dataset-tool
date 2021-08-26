@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import store from '../state';
@@ -6,6 +6,7 @@ import { scroller } from "react-scroll";
 import { ToastContainer, toast } from 'react-toast';
 
 export default function DisplayImage(props) {
+  let imagesEndRef = useRef(null)
   const keyword = useSelector(state => state.keyword);
   const socket = useSelector(state => state.socket);
   const corsServer = '/proxy/';
@@ -14,7 +15,6 @@ export default function DisplayImage(props) {
   const [keepGoing, setKeepGoing] = useState(false);
   const [visiblebtn, setVisiblebtn] = useState(false)
   const { showNext } = props;
-
 
   async function showEdit(e) {
     e.preventDefault();
@@ -38,7 +38,7 @@ export default function DisplayImage(props) {
 
   const notification = (newKeyword) => {
     if (newKeyword !== undefined) {
-      toast(`"${newKeyword}"" was just added to your search`, {
+      toast(`"${newKeyword}" was just added to your search`, {
         backgroundColor: '#8329C5',
         color: '#ffffff',
       })
@@ -88,6 +88,15 @@ export default function DisplayImage(props) {
   };
 
   useEffect(() => {
+    if (imagesEndRef) {
+      imagesEndRef.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
+    }
+  }, [])
+
+  useEffect(() => {
     scrollToSection()
   }, [])
 
@@ -113,10 +122,11 @@ export default function DisplayImage(props) {
             {keyword.slice(keyword.length - 4, keyword.length).join(" + ")}
           </span>
         </h1>
-        <div className='images'>
+        <div ref={imagesEndRef} className='images'>
           {searchImages.map((imageUrl, index) => (
             <div key={index}>
               <img src={imageUrl} alt="" />
+             
             </div>
           ))}
         </div>

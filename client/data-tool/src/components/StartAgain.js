@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { scroller } from "react-scroll";
 
 export default function StartAgain() {
 
- 
+  const scrollToSection = () => {
+    scroller.scrollTo("endScreentext", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
+
+  useEffect(() => {
+    scrollToSection()
+  }, [])
 
   return(
-    <div id='start-again' className="popup">
+    <div className="popup">
+      <div className="endScreenDiv">
+        <p className="endScreentext">Once you have curated and selected the desired images <br/>
+        please sent them to <a className="email" href="mailto:socialdataset@gmail.com">socialdataset@gmail.com</a>. <br/> <br/>
+        We will train an AI based on the collaborative effort 
+        and publish the model and the results! </p> 
+        <div className='btnEnd'>
         <a href='/'> 
-        <h1 className="logo end">//Start again?</h1></a>
+        <button className="logo-end">Start again?</button></a>
         <a href='https://latentspace.tools' target="_blank" rel="noopener noreferrer">  
-          <h1 className="logo end">//Explore Latent Space</h1>
+          <button className="logo-end">Explore Latent Space</button>
         </a>
+        </div>
+        </div>
     </div>
   )
 }
