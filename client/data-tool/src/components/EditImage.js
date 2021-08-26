@@ -50,11 +50,16 @@ function valueLabelFormatOne(value) {
   return tracks.findIndex((track) => track.value === value);
 }
 
-const marks = [{ value: 1, label: '1' }, { value: 2, label: '2' }, { value: 3, label: '3' }, { value: 4, label: '4' }, { value: 5, label: '5' },
-{ value: 6, label: '6' }, { value: 7, label: '7' }, { value: 8, label: '8' }, { value: 9, label: '9' }, { value: 10, label: '10' }];
 
-function valueLabelFormat(value) {
-  return marks.findIndex((mark) => mark.value === (value));
+
+function factorialize(num) {
+  if (num < 0)
+        return -1;
+  else if (num == 0)
+      return 1;
+  else {
+      return (num * factorialize(num - 1));
+  }
 }
 
 export default function EditImage(props) {
@@ -69,8 +74,13 @@ export default function EditImage(props) {
   let history = useHistory();
   const [valueNumberOfPeople, setValueNumberOfPeople] = useState(1)
   const [valueNumberofVersions, setNumberofVersions] = useState(1)
+  const [maxVersions, setMaxVersions] = useState(1)
+  const [versionMarks, setVersionMarks] = useState([{ value: 1, label: '1' }]);
   const { showNext, setShowPeople, setShowVersions } = props;
 
+  function valueLabelFormat(value) {
+    return versionMarks.findIndex((mark) => mark.value === (value));
+  }
 
   function valuetext(valueNumberOfPeople) {
     return `${valueNumberOfPeople}`;
@@ -82,6 +92,10 @@ export default function EditImage(props) {
 
   function handlePersonChange(event, newValue) {
     setValueNumberOfPeople(newValue);
+    const maxVersions = Math.min(10,factorialize(newValue));
+    setMaxVersions(maxVersions);
+    const newMarks = [...Array(maxVersions).keys()].map(x => ({value: x + 1, label: (x + 1).toString()}));
+    setVersionMarks(newMarks);
   }
 
   function handleVersionChange(event, newValue) {
@@ -209,9 +223,9 @@ export default function EditImage(props) {
                         aria-labelledby="discrete-slider-restrict-two"
                         step={null}
                         valueLabelDisplay="off"
-                        marks={marks}
+                        marks={versionMarks}
                         min={1}
-                        max={10}
+                        max={maxVersions}
                       />
                       <Typography className="label" id="track-false-slider-two" htmlFor="num-of-people" gutterBottom>
                         Number of versions to create from each image.
