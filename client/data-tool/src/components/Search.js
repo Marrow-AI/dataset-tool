@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toast';
 import store from '../state';
 import Header from './Header';
 import useSpinner from './useSpinner';
@@ -28,14 +27,17 @@ export default function Search(props) {
       .then((data) => {
         console.log(data);
         if (data.result === "OK") {
+          store.dispatch({
+            type: 'CLEAR_IMAGE_URLS'
+          })
           setDatasetSession(data['dataset_session']);
-          setNewKeyword(data.dataset_session.split('-')[0])
+          setNewKeyword(formData.keyword)
         } else {
           alert(data.result);
         }
         store.dispatch({
           type: 'SAVE_KEYWORD',
-          keyword: data.dataset_session.split('-')[0]
+          keyword: formData.keyword
         })
       });
     showLoading();
@@ -45,26 +47,13 @@ export default function Search(props) {
     }, 4000);
   }
 
-  const notification = () => {
-    if (newKeyword !== undefined) {
-      toast(`${newKeyword} was just added to your search`, {
-        backgroundColor: '#8329C5',
-        color: '#ffffff',
-      })
-    }
-  }
-
-  useEffect(() => {
-    notification()
-  }, [socketSessionId])
-
   return (
     <div className='firstScreen'>
       <div className="header">
         <h1 className="logo">This is a collaborative effort<br />
           to train a Machine Learning network<br />
           on human values and social rituals,<br />
-          what would you like to contribute?</h1>
+          what kind of images would you like to contribute?</h1>
       </div>
       {loading}
       <div className='inputForm'>
@@ -76,8 +65,11 @@ export default function Search(props) {
           <button className="search" name="search" type="submit" ref={register}>Search</button>
         </form>
       </div>
-      <p className='logo-people'>There are now <span className='logo-people number'>{numberPeople - 1}</span> people together with you.</p>
-      <ToastContainer position='top-left' delay={8000} />
+      { numberPeople == 2 ? 
+        <p className='logo-people'>There is now <span className='logo-people number'>{numberPeople - 1}</span> person together with you.</p>
+        :
+        <p className='logo-people'>There are now <span className='logo-people number'>{numberPeople - 1}</span> people together with you.</p>
+      }
     </div>
   )
 }

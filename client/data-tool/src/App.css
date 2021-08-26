@@ -747,3 +747,7 @@ button:disabled {
     display: none;
   }
 }
+
+.toast {
+  font-size: 32px !important;
+}

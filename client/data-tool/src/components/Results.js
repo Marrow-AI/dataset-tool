@@ -8,9 +8,12 @@ import JSZip from 'jszip';
 import { scroller } from "react-scroll";
 import StartAgain from "./StartAgain";
 import store from '../state';
+import { ToastContainer, toast } from 'react-toast';
 
 export default function Results(props) {
   const socket = useSelector(state => state.socket);
+  const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0);
+  const croppingSession = useSelector(state => state.croppingSession);
   const keyword = useSelector(state => state.keyword);
   const cropImages = useSelector(state => state.cropImages);
   const [visible, setDisible] = useState(false);
@@ -56,10 +59,28 @@ export default function Results(props) {
     setClassName(false)
   }
 
+  const notification = () => {
+    toast(`Another user has initiated an edit request`, {
+      backgroundColor: '#8329C5',
+      color: '#ffffff',
+    })
+  }
+
   useEffect(() => {
     if (socket) {
       socket.on('pose', async (data) => {
         console.log('Received crop image:', data);
+        if (
+        data.socketSessionId !== socketSessionId && 
+        data.socketSessionId !== croppingSession &&
+        croppingSession !== ''
+      ) {
+          notification();
+        }
+        store.dispatch({
+          type: 'SET_CROPPING_SESSION',
+          value: data.socketSessionId
+        })
         for (let imageText of data.results) {
           store.dispatch({
             type: 'CROP_IMAGE',
@@ -116,7 +137,7 @@ export default function Results(props) {
           </div>
         </div>
         <div className='imageContainer'>
-          <h1 className='title result'>Final results for what was <span className='title result-before'>{keyword}</span> </h1>
+          <h1 className='title result'>Edited images</h1>
           <div className='images results'>
             {cropImages.map((cleanImages, index) => (
               <div key={index}>
@@ -132,6 +153,7 @@ export default function Results(props) {
           </div>
         </div>
       </div>
+      <ToastContainer position='top-left' delay={8000} />
     </div>
   )
 }

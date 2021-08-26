@@ -8,6 +8,7 @@ const reducer = (state = {
     images: [],
     imageUrls: [],
     keyword: [],
+    croppingSession: '',
     cropImages: [],
     numberPeople: 0,
     numberVersions: 0,
@@ -51,6 +52,13 @@ const reducer = (state = {
       imageUrls: [...state.imageUrls, action.imageUrl]
     }
   }
+  case 'CLEAR_IMAGE_URLS': {
+    return {
+      ...state, 
+      imageUrls: [],
+      keyword: []
+    }
+  }
   case 'CROP_IMAGE': {
     return {
       ...state,
@@ -61,6 +69,12 @@ const reducer = (state = {
     return {
       ...state,
       numberPeople: action.value
+    }
+  }
+  case 'SET_CROPPING_SESSION': {
+    return {
+      ...state,
+      croppingSession: action.value
     }
   }
   case 'SAVE_VALUE_SLIDER': {

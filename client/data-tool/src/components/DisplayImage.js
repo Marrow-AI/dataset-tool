@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import store from '../state';
 import { scroller } from "react-scroll";
+import { ToastContainer, toast } from 'react-toast';
 
 export default function DisplayImage(props) {
   const keyword = useSelector(state => state.keyword);
@@ -34,6 +35,17 @@ export default function DisplayImage(props) {
       });
   }
 
+
+  const notification = (newKeyword) => {
+    if (newKeyword !== undefined) {
+      toast(`"${newKeyword}"" was just added to your search`, {
+        backgroundColor: '#8329C5',
+        color: '#ffffff',
+      })
+    }
+  }
+
+
   const toDataURL = url => fetch(corsServer + url)
     .then(response => response.blob())
     .then(blob => new Promise((resolve, reject) => {
@@ -47,7 +59,13 @@ export default function DisplayImage(props) {
     if (socket) {
       socket.on('image', async (data) => {
         console.log('Received image:', data);
-        //const imageUrl = await toDataURL(data.url);
+        if (keyword[keyword.length -1] !== data.keyword) {
+          notification(data.keyword)
+          store.dispatch({
+            type: 'SAVE_KEYWORD',
+            keyword: data.keyword
+          })
+        }
         store.dispatch({
           type: 'SAVE_IMAGE_URL',
           imageUrl: data.url
@@ -103,6 +121,7 @@ export default function DisplayImage(props) {
           ))}
         </div>
       </div>
+      <ToastContainer position='top-left' delay={8000} />
     </div>
   );
 }

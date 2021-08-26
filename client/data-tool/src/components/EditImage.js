@@ -61,6 +61,7 @@ export default function EditImage(props) {
   const keyword = useSelector(state => state.keyword);
   const imageUrls = useSelector(state => state.imageUrls);
   const socket = useSelector(state => state.socket);
+  const socketSessionId = useSelector(state => state.socket ? state.socket.id : 0)
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const classesOne = useStyles();
   const classesTwo = useStylesTwo();
@@ -108,7 +109,7 @@ export default function EditImage(props) {
         showLoading();
         const { imageUrls, numberPeople, numberVersions } = getState();
         try {
-          getPoses(imageUrls, keyword, numberPeople, numberVersions)
+          getPoses(imageUrls, keyword, numberPeople, numberVersions, socketSessionId)
         } catch (e) {
           console.warn("Error in pose ", data);
         } finally {

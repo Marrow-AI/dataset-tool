@@ -203,6 +203,7 @@ class Poser(Thread):
 
                     result = pose.json()
                     result['keyword'] = params['keyword']
+                    result['socketSessionId'] = params['socketSessionId']
 
                     emit('pose', result ,broadcast=True, namespace='/')
             except Exception as e:
@@ -278,7 +279,8 @@ def pose_url():
                 'url': url,
                 'numOfPeople': params['numOfPeople'],
                 'numOfPermutations': params['numOfPermutations'],
-                'keyword': params['keyword']
+                'keyword': params['keyword'],
+                'socketSessionId': params['socketSessionId']
             }
             poser_q.put(imgParams)
         return jsonify(result="OK")
