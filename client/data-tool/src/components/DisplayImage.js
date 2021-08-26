@@ -91,7 +91,9 @@ export default function DisplayImage(props) {
 
       <div className='imageContainer'>
         <h1 className='title result'><span className="number"> {searchImages.length}</span> images found for
-          <span className='title result-before'>{keyword}</span>
+          <span className='title result-before'>
+            {keyword.slice(keyword.length - 5, keyword.length -1).join(" + ")}
+          </span>
         </h1>
         <div className='images'>
           {searchImages.map((imageUrl, index) => (

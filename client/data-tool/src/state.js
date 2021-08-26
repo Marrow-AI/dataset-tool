@@ -34,7 +34,7 @@ const reducer = (state = {
   case 'SAVE_KEYWORD': {
     return {
       ...state,
-      keyword: [...state.keyword, action.keyword, '+']
+      keyword: [...state.keyword, action.keyword]
     }
   }
   case 'SAVE_IMAGE_URL': {
