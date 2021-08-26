@@ -45,7 +45,7 @@ export default function Results(props) {
 
   function saveToZip() {
     const zip = new JSZip()
-    zip.file("ReadMe.txt", "These are the images you have collected from www.dataset.tips\nPlease respect the original creators' rights© and remember to check your own biases before training. \nOther than that, we wish you a happy creation session.¸¸.•*¨*• \n shirin anlen and Avner Peled"); //some info
+    zip.file("ReadMe.txt", "These are the images you have collected from https://dataset.tools/\n\nOnce you have curated and selected the desired images please share them with us and sent them to socialdataset@gmail.com.\n\n We will train an AI based on the collaborative effort and publish the model and the results! \n\n Thank you and we wish you a happy creation session.¸¸.•*¨*• \n\n shirin anlen and Avner Peled\n\n https://github.com/Marrow-AI");
     let img = zip.folder('Your_Images');
     cropImages.map((item, i) => {
       let image = item.slice(0);
