@@ -73,6 +73,9 @@ const Footer = () => {
             with the support of the National Film Board of Canada, ATLAS V and the CNC.
             <br/>
             <br/>
+            Source code is available <a className='link footer' href="https://github.com/Marrow-AI/dataset-tool" alt="" target="_blank" rel="noopener noreferrer">here.</a> Please use that repositoy to report on issues. Feature requests are also welcome.
+            <br />
+            <br />
             Read more about the motivation and code in this <a className='link footer' href="https://towardsdatascience.com/small-family-small-dataset-7f7db708f06d" alt="" target="_blank" rel="noopener noreferrer">
             Medium post</a>. And check out our <a className='link footer' href="https://latentspace.tools/" alt="" target="_blank" rel="noopener noreferrer">Latent Space explorer tool</a>.
 
