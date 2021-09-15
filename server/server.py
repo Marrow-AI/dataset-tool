@@ -100,7 +100,7 @@ class Scraper(Thread):
             print("Scrolling")
             for i in range(2):
                 self.driver.execute_script("window.scrollBy(0, 1000000)")
-                time.sleep(1)
+                time.sleep(0.5)
             all_thumbs = self.driver.find_elements_by_xpath('//a[@class="wXeWr islib nfEiy"]')
             print('Gathered {} thumbs'.format(len(all_thumbs)))
             print("Collecting full size pics")

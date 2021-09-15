@@ -19,20 +19,7 @@ export default function DisplayImage(props) {
   async function showEdit(e) {
     e.preventDefault();
     setKeepGoing(!keepGoing, setVisiblebtn(true));
-    await fetch('/stop', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
-    })
-      .then(res => res.json())
-      .then((data) => {
-        if (data.result === "OK") {
-          // showNext()
-          history.push("/edit")
-        } else {
-          alert(data.result);
-        }
-      });
+    history.push("/edit")
   }
 
 
