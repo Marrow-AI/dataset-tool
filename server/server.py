@@ -90,10 +90,10 @@ class Scraper(Thread):
             # number_of_scrolls * 400 images will be opened in the browser
 
             img_urls = set()
-            img_dir = download_dir + '/raw'
-            print("Image dir: {}".format(img_dir))
-            if not os.path.exists(img_dir):
-                os.makedirs(img_dir)
+            #img_dir = download_dir + '/raw'
+            #print("Image dir: {}".format(img_dir))
+            #if not os.path.exists(img_dir):
+            #    os.makedirs(img_dir)
             search_query = quote(main_keyword)
             url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
             self.driver.get(url)
