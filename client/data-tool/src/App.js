@@ -40,7 +40,7 @@ function App() {
         <div className="mobileContainer">
           <p className="mobileMsg">This website is not suitable for small size screens.
             <br />
-            Please increase your window or revist from desktop.
+            Please increase your window size or revist from desktop.
             <br />
             <br />
             Thank you! </p>

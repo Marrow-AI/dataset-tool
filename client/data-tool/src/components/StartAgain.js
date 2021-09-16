@@ -19,9 +19,9 @@ export default function StartAgain() {
     <div className="popup">
       <div className="endScreenDiv">
         <p className="endScreentext">Once you have curated and selected the desired images <br/>
-        please sent them to <a className="email" href="mailto:socialdataset@gmail.com">socialdataset@gmail.com</a>. <br/> <br/>
+        please send them to <a className="email" href="mailto:socialdataset@gmail.com">socialdataset@gmail.com</a>. <br/> <br/>
         We will train an AI based on the collaborative effort 
-        and publish the model and the results! </p> 
+        and publish the model with the results! </p> 
         <div className='btnEnd'>
         <a href='/'> 
         <button className="logo-end">Start again?</button></a>
