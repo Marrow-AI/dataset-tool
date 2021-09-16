@@ -111,7 +111,7 @@ class Scraper(Thread):
                 try:
                     thumb.click()
                     time.sleep(0.5)
-                except e:
+                except Exception as e:
                     print("Error clicking one thumbnail")
 
                 url_elements = self.driver.find_elements_by_xpath('//img[@class="n3VNCb"]')
@@ -121,7 +121,7 @@ class Scraper(Thread):
                 for url_element in url_gen:
                     try:
                         url = url_element.get_attribute('src')
-                    except e:
+                    except Exception as e:
                         print("Error getting one url")
 
                     if url.startswith('http') and not url.startswith('https://encrypted-tbn0.gstatic.com'):
