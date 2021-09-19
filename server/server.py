@@ -95,7 +95,7 @@ class Scraper(Thread):
             #if not os.path.exists(img_dir):
             #    os.makedirs(img_dir)
             search_query = quote(main_keyword)
-            url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch"
+            url = "https://www.google.com/search?q="+search_query+"&source=lnms&tbm=isch&safe=active"
             self.driver.get(url)
             print("Scrolling")
             for i in range(2):
